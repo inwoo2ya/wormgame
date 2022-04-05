@@ -5,165 +5,9 @@
         <title>
             GameScreen
         </title>
-        <link rel="stylesheet" href="./prototype.css">
-        <style>
-            *{
-    padding: 0;
-    margin : 0;
-}
-body{width:100%;height:100%;}
-
-._label{
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    height: 60px;
-    /* border: 1px solid green; */
-    margin-left: 10%;
-}
-.home{
-    width:100%;
-    height:100%;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-image: url(./warmbase.jpg);
-    background-size: 100% 100%;
-}
-.roomhead{
-    margin-left:10%;
-    width:25%;
-    display:inline-flex;
-    padding:20px;
-    background-color: rgb(0, 180, 15);
-    border-radius: 10px;
-}
-.roomname{
-    color:rgb(255, 255, 255);
-    font-size:14pt;
-
-}
-.mainbox{
-    margin: 0% auto 5% auto;
-    background-color:whitesmoke;
-    width:80%; height:800px;
-    border-radius: 10px;
-
-}
-div{display:block;}
-.leftbox{
-    position:relative;
-    width:60%;
-    height:100%;
-    display:inline-block;
-    float:left;
-}
-.rightbox{
-    position:relative;
-    width: 40%;
-    height:100%;
-    display:inline-block;
-    float:right;
-}
-.Gbox{
-    display:inline-block;
-    margin:4% 6%;
-    background-color: rgb(194, 168, 168);
-    width:80%;
-    height:65%;
-    border-radius: 10px;
-}
-.choiceBox{
-
-}
-.userbox{
-    display:inline-block;
-    height:75%;
-    width:100%;
-
-}
-.GRbox{
-    display:inline-block;
-    overflow: auto;
-    margin:0% 6%;
-    background-color:rgb(197, 245, 197);
-    height:20%;
-    width: 80%;
-    border-radius: 10px;
-}
-.repo{
-    padding:10px;
-    font-size:12pt;
-}
-.GRbox::-webkit-scrollbar{
-    width: 10px;
-}
-.GRbox::-webkit-scrollbar-thumb{
-    background-color: rgb(173, 189, 180);
-    border-radius: 10px;
-}
-.GRbox::-webkit-scroller-track{
-    background-color: rgb(255, 255, 255);
-}
-.in_{
-    background-color:rgb(240, 255, 242);
-    position:relative;
-    width:68%;
-    height:15pt;
-    border-radius:5px;
-    margin-left: 6%;
-    margin-top:0;
-    font-size:12pt;
-
-}
-.chatbtn{
-    background-color: rgb(190, 241, 201);
-    width:10%;
-    border-radius: 5px;
-}
-.chatbtn:hover{
-    background-color: rgb(78, 226, 90);
-    color:white;
-}
-.otherplayerbox{
-    position: relative;
-    display:inline-block;
-    width:50%;
-    height:25%;
-    margin:7% 7% 0% 15%;
-    border-radius: 10px;
-    background-color: rgb(202, 238, 207);
-}
-.startbtn,.exitbtn{
-    display:inline-block;
-    width:40%;
-    height:45%;
-    background-color: rgb(0, 180, 15);
-    border-radius:15px;
-    color:white;
-    justify-content: center;
-    letter-spacing: 8px;  
-    font-size:15pt;
-}
-.startbtn{
-    margin:7% 0% 15% 0%;
-}
-.startbtn:hover{
-    background-color: rgb(0, 255, 34);
-    color:white;
-}
-.exitbtn{
-    margin:7% 0% 15% 5%;
-}
-.exitbtn:hover{
-    background-color: rgb(0, 255, 34);
-    color:white;
-}
-.btnarea{
-    display:inline-block;
-    width: 100%;
-    height: 25%;
-}
-</style>
+        <script type="text/javascript" src="./GamePlay.js"></script>
+        
+        <link rel="stylesheet" href="./GamePlay.css">
 
     </head>
     <body>
@@ -174,23 +18,116 @@ div{display:block;}
         </div>
         <div class="mainbox">
             <div class="leftbox">
-                <div class="Gbox"> </div>
+                <div class="Gbox">
+                     <button class="choiceBox"id="1a"></button>
+                     <button class="choiceBox"id="2a"></button>
+                     <button class="choiceBox"id="3a"></button>
+                     <button class="choiceBox"id="4a"></button>
+                     <button class="choiceBox"id="5a"></button>
+                     <button class="choiceBox"id="6a"></button>
+                     <button class="choiceBox"id="7a"></button>
+                     <button class="choiceBox"id="8a"></button>
+                     <button class="choiceBox"id="9a"></button>
+                     <button class="choiceBox"id="10a"></button>
+                     <button class="choiceBox"id="1b"></button>
+                     <button class="choiceBox"id="2b"></button>
+                     <button class="choiceBox"id="3b"></button>
+                     <button class="choiceBox"id="4b"></button>
+                     <button class="choiceBox"id="5b"></button>
+                     <button class="choiceBox"id="6b"></button>
+                     <button class="choiceBox"id="7b"></button>
+                     <button class="choiceBox"id="8b"></button>
+                     <button class="choiceBox"id="9b"></button>
+                     <button class="choiceBox"id="10b"></button>
+                     <button class="choiceBox"id="1c"></button>
+                     <button class="choiceBox"id="2c"></button>
+                     <button class="choiceBox"id="3c"></button>
+                     <button class="choiceBox"id="4c"></button>
+                     <button class="choiceBox"id="5c"></button>
+                     <button class="choiceBox"id="6c"></button>
+                     <button class="choiceBox"id="7c"></button>
+                     <button class="choiceBox"id="8c"></button>
+                     <button class="choiceBox"id="9c"></button>
+                     <button class="choiceBox"id="10c"></button>
+                     <button class="choiceBox"id="1d"></button>
+                     <button class="choiceBox"id="2d"></button>
+                     <button class="choiceBox"id="3d"></button>
+                     <button class="choiceBox"id="4d"></button>
+                     <button class="choiceBox"id="5d"></button>
+                     <button class="choiceBox"id="6d"></button>
+                     <button class="choiceBox"id="7d"></button>
+                     <button class="choiceBox"id="8d"></button>
+                     <button class="choiceBox"id="9d"></button>
+                     <button class="choiceBox"id="10d"></button>
+                     <button class="choiceBox"id="1e"></button>
+                     <button class="choiceBox"id="2e"></button>
+                     <button class="choiceBox"id="3e"></button>
+                     <button class="choiceBox"id="4e"></button>
+                     <button class="choiceBox"id="5e"></button>
+                     <button class="choiceBox"id="6e"></button>
+                     <button class="choiceBox"id="7e"></button>
+                     <button class="choiceBox"id="8e"></button>
+                     <button class="choiceBox"id="9e"></button>
+                     <button class="choiceBox"id="10e"></button>
+                     <button class="choiceBox"id="1f"></button>
+                     <button class="choiceBox"id="2f"></button>
+                     <button class="choiceBox"id="3f"></button>
+                     <button class="choiceBox"id="4f"></button>
+                     <button class="choiceBox"id="5f"></button>
+                     <button class="choiceBox"id="6f"></button>
+                     <button class="choiceBox"id="7f"></button>
+                     <button class="choiceBox"id="8f"></button>
+                     <button class="choiceBox"id="9f"></button>
+                     <button class="choiceBox"id="10f"></button>
+                     <button class="choiceBox"id="1g"></button>
+                     <button class="choiceBox"id="2g"></button>
+                     <button class="choiceBox"id="3g"></button>
+                     <button class="choiceBox"id="4g"></button>
+                     <button class="choiceBox"id="5g"></button>
+                     <button class="choiceBox"id="6g"></button>
+                     <button class="choiceBox"id="7g"></button>
+                     <button class="choiceBox"id="8g"></button>
+                     <button class="choiceBox"id="9g"></button>
+                     <button class="choiceBox"id="10g"></button>
+                     <button class="choiceBox"id="1h"></button>
+                     <button class="choiceBox"id="2h"></button>
+                     <button class="choiceBox"id="3h"></button>
+                     <button class="choiceBox"id="4h"></button>
+                     <button class="choiceBox"id="5h"></button>
+                     <button class="choiceBox"id="6h"></button>
+                     <button class="choiceBox"id="7h"></button>
+                     <button class="choiceBox"id="8h"></button>
+                     <button class="choiceBox"id="9h"></button>
+                     <button class="choiceBox"id="10h"></button>
+                     <button class="choiceBox"id="1i"></button>
+                     <button class="choiceBox"id="2i"></button>
+                     <button class="choiceBox"id="3i"></button>
+                     <button class="choiceBox"id="4i"></button>
+                     <button class="choiceBox"id="5i"></button>
+                     <button class="choiceBox"id="6i"></button>
+                     <button class="choiceBox"id="7i"></button>
+                     <button class="choiceBox"id="8i"></button>
+                     <button class="choiceBox"id="9i"></button>
+                     <button class="choiceBox"id="10i"></button>
+                     <button class="choiceBox"id="1j"></button>
+                     <button class="choiceBox"id="2j"></button>
+                     <button class="choiceBox"id="3j"></button>
+                     <button class="choiceBox"id="4j"></button>
+                     <button class="choiceBox"id="5j"></button>
+                     <button class="choiceBox"id="6j"></button>
+                     <button class="choiceBox"id="7j"></button>
+                     <button class="choiceBox"id="8j"></button>
+                     <button class="choiceBox"id="9j"></button>
+                     <button class="choiceBox"id="10j"></button>
+                     
+                    </div>
                 <div class="GRbox"id="report">
                     <p class="repo"id="repo"></p>
                 </div>
-                    <input class="in_" id="chat" type="text"/> <button class="chatbtn" onclick="chatting();">전송</button> 
+                <form id="form">
+                    <input class="in_" id="input" type="text"/> <button type='submit' class="chatbtn" onclick="chatting();">전송</button> 
+                </form>
                 </div>
-                <script>
-                    function chatting(){
-                        var tag1 = document.getElementById('chat');
-                        var tag2 = document.getElementById('repo');
-                        document.write(tag1);
-                        var placeNode = document.createTextNode(tag1.value);
-                        newPlace.appendChild(placeNode);
-                        tag1.value='';
-                    }
-        
-                </script>
             <div class="rightbox">
                 <div class="userbox">
                     <div class="otherplayerbox">2p</div>
