@@ -19,4 +19,9 @@ public class WebController {
     public String Game() {
         return "Game.html";
     }
+    
+    @GetMapping("GamePlay")
+    public String GamePlay() {
+        return "GamePlay.html";
+    }
 }
