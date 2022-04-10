@@ -119,7 +119,8 @@
         <div class="_image" style="min-width: 380px;">
         </div>
         <div class="_from" style="min-width: 380px;">
-            <form>
+            <form method="post" action="join">
+
                  <div class="_label"></div>
                 <div class="_label"><span style="font-size:24px;">세션번호 : <%= session.getId() %></span></div>
 
@@ -129,11 +130,12 @@
                     <input class="_username_class"
                            type="text"
                            placeholder="닉네임"
-                           id="_username_id">
+                           id="_username_id"
+                           name="_username_id">
                 </div>
 
                 <div class="divBox margin_top60" style="border:none;">
-                    <input class="_btn" type="button" value="방만들기" name="submit">
+                    <input class="_btn" type="submit" value="방만들기" name="submit">
                 </div>
 
                 <div class="divBox margin_top60" style="border:none;">
