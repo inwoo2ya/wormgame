@@ -30,12 +30,12 @@ public class WebController {
     
     @GetMapping("Game")
     public String Game() {
-        return "Game.html";
+        return "Game.jsp";
     }
     
     @GetMapping("GamePlay")
     public String GamePlay() {
-        return "GamePlay.html";
+        return "GamePlay.jsp";
     }
 
     @GetMapping("sessionPrint")
