@@ -1,0 +1,188 @@
+*{
+    padding: 0;
+    margin : 0;
+}
+body{width:100%;height:100%;}
+
+._label{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 60px;
+    /* border: 1px solid green; */
+    margin-left: 10%;
+}
+.home{
+    width:100%;
+    height:100%;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-image: url(./warmbase.jpg);
+    background-size: 100% 100%;
+}
+.roombtn{
+    display:inline-block;
+    font-size: 10pt;
+    color:white;
+    border-style: hidden;
+    border-radius: 5px;
+    background-color: rgb(0, 180, 15);
+    
+    
+}
+.roombtn:hover{
+    background-color:rgb(0, 255, 34);
+    
+}
+.roomhead{
+    margin-left:10%;
+    width:25%;
+    display:inline-flex;
+    padding:10px;
+    background-color: rgb(0, 180, 15);
+    border-radius: 8px;
+    color:rgb(255, 255, 255);
+    font-size:12pt;
+    font-weight: 400;
+
+}
+.roomname{
+    color:rgb(255, 255, 255);
+    font-size:12pt;
+    font-weight: 400;
+
+}
+.mainbox{
+    margin: 0% auto 5% auto;
+    background-color:whitesmoke;
+    width:80%; height:860px;
+    border-radius: 8px;
+
+}
+div{display:block;}
+.leftbox{
+    position:relative;
+    width:60%;
+    height:100%;
+    display:inline-block;
+    float:left;
+}
+.rightbox{
+    position:relative;
+    width: 40%;
+    height:100%;
+    display:inline-block;
+    float:right;
+}
+.Gbox{
+    display:inline-block;
+    margin:4% 6% 4% 7%;
+    background-color: antiquewhite;
+    width:80%;
+    height:65%;
+    border-radius: 5px;
+}
+.Game{
+    
+}
+.choiceBox{
+    
+    padding:2px;
+    position: relative;
+    justify-content: center;
+    width: 53px;
+    height:53px;
+    background-color:antiquewhite;
+
+}
+.choiceBox:hover{
+    background-color: azure;
+}
+.userbox{
+    display:inline-block;
+    height:75%;
+    width:100%;
+
+}
+.GRbox{
+    display:inline-block;
+    overflow: auto;
+    margin:0% 7%;
+    background-color:rgb(197, 245, 197);
+    height:22%;
+    width: 80%;
+    border-radius: 10px;
+}
+.repo{
+    padding:10px;
+    font-size:12pt;
+}
+.GRbox::-webkit-scrollbar{
+    width: 10px;
+}
+.GRbox::-webkit-scrollbar-thumb{
+    background-color: rgb(173, 189, 180);
+    border-radius: 10px;
+}
+.GRbox::-webkit-scroller-track{
+    background-color: rgb(255, 255, 255);
+}
+.in_{
+    background-color:rgb(240, 255, 242);
+    position:relative;
+    width:69%;
+    height:15pt;
+    border-radius:5px;
+    margin-left: 7%;
+    margin-top:0;
+    font-size:12pt;
+
+}
+.chatbtn{
+    background-color: rgb(190, 241, 201);
+    width:10%;
+    border-radius: 5px;
+}
+.chatbtn:hover{
+    background-color: rgb(78, 226, 90);
+    color:white;
+}
+.otherplayerbox{
+    position: relative;
+    display:inline-block;
+    width:50%;
+    height:25%;
+    margin:7% 7% 0% 15%;
+    border-radius: 10px;
+    background-color: rgb(202, 238, 207);
+}
+.startbtn,.exitbtn{
+    display:inline-block;
+    width:40%;
+    height:45%;
+    background-color: rgb(0, 180, 15);
+    border-radius:15px;
+    color:white;
+    justify-content: center;
+    letter-spacing: 8px;  
+    font-size:15pt;
+}
+.startbtn{
+    margin:7% 0% 15% 0%;
+}
+.startbtn:hover{
+    background-color: rgb(0, 255, 34);
+    color:white;
+}
+.exitbtn{
+    margin:7% 0% 15% 5%;
+}
+.exitbtn:hover{
+    background-color: rgb(0, 255, 34);
+    color:white;
+}
+.btnarea{
+    display:inline-block;
+    width: 100%;
+    height: 25%;
+}
