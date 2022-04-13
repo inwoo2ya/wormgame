@@ -1,14 +1,15 @@
 package com.capstonedesign07.wormgame.repository;
 
 import com.capstonedesign07.wormgame.domain.User;
+import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
+@Repository
 public class MemoryUserRepository implements UserRepository {
 
     private static Map<String, User> store = new HashMap<>();
-//    private static String
 
     @Override
     public User save(User user, HttpSession httpSession) {
