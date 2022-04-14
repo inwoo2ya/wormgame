@@ -14,7 +14,7 @@
         <div class="_label"></div>
 
         <div class="roomhead">
-           <p class="roomname" id="roomname">방 제목</p>
+           <p class="roomname" id="roomname"><%= request.getAttribute("roomname") %></p>
         </div> <button class="roombtn" onclick="roomname()">방 제목변경</button>
         <div class="mainbox">
             <div class="leftbox">
