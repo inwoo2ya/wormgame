@@ -119,7 +119,7 @@
         <div class="_image" style="min-width: 380px;">
         </div>
         <div class="_from" style="min-width: 380px;">
-            <form method="post" action="join">
+            <form method="post" action="makeRoom">
 
                  <div class="_label"></div>
                 <div class="_label"><span style="font-size:24px;">세션번호 : <%= session.getId() %></span></div>
