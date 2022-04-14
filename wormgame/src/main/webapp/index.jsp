@@ -12,13 +12,11 @@
             padding: 0;
             margin: 0;
         }
-
         html,
         body {
             width: 100%;
             height: 100%;
         }
-
         ._home {
             width: 100%;
             height: 100%;
@@ -28,18 +26,14 @@
             background-image: url(img/bg.jpg);
             background-size: 100% 100%;
         }
-
         .flexCenter {
             text-align: center;
             margin: auto;
         }
-
-
         ._image {
             width: 60%;
             height: 100%;
         }
-
         ._from {
             width: 40%;
             height: 100%;
@@ -47,12 +41,10 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px #ccc;
         }
-
         img {
             width: 100%;
             height: 100%;
         }
-
         .divBox {
             display: flex;
             justify-content: center;
@@ -62,7 +54,6 @@
             margin-left: 10%;
             position: relative;
         }
-
         ._label {
             display: flex;
             justify-content: center;
@@ -73,7 +64,6 @@
             margin-bottom: 22px;
             margin-top: 10px;
         }
-
         ._username_img {
             width: 44px;
             height: 44px;
@@ -81,17 +71,14 @@
             top: 1px;
             left: 1px;
         }
-
         ._username_class {
             width: 100%;
             outline: none;
             padding-left: 50px;
         }
-
         .margin_top60 {
             margin-top: 40px;
         }
-
         ._btn {
             width: 100%;
             height: 50px;
@@ -103,7 +90,6 @@
             border-radius: 10px;
             color: white;
         }
-
         ._btn:hover {
             background-color: #044468;
             border: none;
@@ -135,7 +121,8 @@
                 </div>
 
                 <div class="divBox margin_top60" style="border:none;">
-                    <input class="_btn" type="submit" value="방만들기" name="submit">
+                    <input class="_btn" type="submit" value="방만들기" name="submit" onclick="window.open('popup.jsp', '_blank', 
+                    'top=140, left=50, width=500, height=300, menubar=no, toolbar=no, location=no, directories=no, status=no, scrollbars=no, copyhistory=no, resizable=no');">
                 </div>
 
                 <div class="divBox margin_top60" style="border:none;">
