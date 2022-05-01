@@ -86,11 +86,12 @@ div{display:block;}
     
 }
 .choiceBox{
-    
-    padding:2px;
-    position: relative;
+    border:dashed;
+    float:left;
+    text-align:center;
+    display:inline-block;
     justify-content: center;
-    width: 53px;
+    width: 58px;
     height:53px;
     background-color:antiquewhite;
 
@@ -98,6 +99,7 @@ div{display:block;}
 .choiceBox:hover{
     background-color: azure;
 }
+
 .userbox{
     display:inline-block;
     height:75%;
@@ -155,6 +157,22 @@ div{display:block;}
     margin:7% 7% 0% 15%;
     border-radius: 10px;
     background-color: rgb(202, 238, 207);
+}
+
+.dieplayerbox{
+    position: relative;
+    display:inline-block;
+    width:50%;
+    height:25%;
+    margin:7% 7% 0% 15%;
+    border-radius: 10px;
+    background-color: rgb(49, 77, 53);
+}
+.dieplayerbox img{
+    width:90%;
+    height:95%;
+    margin-left:5%;
+    filter: opacity(0.5) drop-shadow(0 0 0 red);
 }
 .startbtn,.exitbtn{
     display:inline-block;
