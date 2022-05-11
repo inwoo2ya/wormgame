@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Game</title>
+    <title>GGUMTEUL WARMS</title>
     <style>
         * {
             padding: 0;
@@ -31,14 +31,24 @@
             margin: auto;
         }
         ._image {
+            
+            color:white;
+            font-size:20pt;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            background-color: rgb(4, 174, 4);
+            border:none;
             width: 60%;
-            height: 100%;
+            height: 30px;
         }
         ._from {
             width: 40%;
             height: 100%;
             background-color: white;
-            border-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
             box-shadow: 0px 0px 10px #ccc;
         }
         img {
@@ -50,15 +60,20 @@
             justify-content: center;
             width: 80%;
             height: 46px;
-            margin-top: 20px;
+            margin-top: 50px;
             margin-left: 10%;
             position: relative;
+        }
+        .warning{
+            display: block;
+            justify-content: center;
+            position:relative;
         }
         ._label {
             display: flex;
             justify-content: center;
             width: 80%;
-            height: 60px;
+            height: 50px;
             /* border: 1px solid green; */
             margin-left: 10%;
             margin-bottom: 22px;
@@ -69,22 +84,23 @@
             height: 44px;
             position: absolute;
             top: 1px;
-            left: 1px;
+            left: 4px;
         }
         ._username_class {
-            width: 100%;
+            width: 80%;
+            font-size:15pt;
             outline: none;
             padding-left: 50px;
         }
         .margin_top60 {
-            margin-top: 60px;
+            margin-top: 40px;
         }
         ._btn {
-            width: 95%;
-            height: 68px;
+            width: 100%;
+            height: 88px;
             letter-spacing: 10px;
-            font-size: 25px;
-            background-color: green;
+            font-size: 30px;
+            background-color: rgb(4, 174, 4);
             border: none;
             outline: none;
             border-radius: 10px;
@@ -101,23 +117,32 @@
 <body>
 <div class="_home">
 
-    <div class="_container flexCenter" style="min-height:390px;">
-        <div class="_image" style="min-width: 380px;">
+    <div class="flexCenter" style="min-height:390px;">
+        <div class="_image" style="min-width: 380px;"> 꿈틀 웜즈
         </div>
         <div class="_from" style="min-width: 380px;">
-            <form method="post" action="makeRoom">
+            <form method="post" action="Gamestart">
 
-                 <div class="_label"></div>
-                <div class="divBox" style="border:none; text-align: left;" id="user_name">Player_Name:</div>
-                <div class="divBox margin_top60" style="border:none;">
-                    <input class="_btn" type="submit" value="방만들기" name="submit">
+                 <div class="_label"style="margin-top:0"></div>
+                <div class="_label" style="margin-bottom: 20px;"><span style="font-size:24px;">세션번호 : <%= session.getId() %></span></div>
+
+                <div class="divBox">
+                    <img class="_username_img"
+                         src="img/username_mark.png">
+                    <input class="_username_class"
+                           type="text"
+                           placeholder="닉네임"
+                           id="_username_id"
+                           name="_username_id"
+                           maxlength="11">
+                </div>
+                <p class="warning" style="font-size:10pt;">닉네임은 최대 11글자입니다.</p>
+                <div class="divBox" style="margin-top:30px; border:none;">
+                    
+                    <input class="_btn" type="submit" value="게임 시작" name="submit" id="GameStart">
                 </div>
 
-                <div class="divBox margin_top60" style="border:none;">
-                    <input class="_btn" type="button" value="방찾기" name="submit">
-                </div>
-
-                <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : 0</div>
+                <div class="divBox" style="border:none;"></div>
             </form>
         </div>
     </div>
