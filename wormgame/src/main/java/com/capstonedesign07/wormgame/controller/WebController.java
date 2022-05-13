@@ -39,7 +39,7 @@ public class WebController {
     public String index() {
         return "firstIndex.jsp";
     }
-    @GetMapping("fisrtIndex")
+    @GetMapping("firstIndex")
     public String firstIndex() {
         return "firstIndex.jsp";
     }
@@ -137,5 +137,10 @@ public class WebController {
         model.addAttribute("roomname", room.getName());
 //        httpServletRequest.setAttribute("roomname", room.getName());
         return "GamePlay.jsp";
+    }
+
+    @GetMapping("findRoom")
+    public String findRoom() {
+        return "findRoom.jsp";
     }
 }
