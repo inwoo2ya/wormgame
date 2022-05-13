@@ -13,7 +13,7 @@ public class MemoryUserRepository implements UserRepository {
 
     @Override
     public User save(User user, HttpSession httpSession) {
-        user.setSessionId(httpSession.getId());
+//        user.setSessionId(httpSession.getId());
         store.put(user.getSessionId(), user);
         return user;
     }

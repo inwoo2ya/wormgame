@@ -63,8 +63,7 @@ public class WebController {
 
     @GetMapping("joinTest")
     public String joinTest() {
-        User user = new User();
-        user.setSessionId(httpSession.getId());
+        User user = new User(httpSession.getId(), "tempName");
         httpSession.setAttribute(user.getSessionId(), user);
         return "index.jsp";
     }
@@ -72,10 +71,8 @@ public class WebController {
     @PostMapping("join")
     @ResponseBody
     public String join() {
-        User user = new User();
-        user.setSessionId(httpSession.getId());
+        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
         System.out.println("httpSession.getId() = " + httpSession.getId());
-        user.setName(httpServletRequest.getParameter("_username_id"));
         System.out.println("httpServletRequest.getParameter(\"_username_id\") = " + httpServletRequest.getParameter("_username_id"));
         httpSession.setAttribute(user.getSessionId(), user);
         return "sessionId : " + user.getSessionId() + "<br/>userName : " + user.getName();
@@ -86,9 +83,7 @@ public class WebController {
     public String make() {
         String s = "";
 
-        User user = new User();
-        user.setSessionId(httpSession.getId());
-        user.setName(httpServletRequest.getParameter("_username_id"));
+        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
 
         Room room = new Room();
         room.setName(user.getSessionId());
@@ -120,9 +115,7 @@ public class WebController {
 
     @PostMapping("makeRoom")
     public String makeRoom(Model model) {
-        User user = new User();
-        user.setSessionId(httpSession.getId());
-        user.setName(httpServletRequest.getParameter("_username_id"));
+        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
 
         Room room = new Room();
         room.setName("임시 방제목" + ++tempRoomCount);
