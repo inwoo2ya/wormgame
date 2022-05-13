@@ -118,13 +118,13 @@
 <div class="_home">
 
     <div class="flexCenter" style="min-height:390px;">
-        <div class="_image" style="min-width: 380px;"> 꿈틀 웜즈
+        <div class="_image" style="min-width: 500px;"> 꿈틀 웜즈
         </div>
-        <div class="_from" style="min-width: 380px;">
+        <div class="_from" style="min-width: 500px;">
             <form method="post" action="secondIndex">
 
                  <div class="_label"style="margin-top:0"></div>
-                <div class="_label" style="margin-bottom: 20px;"><span style="font-size:24px;">세션번호 : <%= session.getId() %></span></div>
+                <div class="_label" style="margin-bottom: 20px;"><span style="font-size:23px;width:420px">세션번호 : <%= session.getId() %></span></div>
 
                 <div class="divBox">
                     <img class="_username_img"
