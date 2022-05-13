@@ -32,12 +32,22 @@ public class WebController {
     @GetMapping("")
     public String root() {
         System.out.println("httpSession.getId() = " + httpSession.getId());
-        return "index.jsp";
+        return "firstIndex.jsp";
     }
 
     @GetMapping("index")
     public String index() {
-        return "index.jsp";
+        return "firstIndex.jsp";
+    }
+    @GetMapping("fisrtIndex")
+    public String firstIndex() {
+        return "firstIndex.jsp";
+    }
+
+    @PostMapping("secondIndex")
+    public String secondIndex() {
+        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
+        return "secondIndex.jsp";
     }
     
     @GetMapping("Game")
