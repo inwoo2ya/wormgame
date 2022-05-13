@@ -84,7 +84,7 @@
             height: 44px;
             position: absolute;
             top: 1px;
-            left: 4px;
+            left: 13.5px;
         }
         ._username_class {
             width: 80%;
