@@ -138,7 +138,7 @@
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id=""> 게임시작</button>
-                    <button class="exitbtn" id="exit" onclick="back();">나가기</button>
+                    <button class="exitbtn" id="exit" onclick="location.href='findRoom'">나가기</button>
                 </div>
             </div>
 
