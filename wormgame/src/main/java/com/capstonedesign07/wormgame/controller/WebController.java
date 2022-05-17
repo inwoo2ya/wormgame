@@ -50,11 +50,6 @@ public class WebController {
         return "secondIndex.jsp";
     }
     
-    @GetMapping("Game")
-    public String Game() {
-        return "Game.jsp";
-    }
-    
     @GetMapping("GamePlay")
     public String GamePlay() {
         return "GamePlay.jsp";
@@ -68,13 +63,6 @@ public class WebController {
             String sessionAttribute = (String)e.nextElement();
             System.out.println("session.getAttribute(" + sessionAttribute + ") : " + httpSession.getAttribute(sessionAttribute));
         }
-        return "index.jsp";
-    }
-
-    @GetMapping("joinTest")
-    public String joinTest() {
-        User user = new User(httpSession.getId(), "tempName");
-        httpSession.setAttribute(user.getSessionId(), user);
         return "index.jsp";
     }
 
