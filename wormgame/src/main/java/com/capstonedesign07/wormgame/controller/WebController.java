@@ -31,16 +31,16 @@ public class WebController {
 
     @GetMapping("")
     public String root() {
-        System.out.println("httpSession.getId() = " + httpSession.getId());
-        return "firstIndex.jsp";
+        return firstIndex();
     }
 
     @GetMapping("index")
     public String index() {
-        return "firstIndex.jsp";
+        return firstIndex();
     }
     @GetMapping("firstIndex")
     public String firstIndex() {
+        System.out.println("httpSession.getId() = " + httpSession.getId());
         return "firstIndex.jsp";
     }
 
