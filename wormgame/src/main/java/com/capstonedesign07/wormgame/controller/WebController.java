@@ -44,9 +44,14 @@ public class WebController {
         return "firstIndex.jsp";
     }
 
-    @PostMapping("secondIndex")
-    public String secondIndex() {
-        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
+    @PostMapping("secondIndex") 
+    public String secondIndex(Model model) {
+       String username,sessionId;
+        sessionId = httpSession.getId();
+        username = httpServletRequest.getParameter("_username_id");
+        User user = new User(sessionId,username);
+        System.out.println("httpSession.getuserName = "+username);
+        model.addAttribute("_username_id",user.getName());
         return "secondIndex.jsp";
     }
     
@@ -111,7 +116,7 @@ public class WebController {
         return s;
     }
 
-    @PostMapping("makeRoom")
+    @PostMapping("createGame") // 2022.05.18 변경
     public String makeRoom(Model model) {
         User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
 
@@ -127,7 +132,7 @@ public class WebController {
         return "GamePlay.jsp";
     }
 
-    @GetMapping("findRoom")
+    @PostMapping("SearchRoom") // 2022.05.18 변경
     public String findRoom() {
         return "findRoom.jsp";
     }
