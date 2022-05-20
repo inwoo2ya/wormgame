@@ -19,6 +19,7 @@ import java.util.List;
 @Controller
 public class WebController {
 
+    int user_count = 0 ; // 22.05.20 접속자 수 변경
     int tempRoomCount = 0;
     @Autowired private HttpSession httpSession;
     @Autowired private HttpServletRequest httpServletRequest;
@@ -52,6 +53,7 @@ public class WebController {
         User user = new User(sessionId,username);
         System.out.println("httpSession.getuserName = "+username);
         model.addAttribute("_username_id",user.getName());
+        model.addAttribute("user_name", ++user_count); // 22.05.20 접속자 수 로직 추기
         return "secondIndex.jsp";
     }
     
