@@ -194,7 +194,7 @@
                         <input class="_btn" type="button" value="방찾기" name="submit">
                     </div>
 
-                    <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : 0</div>
+                    <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("user_name") %></div>
                 </form>
             </div>
         </div>
