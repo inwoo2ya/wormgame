@@ -19,8 +19,8 @@ public class User {
     public String getName() {
         return name;
     }
-}
 
-enum GameStatus {
-    READY, RUNNING, LOSE, WIN;
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
 }
