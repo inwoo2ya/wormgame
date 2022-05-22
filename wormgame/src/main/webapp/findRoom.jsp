@@ -64,15 +64,15 @@
 <body>
     <div class="_home">
         <div class="inner">
-            <button class="backbtn" onclick="backindex();">x</button>
+            <button class="backbtn" onclick="location.href = 'http://localhost:8080/secondIndex';">x</button>
             <ul>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
+                    <button type="button" class="b1" name = request.getParameter("username")  onclick = "location.href = 'http://localhost:8080/makeRoom';">
+                    			<div class="reday">
+                        			<p>
+                            		<span>reday <i></i></span><span>1/4</span></p>
+                    		</div>
+					</button>
                 </li>
                 <li>
                     <h3>
