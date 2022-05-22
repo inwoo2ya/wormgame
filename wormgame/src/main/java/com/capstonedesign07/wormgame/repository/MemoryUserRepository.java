@@ -1,46 +1,37 @@
 package com.capstonedesign07.wormgame.repository;
 
 import com.capstonedesign07.wormgame.domain.User;
+import com.capstonedesign07.wormgame.domain.Users;
 import org.springframework.stereotype.Repository;
-
-import javax.servlet.http.HttpSession;
-import java.util.*;
 
 @Repository
 public class MemoryUserRepository implements UserRepository {
 
-    private static Map<String, User> store = new HashMap<>();
+    private final static Users store = new Users();
 
     @Override
-    public User save(User user, HttpSession httpSession) {
-//        user.setSessionId(httpSession.getId());
-        store.put(user.getSessionId(), user);
+    public User save(User user) {
+        store.addUser(user);
         return user;
     }
 
     @Override
-    public Optional<User> findBySessionId(String sessionId) {
-        return Optional.ofNullable(store.get(sessionId));
+    public User findBySessionId(String sessionId) {
+        return store.findUserBySessionId(sessionId);
     }
 
     @Override
-    public Optional<User> findByName(String name) {
-        return store.values().stream()
-                .filter(user -> user.getName().equals(name))
-                .findAny();
+    public User findByName(String name) {
+        return store.findUserByName(name);
     }
 
     @Override
-    public List<User> findAll() {
-        return new ArrayList<>(store.values());
+    public Users findAll() {
+        return store;
     }
 
     @Override
     public void delete(User user) {
-
-    }
-
-    public void cleanStore() {
-        store.clear();
+        store.removeUser(user);
     }
 }
