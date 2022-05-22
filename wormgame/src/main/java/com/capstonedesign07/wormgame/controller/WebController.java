@@ -45,7 +45,7 @@ public class WebController {
         return "firstIndex.jsp";
     }
 
-    @PostMapping("secondIndex") 
+    @RequestMapping("secondIndex") // 2022.05.22 변경
     public String secondIndex(Model model) {
        String username,sessionId;
         sessionId = httpSession.getId();
