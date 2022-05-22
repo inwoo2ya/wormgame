@@ -1,16 +1,13 @@
 package com.capstonedesign07.wormgame.repository;
 
 import com.capstonedesign07.wormgame.domain.User;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Optional;
+import com.capstonedesign07.wormgame.domain.Users;
 
 public interface UserRepository {
 
-    User save(User user, HttpSession httpSession);
-    Optional<User> findBySessionId(String sessionId);
-    Optional<User> findByName(String name);
-    List<User> findAll();
+    User save(User user);
+    User findBySessionId(String sessionId);
+    User findByName(String name);
+    Users findAll();
     void delete(User user);
 }
