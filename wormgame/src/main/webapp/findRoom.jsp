@@ -67,12 +67,12 @@
             <button class="backbtn" onclick="location.href = 'http://localhost:8080/secondIndex';">x</button>
             <ul>
                 <li>
-                    <button type="button" class="b1" name = request.getParameter("username")  onclick = "location.href = 'http://localhost:8080/makeRoom';">
-                    			<div class="reday">
-                        			<p>
+                	<button type="button" class="b1" name = request.getParameter("username")  onclick = "location.href = 'http://localhost:8080/makeRoom';">
+                    		<div class="reday">
+                        		<p>
                             		<span>reday <i></i></span><span>1/4</span></p>
                     		</div>
-					</button>
+			</button>
                 </li>
                 <li>
                     <h3>
