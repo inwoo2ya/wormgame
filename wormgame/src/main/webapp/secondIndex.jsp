@@ -185,6 +185,7 @@
 
                      <div class="_label"></div>
                     <div class="divBox" style="border:none; text-align: left;" id="user_name">Player_Name:</div>
+                    <div style="border:none; text-align:center; font-size:24pt;"> <%= request.getAttribute("_username_id") %></div>
                     <div class="divBox margin_top60" style="border:none;">
                         <input class="_btn" type="submit" value="방만들기" name="submit" onclick="layer_popup('#layer2')">
                     </div>
