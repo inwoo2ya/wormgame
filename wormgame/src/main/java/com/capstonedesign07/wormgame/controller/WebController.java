@@ -84,48 +84,46 @@ public class WebController {
         return "sessionId : " + user.getSessionId() + "<br/>userName : " + user.getName();
     }
 
-    @GetMapping("makeTest")
-    @ResponseBody
-    public String make() {
-        String s = "";
-
-        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
-
-        Room room = new Room();
-        room.setName(user.getSessionId());
-        room.setRoomSize(2);
-        room.addUser(user);
-
-        roomRepository.save(room);
-
-        System.out.println("user " + user.getSessionId() + "가 방 " + room.getName() + "을 만들었습니다");
-        s += "user " + user.getSessionId() + "가 방 " + room.getName() + "을 만들었습니다";
-        List<Room> list = roomRepository.findAll();
-        System.out.println("방 개수 = " + list.size());
-        s += "방 개수 = " + list.size() + '\n';
-
-        for(int i=0 ; i<list.size() ; i++) {
-            Room r = list.get(i);
-            System.out.println(i + "번 방제목 : " + r.getName());
-            s += i + "번 방제목 : " + r.getName() + '\n';
-
-            System.out.println("참가자");
-            List<User> l = r.findAll();
-            for(int j=0 ; j<l.size() ; j++)
-                System.out.print(l.get(j).getSessionId());
-            System.out.println();
-            System.out.println();
-        }
-        return s;
-    }
+//    @GetMapping("makeTest")
+//    @ResponseBody
+//    public String make() {
+//        String s = "";
+//
+//        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
+//
+//        Room room = new Room();
+//        room.setName(user.getSessionId());
+//        room.setRoomSize(2);
+//        room.addUser(user);
+//
+//        roomRepository.save(room);
+//
+//        System.out.println("user " + user.getSessionId() + "가 방 " + room.getName() + "을 만들었습니다");
+//        s += "user " + user.getSessionId() + "가 방 " + room.getName() + "을 만들었습니다";
+//        List<Room> list = roomRepository.findAll();
+//        System.out.println("방 개수 = " + list.size());
+//        s += "방 개수 = " + list.size() + '\n';
+//
+//        for(int i=0 ; i<list.size() ; i++) {
+//            Room r = list.get(i);
+//            System.out.println(i + "번 방제목 : " + r.getName());
+//            s += i + "번 방제목 : " + r.getName() + '\n';
+//
+//            System.out.println("참가자");
+//            List<User> l = r.findAll();
+//            for(int j=0 ; j<l.size() ; j++)
+//                System.out.print(l.get(j).getSessionId());
+//            System.out.println();
+//            System.out.println();
+//        }
+//        return s;
+//    }
 
     @PostMapping("createGame") // 2022.05.18 변경
     public String makeRoom(Model model) {
         User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
 
-        Room room = new Room();
-        room.setName("임시 방제목" + ++tempRoomCount);
-        room.setRoomSize(2);
+        Room room = new Room("임시 방제목" + ++tempRoomCount);
         room.addUser(user);
 
         roomRepository.save(room);

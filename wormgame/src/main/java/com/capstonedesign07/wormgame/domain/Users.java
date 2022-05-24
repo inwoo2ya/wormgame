@@ -1,6 +1,7 @@
 package com.capstonedesign07.wormgame.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -52,5 +53,9 @@ public class Users {
         if(index >= users.size() || index < 0) {
             throw new IllegalArgumentException("findUserByIndex : 잘못된 index 접근");
         }
+    }
+
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(new ArrayList<>(users));
     }
 }

@@ -1,39 +1,41 @@
 package com.capstonedesign07.wormgame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
 
+    private final static int ROOM_SIZE = 4;
     private String name;
-    private int roomSize;
-    private ArrayList<User> userArrayList = new ArrayList<>();
+    private Users users;
+    private RoomStatus roomStatus;
+
+    public Room(String name, Users users) {
+        this.name = name;
+        this.users = users;
+        this.roomStatus = RoomStatus.WAIT;
+    }
+
+    public Room(String name) {
+        this(name, new Users());
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getRoomSize() {
-        return roomSize;
-    }
-
-    public void setRoomSize(int roomSize) {
-        this.roomSize = roomSize;
+    public RoomStatus getRoomStatus() {
+        return roomStatus;
     }
 
     public void addUser(User user) {
-        userArrayList.add(user);
+        users.addUser(user);
     }
 
-    public void delUser(User user) {
-        userArrayList.remove(user);
+    public void removeUser(User user) {
+        users.removeUser(user);
     }
 
-    public List<User> findAll() {
-        return userArrayList;
+    public List<User> roomUsers() {
+        return users.getUsers();
     }
 }
