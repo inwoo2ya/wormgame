@@ -8,9 +8,6 @@ import com.capstonedesign07.wormgame.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,6 +22,18 @@ class WormgameApplicationTests {
 				() -> assertThat(user.getSessionId()).isEqualTo("SID"),
 				() -> assertThat(user.getName()).isEqualTo("test"),
 				() -> assertThat(user.getGameStatus()).isEqualByComparingTo(GameStatus.READY)
+		);
+	}
+
+	@Test
+	@DisplayName("User 동등성 테스트")
+	void userEqualityTest() {
+		User user1 = new User("SID", "test");
+		User user2 = new User("SID", "test");
+		User user3 = new User("SID", "test2");
+		assertAll(
+				() -> assertThat(user1).isEqualTo(user2),
+				() -> assertThat(user2).isNotEqualTo(user3)
 		);
 	}
 
