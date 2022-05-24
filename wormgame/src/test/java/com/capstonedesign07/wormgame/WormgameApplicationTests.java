@@ -79,7 +79,7 @@ class WormgameApplicationTests {
 	}
 
 	@Test
-	@DisplayName("방 생성 테스트")
+	@DisplayName("Room 생성 테스트")
 	void createRoomTest() {
 		Users users = new Users();
 		User user1 = new User("SID1", "test1");
@@ -98,6 +98,17 @@ class WormgameApplicationTests {
 				() -> assertThat(room.roomUsers().get(1).getName()).isEqualTo("test2"),
 				() -> room.removeUser(user3),
 				() -> assertThat(room.roomUsers()).hasSize(3)
+		);
+	}
+
+	@Test
+	@DisplayName("Rooms 생성 테스트")
+	void createRoomsTest() {
+		Rooms rooms = new Rooms("test Room Name");
+		assertAll(
+				() -> assertThat(rooms.getRooms()).hasSize(10),
+				() -> assertThat(rooms.findRoomByIndex(1).getName()).isEqualTo("test Room Name 2"),
+				() -> assertThat(rooms.findRoomByName("test Room Name 5").getRoomStatus()).isEqualByComparingTo(RoomStatus.WAIT)
 		);
 	}
 }
