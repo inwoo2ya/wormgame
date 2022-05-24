@@ -135,7 +135,7 @@ public class WebController {
         return "GamePlay.jsp";
     }
 
-    @PostMapping("SearchRoom") // 2022.05.18 변경
+    @GetMapping("SearchRoom") // 2022.05.18 변경
     public String findRoom() {
         return "findRoom.jsp";
     }
