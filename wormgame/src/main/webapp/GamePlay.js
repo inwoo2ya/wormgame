@@ -1,15 +1,13 @@
 'use strict';
 
-var usernamePage = document.querySelector('#username-page');
-var chatPage = document.querySelector('#chat-page');
-var usernameForm = document.querySelector('#usernameForm');
+var chatPage = document.querySelector('#chat-page'); //채팅 하는 곳
 var messageForm = document.querySelector('#messageForm');
-var messageInput = document.querySelector('#message');
-var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('.connecting');
+var messageInput = document.querySelector('#message'); //메시지 입력칸
+var messageArea = document.querySelector('#messageArea'); // 채팅 기록판
+var connectingElement = document.querySelector('.connecting'); // 연결
 
-var stompClient = null;
-var username = null;
+var stompClient = null; //
+var username = null; //user이름
 
 
 function connect(event) {
@@ -110,34 +108,32 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+//usernameForm.addEventListener('submit', connect, true);
+//messageForm.addEventListener('submit', sendMessage, true);
 
 //=============GamePlayJS=================
 
-function back(){
-    window.location.href="Game.jsp";
-}
-function backindex(){
-    window.location.href="index.jsp";
-    
-}
-function tourl() { 
-    window.location.href = "Game.jsp";
-}
 
-function Play(inputString){
-    window.location.href = "GamePlay.jsp";
-    const title = document.getElementById("roomname");
-    title.innerHTML=inputString;
-                        
-    }
-    function createGame(){
-        var inputString = prompt('방 이름을 입력하세요!','방 제목');
-        String(inputString);
-        if (inputString){
-            Play(inputString);
-    
+const GameStart = document.getElementById("GameStartbtn");
+GameStart.addEventListener("click",Play);
+
+function Play(){
+
+    makeboard(10,10);
+
+    function makeboard(r,c){
+        let tableEle = "<table>";
+
+        for(let i = 0; i<c;i++){
+            tableEle += '<tr>';
+            for (let j = 0; j<r;j++){
+                tableEle += '<td></td>';
+            }
+            tableEle +='</tr>';
+        }
+        tableEle += '</table>';
+        console.log(tableEle);
+        document.getElementById("Gboard").innerHTML = tableEle;
         }
     }
 function roomname(){
