@@ -209,11 +209,6 @@
                         <form method="post" action="createGame">
                           <input type="text" placeholder="방 이름 입력" id="roomname" />
 
-                        <div class="row">
-                          <label><input type="radio" name="num" value="2" checked /> 2인</label>
-                          <label><input type="radio" name="num" value="3" /> 3인</label>
-                          <label><input type="radio" name="num" value="4" /> 4인</label>
-                        </div>
                       </div>
                       <div class="btn-r">
                         <div class="col-lg-6" style="float: left">
