@@ -119,7 +119,7 @@ public class WebController {
 //        return s;
 //    }
 
-    @PostMapping("createGame") // 2022.05.18 변경
+   /* @PostMapping("createGame") // 2022.05.18 변경
     public String makeRoom(Model model) {
         User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
 
@@ -132,7 +132,21 @@ public class WebController {
 //        httpServletRequest.setAttribute("roomname", room.getName());
         return "GamePlay.jsp";
     }
+*/
+    
+    @PostMapping("GameRoom") // 2022.05.26 변경
+    public String makeRoom(Model model) {
+        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
 
+        Room room = new Room(httpServletRequest.getParameter("roomname"));
+        room.addUser(user);
+
+        roomRepository.save(room);
+        System.out.println("roomname: "+httpServletRequest.getParameter("roomname"));
+        model.addAttribute("roomname", room.getName());
+//        httpServletRequest.setAttribute("roomname", room.getName());
+        return "GamePlay.jsp";
+    }
     @PostMapping("SearchRoom") // 2022.05.26 변경
     public String findRoom() {
         return "findRoom.jsp";
