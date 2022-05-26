@@ -206,8 +206,8 @@
                     <div class="pop-conts">
                       <!--content //-->
                       <div id="popup_img" style="text-align: center">
-                        <form method="post" action="createGame">
-                          <input type="text" placeholder="방 이름 입력" id="roomname" />
+                        <form method="post" action="GameRoom">
+                          <input type="text" placeholder="방 이름 입력" id="roomname" name="roomname" />
 
                       </div>
                       <div class="btn-r">
