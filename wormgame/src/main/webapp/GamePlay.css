@@ -77,15 +77,23 @@ div{display:block;}
 }
 .Gbox{
     position: relative;
+
     display:inline-block;
     margin:4% 6% 4% 7%;
     background-color: antiquewhite;
-    width:80%;
-    height:65%;
+    width:583.350px;
+    height:559px;
     border-radius: 5px;
 }
-.Game{
-    
+table{ border-collapse: collapse;
+
+}
+td{
+    border:1px solid black;
+    width:57px;
+    height:52.5px;
+    justify-content: center;
+    text-align:center;
 }
 .choiceBox{
     float:left;
