@@ -187,12 +187,12 @@
                     <div class="divBox" style="border:none; text-align: left;" id="user_name">Player_Name:</div>
                     <div style="border:none; text-align:center; font-size:24pt;"> <%= request.getAttribute("_username_id") %></div>
                     <div class="divBox margin_top60" style="border:none;">
-                        <input class="_btn" type="submit" value="방만들기" name="submit" onclick="layer_popup('#layer2')">
+                        <input class="_btn" type="button" value="방만들기" name="submit" onclick="layer_popup('#layer2')">
                     </div>
 
                 <form method ="post" action="SearchRoom">
                     <div class="divBox margin_top60" style="border:none;">
-                        <input class="_btn" type="button" value="방찾기" name="submit">
+                        <input class="_btn" type="submit" value="방찾기" name="submit">
                     </div>
 
                     <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("user_name") %></div>
