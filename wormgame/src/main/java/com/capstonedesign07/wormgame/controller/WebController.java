@@ -141,7 +141,7 @@ public class WebController {
         Room room = new Room(httpServletRequest.getParameter("roomname"));
         room.addUser(user);
 
-        roomRepository.save(room);
+//        roomRepository.save(room);
         System.out.println("roomname: "+httpServletRequest.getParameter("roomname"));
         model.addAttribute("roomname", room.getName());
 //        httpServletRequest.setAttribute("roomname", room.getName());

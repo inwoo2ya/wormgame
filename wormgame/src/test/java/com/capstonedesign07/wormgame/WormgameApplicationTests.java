@@ -1,11 +1,17 @@
 package com.capstonedesign07.wormgame;
 
 import com.capstonedesign07.wormgame.domain.*;
+import com.capstonedesign07.wormgame.repository.MemoryRoomRepository;
 import com.capstonedesign07.wormgame.repository.MemoryUserRepository;
+import com.capstonedesign07.wormgame.repository.RoomRepository;
 import com.capstonedesign07.wormgame.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -109,6 +115,17 @@ class WormgameApplicationTests {
 				() -> assertThat(rooms.getRooms()).hasSize(10),
 				() -> assertThat(rooms.findRoomByIndex(1).getName()).isEqualTo("test Room Name 2"),
 				() -> assertThat(rooms.findRoomByName("test Room Name 5").getRoomStatus()).isEqualByComparingTo(RoomStatus.WAIT)
+		);
+	}
+
+	@Test
+	@DisplayName("MemoryRoomRepository 테스트")
+	void memoryRoomRepositoryTest() {
+		RoomRepository roomRepository = new MemoryRoomRepository();
+		List<Room> rooms = roomRepository.getRooms();
+		assertAll(
+				() -> assertThat(rooms).hasSize(10),
+				() -> assertThat(rooms.get(2).getName()).isEqualTo("임시 방제목 3")
 		);
 	}
 }
