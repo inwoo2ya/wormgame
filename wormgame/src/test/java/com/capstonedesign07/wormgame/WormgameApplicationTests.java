@@ -19,7 +19,7 @@ class WormgameApplicationTests {
 		assertAll(
 				() -> assertThat(user.getSessionId()).isEqualTo("SID"),
 				() -> assertThat(user.getName()).isEqualTo("test"),
-				() -> assertThat(user.getGameStatus()).isEqualByComparingTo(GameStatus.READY)
+				() -> assertThat(user.getGameStatus()).isEqualByComparingTo(UserStatus.READY)
 		);
 	}
 

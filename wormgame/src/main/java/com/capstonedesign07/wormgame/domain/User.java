@@ -6,12 +6,12 @@ public class User {
 
     private String sessionId;
     private String name;
-    private GameStatus gameStatus;
+    private UserStatus userStatus;
 
     public User(String sessionId, String name) {
         this.sessionId = sessionId;
         this.name = name;
-        this.gameStatus = GameStatus.READY;
+        this.userStatus = UserStatus.READY;
     }
 
     public String getSessionId() {
@@ -22,8 +22,8 @@ public class User {
         return name;
     }
 
-    public GameStatus getGameStatus() {
-        return gameStatus;
+    public UserStatus getGameStatus() {
+        return userStatus;
     }
 
     @Override
@@ -35,6 +35,6 @@ public class User {
             return false;
         }
         User user = (User)o;
-        return Objects.equals(sessionId, user.sessionId) && Objects.equals(name, user.name) && Objects.equals(gameStatus, user.gameStatus);
+        return Objects.equals(sessionId, user.sessionId) && Objects.equals(name, user.name) && Objects.equals(userStatus, user.userStatus);
     }
 }

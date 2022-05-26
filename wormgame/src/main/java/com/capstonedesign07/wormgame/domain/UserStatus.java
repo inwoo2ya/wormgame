@@ -1,5 +1,5 @@
 package com.capstonedesign07.wormgame.domain;
 
-public enum GameStatus {
+public enum UserStatus {
     READY, RUNNING, LOSE, WIN
 }
