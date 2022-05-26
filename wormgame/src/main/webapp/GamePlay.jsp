@@ -13,10 +13,11 @@
     <div class="home">
         <div class="_label"></div>
 
-        <div class="roomhead">
-           <p class="roomname" id="roomname"><%= request.getAttribute("roomname") %></p>
-        </div> <button class="roombtn" onclick="roomname()">방 제목변경</button>
         <div class="mainbox">
+        <div class="roomhead">
+           <p class="roomname" id="Roomname"><%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
+           </div>
+            <div class="_label" style="height:10px"></div>
             <div class="leftbox">
 
                 <div class="Gbox">
