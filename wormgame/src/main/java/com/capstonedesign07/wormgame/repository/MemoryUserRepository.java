@@ -14,10 +14,9 @@ public class MemoryUserRepository implements UserRepository {
     public User save(User user) {
         String sessionId = user.getSessionId();
         if (containsBySessionId(sessionId)) {
-            user.setName(user.getName());
-        } else {
-            store.addUser(user);
+            delete(findBySessionId(sessionId));
         }
+        store.addUser(user);
         return user;
     }
 
