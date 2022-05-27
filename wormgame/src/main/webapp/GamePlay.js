@@ -136,7 +136,7 @@ function Play(){
         document.getElementById("Gboard").innerHTML = tableEle;
         }
     }
-function roomname(){
+function Roomname(){
     var inputString = prompt('방 이름을 입력하세요!','방 제목');
     String(inputString);
     const title = document.getElementById("roomname");
