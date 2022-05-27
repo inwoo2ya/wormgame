@@ -135,10 +135,19 @@ function Play(){
         console.log(tableEle);
         document.getElementById("Gboard").innerHTML = tableEle;
         }
+    
     }
+function onClick(event){
+    tdDisabled();
+    function tdDisabled(){
+           const target = document.querySelector("td");
+           target.disabled = true;
+        }
+    console.log(event)
+}
 function Roomname(){
     var inputString = prompt('방 이름을 입력하세요!','방 제목');
     String(inputString);
-    const title = document.getElementById("roomname");
+    const title = document.getElementById("Roomname");
     title.innerHTML = inputString;
 }
