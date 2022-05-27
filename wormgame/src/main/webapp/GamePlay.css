@@ -96,20 +96,9 @@ td{
     justify-content: center;
     text-align:center;
 }
-.choiceBox{
-    float:left;
-    text-align:center;
-    display:inline-block;
-    justify-content: center;
-    width: 58px;
-    height:53px;
-    background-color:antiquewhite;
-
-}
-.choiceBox:hover{
+td:hover{
     background-color: azure;
 }
-
 .userbox{
     display:inline-block;
     height:75%;
