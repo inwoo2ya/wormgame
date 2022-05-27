@@ -138,11 +138,6 @@ function Play(){
     
     }
 function onClick(event){
-    tdDisabled();
-    function tdDisabled(){
-           const target = document.querySelector("td");
-           target.disabled = true;
-        }
     console.log(event)
 }
 function Roomname(){
