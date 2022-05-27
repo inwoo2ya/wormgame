@@ -1,6 +1,7 @@
 package com.capstonedesign07.wormgame.controller;
 
 import com.capstonedesign07.wormgame.domain.Room;
+import com.capstonedesign07.wormgame.domain.RoomStatus;
 import com.capstonedesign07.wormgame.domain.User;
 import com.capstonedesign07.wormgame.repository.RoomRepository;
 import com.capstonedesign07.wormgame.repository.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -86,5 +88,41 @@ public class WebController {
         IntStream.range(0, FIXED_ROOM_COUNT)
                 .forEach(i -> model.addAttribute("room" + i + "Name", rooms.get(i).getName()));
         return "findRoom.jsp";
+    }
+
+    @GetMapping("admin")
+    @ResponseBody
+    public String admin() {
+        StringBuilder sb = new StringBuilder("전체 유저 : ");
+        List<User> users = userRepository.findAll().getUsers();
+        sb.append(users.size() + "명" + "<br/>");
+        IntStream.range(0, users.size())
+                .mapToObj(i -> users.get(i).getSessionId() + " : " + users.get(i).getName() + "<br/>")
+                .forEach(sb::append);
+
+        List<Room> rooms = roomRepository.getRooms();
+        sb.append("<br/>방 목록<br/>");
+        IntStream.range(0, FIXED_ROOM_COUNT)
+                .mapToObj(i -> {
+                    StringBuilder roomInfo = new StringBuilder(i + "번방");
+                    RoomStatus status = rooms.get(i).getRoomStatus();
+                    if (status.equals(RoomStatus.WAIT)) {
+                        roomInfo.append("(WAIT) : ");
+                    }
+                    if (status.equals(RoomStatus.PLAYING)) {
+                        roomInfo.append("(PLAYING) : ");
+                    }
+                    roomInfo.append(rooms.get(i).getName() + "<br/>");
+
+                    List<User> roomUsers = rooms.get(i).roomUsers();
+                    IntStream.range(0, roomUsers.size())
+                            .mapToObj(j -> roomUsers.get(j).getSessionId() + " : " + roomUsers.get(j).getName() + "<br/>")
+                            .forEach(roomInfo::append);
+
+                    roomInfo.append("<br/>");
+                    return roomInfo;
+                })
+                .forEach(sb::append);
+        return sb.toString();
     }
 }
