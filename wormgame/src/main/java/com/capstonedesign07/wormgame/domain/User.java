@@ -22,8 +22,12 @@ public class User {
         return name;
     }
 
-    public UserStatus getGameStatus() {
+    public UserStatus getUserStatus() {
         return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 
     @Override

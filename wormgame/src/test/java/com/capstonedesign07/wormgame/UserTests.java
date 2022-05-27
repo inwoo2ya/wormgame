@@ -18,7 +18,7 @@ public class UserTests {
         assertAll(
                 () -> assertThat(user.getSessionId()).isEqualTo("SID"),
                 () -> assertThat(user.getName()).isEqualTo("test"),
-                () -> assertThat(user.getGameStatus()).isEqualByComparingTo(UserStatus.READY)
+                () -> assertThat(user.getUserStatus()).isEqualByComparingTo(UserStatus.READY)
         );
     }
 
@@ -32,5 +32,13 @@ public class UserTests {
                 () -> assertThat(user1).isEqualTo(user2),
                 () -> assertThat(user2).isNotEqualTo(user3)
         );
+    }
+
+    @Test
+    @DisplayName("User 상태 변경 테스트")
+    void userStatusChangeTest() {
+        User user = new User("SID", "test");
+        user.setUserStatus(UserStatus.RUNNING);
+        assertThat(user.getUserStatus()).isEqualByComparingTo(UserStatus.RUNNING);
     }
 }
