@@ -192,7 +192,7 @@
 
                 <form method ="post" action="SearchRoom">
                     <div class="divBox margin_top60" style="border:none;">
-                        <input class="_btn" type="submit" value="방찾기" name="submit">
+                        <input class="_btn" type="button" value="방찾기" onclick="location.href='findRoom'"/>
                     </div>
 
                     <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("user_name") %></div>

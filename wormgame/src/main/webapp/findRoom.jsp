@@ -67,6 +67,7 @@
             <button class="backbtn" onclick="location.href = 'secondIndex';">x</button>
             <ul>
                 <li>
+                    <h3> <%= request.getAttribute("room0Name") %> </h3>
                 	<button type="button" class="b1" name = request.getParameter("username")  onclick = "location.href = 'http://localhost:8080/GameRoom';">
                     		<div class="reday">
                         		<p>
@@ -75,160 +76,49 @@
 			</button>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room1Name") %> </h3>
                     <div class="reday">
                         <p>
                             <span>reday <i></i></span><span>1/4</span></p>
                     </div>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room2Name") %> </h3>
                     <div class="reday">
                         <p>
                             <span>reday <i></i></span><span>1/4</span></p>
                     </div>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room3Name") %> </h3>
                     <div class="reday no">
                         <p>
                             <span>playing <i></i></span><span>1/4</span></p>
                     </div>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room4Name") %> </h3>
                     <div class="reday no">
                         <p>
                             <span>playing <i></i></span><span>1/4</span></p>
                     </div>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room5Name") %> </h3>
                     <div class="reday">
                         <p>
                             <span>reday <i></i></span><span>1/4</span></p>
                     </div>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room6Name") %> </h3>
                     <div class="reday">
                         <p>
                             <span>reday <i></i></span><span>1/4</span></p>
                     </div>
                 </li>
                 <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday no">
-                        <p>
-                            <span>playing <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday no">
-                        <p>
-                            <span>playing <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
-                    <div class="reday">
-                        <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
-                    </div>
-                </li>
-                <li>
-                    <h3>
-                        1.Roasted duck is a famous dish</h3>
+                    <h3> <%= request.getAttribute("room7Name") %> </h3>
                     <div class="reday">
                         <p>
                             <span>reday <i></i></span><span>1/4</span></p>

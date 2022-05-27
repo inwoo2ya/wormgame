@@ -17,10 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Controller
 public class WebController {
 
+    private final static int FIXED_ROOM_COUNT = 8;
     int user_count = 0 ; // 22.05.20 접속자 수 변경
     int tempRoomCount = 0;
     @Autowired private HttpSession httpSession;
@@ -153,8 +155,11 @@ public class WebController {
 //        httpServletRequest.setAttribute("roomname", room.getName());
         return "GamePlay.jsp";
     }
-    @PostMapping("SearchRoom") // 2022.05.26 변경
-    public String findRoom() {
+    @GetMapping("findRoom") // 2022.05.27 변경
+    public String findRoom(Model model) {
+        List<Room> rooms = roomRepository.getRooms();
+        IntStream.range(0, FIXED_ROOM_COUNT)
+                .forEach(i -> model.addAttribute("room" + i + "Name", rooms.get(i).getName()));
         return "findRoom.jsp";
     }
 }
