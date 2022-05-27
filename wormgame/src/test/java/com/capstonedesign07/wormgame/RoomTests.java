@@ -35,4 +35,35 @@ public class RoomTests {
                 () -> assertThat(room.roomUsers()).hasSize(3)
         );
     }
+
+    @Test
+    @DisplayName("방 참가 테스트")
+    void roomJoinTest() {
+        Users users = new Users();
+        User user1 = new User("SID1", "test1");
+        User user2 = new User("SID2", "test2");
+        users.addUser(user1);
+        users.addUser(user2);
+
+        Room room = new Room("testRoom", users);
+        User user3 = new User("SID3", "test3");
+        room.addUser(user3);
+
+        assertThat(room.roomUsers()).hasSize(3);
+    }
+
+    @Test
+    @DisplayName("방 퇴장 테스트")
+    void roomLeaveTest() {
+        Users users = new Users();
+        User user1 = new User("SID1", "test1");
+        User user2 = new User("SID2", "test2");
+        users.addUser(user1);
+        users.addUser(user2);
+
+        Room room = new Room("testRoom", users);
+        room.removeUser(user2);
+
+        assertThat(room.roomUsers()).hasSize(1);
+    }
 }
