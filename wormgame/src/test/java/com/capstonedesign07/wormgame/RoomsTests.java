@@ -16,7 +16,7 @@ public class RoomsTests {
     void createRoomsTest() {
         Rooms rooms = new Rooms("test Room Name");
         assertAll(
-                () -> assertThat(rooms.getRooms()).hasSize(10),
+                () -> assertThat(rooms.getRooms()).hasSize(8),
                 () -> assertThat(rooms.findRoomByIndex(1).getName()).isEqualTo("test Room Name 2"),
                 () -> assertThat(rooms.findRoomByName("test Room Name 5").getRoomStatus()).isEqualByComparingTo(RoomStatus.WAIT)
         );

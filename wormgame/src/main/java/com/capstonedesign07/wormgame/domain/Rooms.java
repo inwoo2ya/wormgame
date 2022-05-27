@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class Rooms {
 
-    private final static int FIXED_ROOM_COUNT = 10;
+    private final static int FIXED_ROOM_COUNT = 8;
     private List<Room> rooms;
 
     public Rooms(String roomName) {

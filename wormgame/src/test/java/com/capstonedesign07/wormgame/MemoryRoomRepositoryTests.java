@@ -19,7 +19,7 @@ public class MemoryRoomRepositoryTests {
         RoomRepository roomRepository = new MemoryRoomRepository();
         List<Room> rooms = roomRepository.getRooms();
         assertAll(
-                () -> assertThat(rooms).hasSize(10),
+                () -> assertThat(rooms).hasSize(8),
                 () -> assertThat(rooms.get(2).getName()).isEqualTo("임시 방제목 3")
         );
     }
