@@ -41,6 +41,11 @@ public class Users {
         return foundUser.get(0);
     }
 
+    public void setUsersStatus(UserStatus userStatus) {
+        IntStream.range(0, users.size())
+                .forEach(i -> users.get(i).setUserStatus(userStatus));
+    }
+
     public void addUser(User user) {
         users.add(user);
     }

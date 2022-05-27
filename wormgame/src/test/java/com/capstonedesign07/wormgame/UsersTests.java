@@ -1,6 +1,7 @@
 package com.capstonedesign07.wormgame;
 
 import com.capstonedesign07.wormgame.domain.User;
+import com.capstonedesign07.wormgame.domain.UserStatus;
 import com.capstonedesign07.wormgame.domain.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,5 +37,17 @@ public class UsersTests {
         users.addUser(user2);
         assertThatIllegalArgumentException().
                 isThrownBy(() -> users.findUserByName("test"));
+    }
+
+    @Test
+    @DisplayName("Users 상태 변경 테스트")
+    void usersStatusChangeTest() {
+        Users users = new Users();
+        User user1 = new User("SID1", "test");
+        User user2 = new User("SID2", "test");
+        users.addUser(user1);
+        users.addUser(user2);
+        users.setUsersStatus(UserStatus.RUNNING);
+        assertThat(users.findUserByIndex(1).getUserStatus()).isEqualByComparingTo(UserStatus.RUNNING);
     }
 }
