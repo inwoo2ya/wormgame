@@ -3,6 +3,7 @@ package com.capstonedesign07.wormgame.repository;
 import com.capstonedesign07.wormgame.domain.User;
 import com.capstonedesign07.wormgame.domain.Users;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
 public class MemoryUserRepository implements UserRepository {
@@ -11,7 +12,12 @@ public class MemoryUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        store.addUser(user);
+        String sessionId = user.getSessionId();
+        if (containsBySessionId(sessionId)) {
+            user.setName(user.getName());
+        } else {
+            store.addUser(user);
+        }
         return user;
     }
 
@@ -28,6 +34,17 @@ public class MemoryUserRepository implements UserRepository {
     @Override
     public Users findAll() {
         return store;
+    }
+
+    @Override
+    public boolean containsBySessionId(String sessionId) {
+        List<User> users = store.getUsers();
+        for (User u : users) {
+            if (u.getSessionId().equals(sessionId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

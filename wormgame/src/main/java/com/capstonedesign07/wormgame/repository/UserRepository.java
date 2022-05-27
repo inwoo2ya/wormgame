@@ -9,5 +9,6 @@ public interface UserRepository {
     User findBySessionId(String sessionId);
     User findByName(String name);
     Users findAll();
+    boolean containsBySessionId(String sessionId);
     void delete(User user);
 }
