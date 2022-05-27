@@ -64,7 +64,7 @@
 <body>
     <div class="_home">
         <div class="inner">
-            <button class="backbtn" onclick="location.href = 'http://localhost:8080/secondIndex';">x</button>
+            <button class="backbtn" onclick="location.href = 'secondIndex';">x</button>
             <ul>
                 <li>
                 	<button type="button" class="b1" name = request.getParameter("username")  onclick = "location.href = 'http://localhost:8080/makeRoom';">

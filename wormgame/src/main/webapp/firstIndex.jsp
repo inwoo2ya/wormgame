@@ -121,7 +121,7 @@
         <div class="_image" style="min-width: 500px;"> 꿈틀 웜즈
         </div>
         <div class="_from" style="min-width: 500px;">
-            <form method="post" action="secondIndex">
+            <form method="post" action="firstPost">
 
                  <div class="_label"style="margin-top:0"></div>
                 <div class="_label" style="margin-bottom: 20px;"><span style="font-size:23px;width:420px">세션번호 : <%= session.getId() %></span></div>
