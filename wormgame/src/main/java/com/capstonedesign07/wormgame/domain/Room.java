@@ -28,14 +28,24 @@ public class Room {
     }
 
     public void addUser(User user) {
-        users.addUser(user);
+        if (users.getSize() < 4) {
+            users.addUser(user);
+        }
+        validateUsersSize();
     }
 
     public void removeUser(User user) {
         users.removeUser(user);
+        validateUsersSize();
     }
 
     public List<User> roomUsers() {
         return users.getUsers();
+    }
+
+    private void validateUsersSize() {
+        if (users.getSize() < 0 || users.getSize() > ROOM_SIZE) {
+            throw new IllegalArgumentException(name + " 방의 인원수가 잘못됨");
+        }
     }
 }

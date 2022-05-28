@@ -7,6 +7,7 @@ import com.capstonedesign07.wormgame.domain.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -65,5 +66,28 @@ public class RoomTests {
         room.removeUser(user2);
 
         assertThat(room.roomUsers()).hasSize(1);
+    }
+
+    @Test
+    @DisplayName("방 인원 초과 테스트")
+    void roomSizeOverflowTest() {
+        User user1 = new User("SID1", "test1");
+        User user2 = new User("SID2", "test2");
+        User user3 = new User("SID3", "test3");
+        User user4 = new User("SID4", "test4");
+
+        Room room = new Room("testRoom");
+        room.addUser(user1);
+        room.addUser(user2);
+        room.addUser(user3);
+        room.addUser(user4);
+        User user5 = new User("SID5", "test5");
+        room.addUser(user5);
+
+        List<User> roomUsers = room.roomUsers();
+        assertAll(
+                () -> assertThat(roomUsers).hasSize(4),
+                () -> assertThat(roomUsers).doesNotContain(user5)
+        );
     }
 }
