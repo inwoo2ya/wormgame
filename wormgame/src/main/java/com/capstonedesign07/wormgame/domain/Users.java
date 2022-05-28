@@ -8,7 +8,21 @@ import java.util.stream.IntStream;
 
 public class Users {
 
-    private List<User> users = new ArrayList<>();
+    private final List<User> users;
+
+    public Users(String iterativeSessionId, String iterativeUserName, int iteration) {
+        users = IntStream.rangeClosed(1, iteration)
+                .mapToObj(i -> new User(iterativeSessionId + i, iterativeUserName + i))
+                .collect(Collectors.toList());
+    }
+
+    public Users(List<User> users) {
+        this.users = users;
+    }
+
+    public Users() {
+        users = new ArrayList<>();
+    }
 
     public int getSize() {
         return users.size();
