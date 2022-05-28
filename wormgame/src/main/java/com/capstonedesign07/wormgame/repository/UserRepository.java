@@ -11,4 +11,5 @@ public interface UserRepository {
     Users findAll();
     boolean containsBySessionId(String sessionId);
     void delete(User user);
+    int getSize();
 }

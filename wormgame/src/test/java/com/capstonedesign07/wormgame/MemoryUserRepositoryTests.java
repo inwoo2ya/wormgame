@@ -21,11 +21,11 @@ public class MemoryUserRepositoryTests {
         userRepository.save(user1);
         userRepository.save(user2);
         assertAll(
-                () -> assertThat(userRepository.findAll().getSize()).isEqualTo(2),
+                () -> assertThat(userRepository.getSize()).isEqualTo(2),
                 () -> assertThat(userRepository.findBySessionId("SID2").getName()).isEqualTo("test2"),
                 () -> assertThat(userRepository.findByName("test1").getSessionId()).isEqualTo("SID1"),
                 () -> userRepository.delete(user1),
-                () -> assertThat(userRepository.findAll().getSize()).isEqualTo(1)
+                () -> assertThat(userRepository.getSize()).isEqualTo(1)
         );
     }
 }

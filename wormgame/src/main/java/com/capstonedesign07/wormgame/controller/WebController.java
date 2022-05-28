@@ -20,8 +20,6 @@ import java.util.stream.IntStream;
 public class WebController {
 
     private final static int FIXED_ROOM_COUNT = 8;
-    int user_count = 0 ; // 22.05.20 접속자 수 변경
-    int tempRoomCount = 0;
     @Autowired private HttpSession httpSession;
     @Autowired private HttpServletRequest httpServletRequest;
     private UserRepository userRepository;
@@ -60,7 +58,7 @@ public class WebController {
 
     @GetMapping("secondIndex") // 2022.05.22 변경
     public String secondIndex(Model model) {
-        model.addAttribute("user_name", ++user_count); // 22.05.20 접속자 수 로직 추기
+        model.addAttribute("userCount", userRepository.getSize()); // 22.05.20 접속자 수 로직 추기
         return "secondIndex.jsp";
     }
     

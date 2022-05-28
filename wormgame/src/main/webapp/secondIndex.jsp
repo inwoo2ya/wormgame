@@ -195,7 +195,7 @@
                         <input class="_btn" type="button" value="방찾기" onclick="location.href='findRoom'"/>
                     </div>
 
-                    <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("user_name") %></div>
+                    <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("userCount") %></div>
                 </form>
             </div>
         </div>
