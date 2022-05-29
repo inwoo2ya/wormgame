@@ -51,6 +51,8 @@
             margin-bottom:40px;
             margin-right:192px;
             padding:20px;
+	    cursor: pointer;
+            background-color: rgb(210, 253, 215);
         }
         ._home .inner ul li:nth-child(2n+2){ margin-right:0px; }
         .reday{ margin-top:30px;}
@@ -66,9 +68,8 @@
         <div class="inner">
             <button class="backbtn" onclick="location.href = 'secondIndex';">x</button>
             <ul>
-                <li>
-                    <h3> <%= request.getAttribute("room0Name") %> </h3>
-                	<button type="button" class="b1" name = request.getParameter("username")  onclick = "location.href = 'http://localhost:8080/GameRoom';">
+                <li onclick = "location.href = 'http://localhost:8080/GameRoom';">>
+			<h3> <%= request.getAttribute("room0Name") %> </h3>
                     		<div class="reday">
                         		<p>
                             		<span>reday <i></i></span><span>1/4</span></p>
