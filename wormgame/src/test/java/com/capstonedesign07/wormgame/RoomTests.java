@@ -18,14 +18,12 @@ public class RoomTests {
     @DisplayName("Room 생성 테스트")
     void createRoomTest() {
         Users users = new Users("SID", "test", 4);
-        User user3 = new User("SID3", "test3");
+        User user2 = new User("SID2", "test2");
         Room room = new Room("testRoom", users);
         assertAll(
                 () -> assertThat(room.getRoomStatus()).isEqualByComparingTo(RoomStatus.WAIT),
                 () -> assertThat(room.roomUsers()).hasSize(4),
-                () -> assertThat(room.roomUsers().get(1).getName()).isEqualTo("test2"),
-                () -> room.removeUser(user3),
-                () -> assertThat(room.roomUsers()).hasSize(3)
+                () -> assertThat(room.roomUsers()).contains(user2)
         );
     }
 
@@ -33,11 +31,15 @@ public class RoomTests {
     @DisplayName("방 참가 테스트")
     void roomJoinTest() {
         Users users = new Users("SID", "test", 2);
-        Room room = new Room("testRoom", users);
         User user3 = new User("SID3", "test3");
-        room.addUser(user3);
-
-        assertThat(room.roomUsers()).hasSize(3);
+        Room room = new Room("testRoom", users);
+        assertAll(
+                () -> assertThat(room.roomUsers()).hasSize(2),
+                () -> assertThat(room.roomUsers()).doesNotContain(user3),
+                () -> room.addUser(user3),
+                () -> assertThat(room.roomUsers()).hasSize(3),
+                () -> assertThat(room.roomUsers()).contains(user3)
+        );
     }
 
     @Test
@@ -45,11 +47,14 @@ public class RoomTests {
     void roomLeaveTest() {
         Users users = new Users("SID", "test", 2);
         User user2 = new User("SID2", "test2");
-
         Room room = new Room("testRoom", users);
-        room.removeUser(user2);
-
-        assertThat(room.roomUsers()).hasSize(1);
+        assertAll(
+                () -> assertThat(room.roomUsers()).hasSize(2),
+                () -> assertThat(room.roomUsers()).contains(user2),
+                () -> room.removeUser(user2),
+                () -> assertThat(room.roomUsers()).hasSize(1),
+                () -> assertThat(room.roomUsers()).doesNotContain(user2)
+        );
     }
 
     @Test
