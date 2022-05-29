@@ -84,7 +84,10 @@ public class WebController {
     public String findRoom(Model model) {
         List<Room> rooms = roomRepository.getRooms();
         IntStream.range(0, FIXED_ROOM_COUNT)
-                .forEach(i -> model.addAttribute("room" + i + "Name", rooms.get(i).getName()));
+                .forEach(i -> {
+                    model.addAttribute("room" + i + "Name", rooms.get(i).getName());
+                    model.addAttribute("room" + i + "UsersSize", rooms.get(i).roomUsers().size());
+                });
         return "findRoom.jsp";
     }
 

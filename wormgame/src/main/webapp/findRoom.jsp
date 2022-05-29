@@ -72,7 +72,7 @@
 			<h3> <%= request.getAttribute("room0Name") %> </h3>
                     		<div class="reday">
                         		<p>
-                            		<span>reday <i></i></span><span>1/4</span></p>
+                            		<span>reday <i></i></span><span><%= request.getAttribute("room0UsersSize") %>/4</span></p>
                     		</div>
 			</button>
                 </li>
@@ -80,49 +80,49 @@
                     <h3> <%= request.getAttribute("room1Name") %> </h3>
                     <div class="reday">
                         <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
+                            <span>reday <i></i></span><span><%= request.getAttribute("room1UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li>
                     <h3> <%= request.getAttribute("room2Name") %> </h3>
                     <div class="reday">
                         <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
+                            <span>reday <i></i></span><span><%= request.getAttribute("room2UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li>
                     <h3> <%= request.getAttribute("room3Name") %> </h3>
                     <div class="reday no">
                         <p>
-                            <span>playing <i></i></span><span>1/4</span></p>
+                            <span>playing <i></i></span><span><%= request.getAttribute("room3UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li>
                     <h3> <%= request.getAttribute("room4Name") %> </h3>
                     <div class="reday no">
                         <p>
-                            <span>playing <i></i></span><span>1/4</span></p>
+                            <span>playing <i></i></span><span><%= request.getAttribute("room4UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li>
                     <h3> <%= request.getAttribute("room5Name") %> </h3>
                     <div class="reday">
                         <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
+                            <span>reday <i></i></span><span><%= request.getAttribute("room5UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li>
                     <h3> <%= request.getAttribute("room6Name") %> </h3>
                     <div class="reday">
                         <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
+                            <span>reday <i></i></span><span><%= request.getAttribute("room6UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li>
                     <h3> <%= request.getAttribute("room7Name") %> </h3>
                     <div class="reday">
                         <p>
-                            <span>reday <i></i></span><span>1/4</span></p>
+                            <span>reday <i></i></span><span><%= request.getAttribute("room7UsersSize") %>/4</span></p>
                     </div>
                 </li>
             </ul>
