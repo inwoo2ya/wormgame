@@ -120,6 +120,11 @@ GameStart.addEventListener("click",Play);
 function Play(){
 
     makeboard(10,10);
+    btndisabled();
+    function btndisabled(){
+        const target = document.getElementById('GameStartbtn');
+        target.disabled = true;
+    }
 
     function makeboard(r,c){
         let tableEle = "<table>";
@@ -127,18 +132,19 @@ function Play(){
         for(let i = 0; i<c;i++){
             tableEle += '<tr>';
             for (let j = 0; j<r;j++){
-                tableEle += '<td></td>';
+                tableEle += '<td onclick="onClick('+i +','+ j+')">'+i+','+j+'</td>'
             }
             tableEle +='</tr>';
         }
         tableEle += '</table>';
+        
         console.log(tableEle);
         document.getElementById("Gboard").innerHTML = tableEle;
         }
     
     }
-function onClick(event){
-    console.log(event)
+function onClick(i,j){
+    console.log(i,j)
 }
 function Roomname(){
     var inputString = prompt('방 이름을 입력하세요!','방 제목');
@@ -146,3 +152,4 @@ function Roomname(){
     const title = document.getElementById("Roomname");
     title.innerHTML = inputString;
 }
+
