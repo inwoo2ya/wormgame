@@ -68,7 +68,7 @@
         <div class="inner">
             <button class="backbtn" onclick="location.href = 'secondIndex';">x</button>
             <ul>
-                <li onclick = "location.href = 'http://localhost:8080/GameRoom';">>
+                <li onclick = "location.href = 'http://localhost:8080/GameRoom';">
 			<h3> <%= request.getAttribute("room0Name") %> </h3>
                     		<div class="reday">
                         		<p>
