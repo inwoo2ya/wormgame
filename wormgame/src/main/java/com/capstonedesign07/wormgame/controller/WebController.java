@@ -78,6 +78,10 @@ public class WebController {
         model.addAttribute("roomname", roomRepository.getRooms().get(roomNumber).getName());
         return "GamePlay.jsp";
     }
+    @GetMapping("RandomEntrance")
+    public String RandomEntrance(){ //빠른입장 => 랜덤함수 사용하여 room리스트중 대기중 상태에 있는 방 중 하나 골라서 랜덤으로 입장
+        return GamePlay();
+    }
 
     @GetMapping("findRoom") // 2022.05.27 변경
     public String findRoom(Model model) {
