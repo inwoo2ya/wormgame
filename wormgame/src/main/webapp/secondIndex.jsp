@@ -181,15 +181,15 @@
             <div class="_image" style="min-width: 380px;">
             </div>
             <div class="_from" style="min-width: 380px;">
-                <%--<form method="post" action="makeRoom">--%>
+                <form method="post" action="RandomEntrance">
 
                      <div class="_label"></div>
                     <div class="divBox" style="border:none; text-align: left;" id="user_name">Player_Name:</div>
                     <div style="border:none; text-align:center; font-size:24pt;"> <%= session.getAttribute("userName") %></div>
                     <div class="divBox margin_top60" style="border:none;">
-                        <input class="_btn" type="button" value="방만들기" name="submit" onclick="layer_popup('#layer2')">
+                        <input class="_btn" type="submit" value="빠른입장" name="submit">
                     </div>
-
+                </form>
                 <form method ="post" action="SearchRoom">
                     <div class="divBox margin_top60" style="border:none;">
                         <input class="_btn" type="button" value="방찾기" onclick="location.href='findRoom'"/>
@@ -199,93 +199,8 @@
                 </form>
             </div>
         </div>
-              <div class="dim-layer">
-                <div class="dimBg"></div>
-                <div id="layer2" class="pop-layer">
-                  <div class="pop-container">
-                    <div class="pop-conts">
-                      <!--content //-->
-                      <div id="popup_img" style="text-align: center">
-                        <form method="post" action="GameRoom">
-                          <input type="text" placeholder="방 이름 입력" id="roomname" name="roomname" />
 
-                      </div>
-                      <div class="btn-r">
-                        <div class="col-lg-6" style="float: left">
-                          <input class="_createbtn" type="submit" value="생성" name="create">
-                        </div>
-                        <div class="col-lg-6" style="float: right">
-                          <button type="button"><a href="javascript:void(0);" class="card bg-primary text-white btn btn-layerClose" style="text-decoration : none; color: black;">취소</a></button>
-                        </div>
-                        </form>
-                      </div>
-                      <!--// content-->
-                    </div>
-                  </div>
-                </div>
-              </div>
     </div>
-    <script>
-    var socket
-    function layer_popup(el) {
-        var $el = $(el) //레이어의 id를 $el 변수에 저장
-        var isDim = $el.prev().hasClass("dimBg") //dimmed 레이어를 감지하기 위한 boolean 변수
 
-        isDim ? $(".dim-layer").fadeIn() : $el.fadeIn()
-
-        var $elWidth = ~~$el.outerWidth(),
-          $elHeight = ~~$el.outerHeight(),
-          docWidth = $(document).width(),
-          docHeight = $(document).height()
-
-        // 화면의 중앙에 레이어를 띄운다.
-        if ($elHeight < docHeight || $elWidth < docWidth) {
-          $el.css({
-            marginTop: -$elHeight / 2,
-            marginLeft: -$elWidth / 2,
-          })
-        } else {
-          $el.css({ top: 0, left: 0 })
-        }
-
-        $el.find("a.btn-layerClose").click(function () {
-          isDim ? $(".dim-layer").fadeOut() : $el.fadeOut() // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-          return false
-        })
-
-        $(".layer .dimBg").click(function () {
-          $(".dim-layer").fadeOut()
-          return false
-        })
-      }
-    document.addEventListener("DOMContentLoaded", function(){
-        <%--socket = io()
-        socket.on("log", function (array) {
-          console.log.apply(console, array)
-        })
-
-        socket.on("created", function (room) {
-          console.log("Created room " + room)
-          isInitiator = true
-        })
-
-        socket.on("full", function (room) {
-          console.log("Room " + room + " is full")
-        })
-
-        socket.on("join", function (room) {
-          console.log("Another peer made a request to join room " + room)
-          console.log("This peer is the initiator of room " + room + "!")
-          isChannelReady = true
-        })
-
-        socket.on("joined", function (room) {
-          console.log("joined: " + room)
-          isChannelReady = true
-        })--%>
-
-    	});
-
-    </script>
     </body>
     </html>
