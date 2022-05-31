@@ -1,6 +1,7 @@
 package com.capstonedesign07.wormgame.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Room {
 
@@ -13,6 +14,7 @@ public class Room {
         this.name = name;
         this.users = users;
         this.roomStatus = RoomStatus.WAIT;
+        users.setUsersRoom(this);
     }
 
     public Room(String name) {
@@ -36,12 +38,14 @@ public class Room {
     public void addUser(User user) {
         if (canJoin()) {
             users.addUser(user);
+            user.setRoom(this);
         }
         validateUsersSize();
     }
 
     public void removeUser(User user) {
         users.removeUser(user);
+        user.setRoom(null);
         validateUsersSize();
     }
 

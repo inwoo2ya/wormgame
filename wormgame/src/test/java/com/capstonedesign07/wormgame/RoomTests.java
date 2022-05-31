@@ -38,7 +38,9 @@ public class RoomTests {
                 () -> assertThat(room.roomUsers()).doesNotContain(user3),
                 () -> room.addUser(user3),
                 () -> assertThat(room.roomUsers()).hasSize(3),
-                () -> assertThat(room.roomUsers()).contains(user3)
+                () -> assertThat(room.roomUsers()).contains(user3),
+                () -> assertThat(room.roomUsers().get(0).getRoom()).isEqualTo(room),
+                () -> assertThat(user3.getRoom()).isEqualTo(room)
         );
     }
 
@@ -46,14 +48,16 @@ public class RoomTests {
     @DisplayName("방 퇴장 테스트")
     void roomLeaveTest() {
         Users users = new Users("SID", "test", 2);
-        User user2 = new User("SID2", "test2");
+        User user2 = users.getUsers().get(1);
         Room room = new Room("testRoom", users);
         assertAll(
                 () -> assertThat(room.roomUsers()).hasSize(2),
                 () -> assertThat(room.roomUsers()).contains(user2),
+                () -> assertThat(user2.getRoom()).isEqualTo(room),
                 () -> room.removeUser(user2),
                 () -> assertThat(room.roomUsers()).hasSize(1),
-                () -> assertThat(room.roomUsers()).doesNotContain(user2)
+                () -> assertThat(room.roomUsers()).doesNotContain(user2),
+                () -> assertThat(user2.getRoom()).isEqualTo(null)
         );
     }
 

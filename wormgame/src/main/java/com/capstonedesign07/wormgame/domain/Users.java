@@ -60,6 +60,11 @@ public class Users {
                 .forEach(i -> users.get(i).setUserStatus(userStatus));
     }
 
+    public void setUsersRoom(Room room) {
+        IntStream.range(0, users.size())
+                .forEach(i -> users.get(i).setRoom(room));
+    }
+
     public void addUser(User user) {
         users.add(user);
     }

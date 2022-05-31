@@ -18,7 +18,8 @@ public class UserTests {
         assertAll(
                 () -> assertThat(user.getSessionId()).isEqualTo("SID"),
                 () -> assertThat(user.getName()).isEqualTo("test"),
-                () -> assertThat(user.getUserStatus()).isEqualByComparingTo(UserStatus.READY)
+                () -> assertThat(user.getUserStatus()).isEqualByComparingTo(UserStatus.READY),
+                () -> assertThat(user.getRoom()).isNull()
         );
     }
 

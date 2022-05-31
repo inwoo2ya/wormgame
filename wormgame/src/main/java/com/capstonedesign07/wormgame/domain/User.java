@@ -7,6 +7,7 @@ public class User {
     private String sessionId;
     private String name;
     private UserStatus userStatus;
+    private Room room;
 
     public User(String sessionId, String name) {
         this.sessionId = sessionId;
@@ -32,6 +33,14 @@ public class User {
 
     public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     @Override
