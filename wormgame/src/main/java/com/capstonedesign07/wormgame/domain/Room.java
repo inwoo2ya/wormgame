@@ -19,6 +19,12 @@ public class Room {
         this(name, new Users());
     }
 
+    public boolean canJoin() {
+        if (users.getSize() < ROOM_SIZE)
+            return true;
+        return false;
+    }
+
     public String getName() {
         return name;
     }
@@ -28,7 +34,7 @@ public class Room {
     }
 
     public void addUser(User user) {
-        if (users.getSize() < 4) {
+        if (canJoin()) {
             users.addUser(user);
         }
         validateUsersSize();

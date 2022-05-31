@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -67,19 +68,17 @@ public class WebController {
         return "GamePlay.jsp";
     }
     
-    @PostMapping("GameRoom") // 2022.05.26 변경
-    public String makeRoom(Model model) {
-        User user = new User(httpSession.getId(), httpServletRequest.getParameter("_username_id"));
+    @GetMapping("joinRoom") // 2022.05.31 변경
+    public String makeRoom(@RequestParam("roomNumber") int roomNumber, Model model) {
+        if (!roomRepository.getRooms().get(roomNumber).canJoin())
+            return findRoom(model);
 
-        Room room = new Room(httpServletRequest.getParameter("roomname"));
-        room.addUser(user);
-
-//        roomRepository.save(room);
-        System.out.println("roomname: "+httpServletRequest.getParameter("roomname"));
-        model.addAttribute("roomname", room.getName());
-//        httpServletRequest.setAttribute("roomname", room.getName());
+        User user = userRepository.findBySessionId(httpSession.getId());
+        roomRepository.getRooms().get(roomNumber).addUser(user);
+        model.addAttribute("roomname", roomRepository.getRooms().get(roomNumber).getName());
         return "GamePlay.jsp";
     }
+
     @GetMapping("findRoom") // 2022.05.27 변경
     public String findRoom(Model model) {
         List<Room> rooms = roomRepository.getRooms();
