@@ -9,6 +9,7 @@ import java.util.*;
 public class MemoryRoomRepository implements RoomRepository {
 
     //    private static Map<String, Room> store = new HashMap<>();
+    private final static int FIXED_ROOM_COUNT = 8;
     private final static Rooms store = new Rooms("임시 방제목");
 
     //    @Override
@@ -17,10 +18,14 @@ public class MemoryRoomRepository implements RoomRepository {
 //        return room;
 //    }
 //
-//    @Override
-//    public Optional<Room> findByName(String name) {
-//        return Optional.ofNullable(store.get(name));
-//    }
+    @Override
+    public int findRoomIndex(Room room) {
+        List<Room> rooms = store.getRooms();
+        for (int i = 0; i < FIXED_ROOM_COUNT; i++)
+            if (room == rooms.get(i))
+                return i;
+        return -1;
+    }
 //
 //    @Override
 //    public List<Room> findAll() {
