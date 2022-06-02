@@ -5,9 +5,7 @@ import java.util.List;
 
 public interface RoomRepository {
 
-    //    Room save(Room room);
     int findRoomIndex(Room room);
-//    List<Room> findAll();
-//    void delete(Room room);
+    Room findRoomByName(String name);
     List<Room> getRooms();
 }

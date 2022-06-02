@@ -31,4 +31,12 @@ public class MemoryRoomRepositoryTests {
         Room room2 = roomRepository.getRooms().get(1);
         assertThat(roomRepository.findRoomIndex(room2)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("RoomRepository에서 방 제목으로 방 찾기 테스트")
+    void findRoomByNameTest() {
+        RoomRepository roomRepository = new MemoryRoomRepository();
+        Room room2 = roomRepository.getRooms().get(1);
+        assertThat(roomRepository.findRoomByName("임시 방제목 2")).isEqualTo(room2);
+    }
 }
