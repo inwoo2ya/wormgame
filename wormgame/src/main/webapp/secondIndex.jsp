@@ -181,22 +181,18 @@
             <div class="_image" style="min-width: 380px;">
             </div>
             <div class="_from" style="min-width: 380px;">
-                <form method="post" action="RandomEntrance">
 
-                     <div class="_label"></div>
-                    <div class="divBox" style="border:none; text-align: left;" id="user_name">Player_Name:</div>
-                    <div style="border:none; text-align:center; font-size:24pt;"> <%= session.getAttribute("userName") %></div>
-                    <div class="divBox margin_top60" style="border:none;">
-                        <input class="_btn" type="submit" value="빠른입장" name="submit">
-                    </div>
-                </form>
-                <form method ="post" action="SearchRoom">
-                    <div class="divBox margin_top60" style="border:none;">
-                        <input class="_btn" type="button" value="방찾기" onclick="location.href='findRoom'"/>
-                    </div>
+                <div class="_label"></div>
+                <div class="divBox" style="border:none; text-align: left;" id="user_name">Player_Name:</div>
+                <div style="border:none; text-align:center; font-size:24pt;"> <%= session.getAttribute("userName") %></div>
+                <div class="divBox margin_top60" style="border:none;">
+                    <input class="_btn" type="button" value="빠른입장" onclick="location.href='randomEntrance'">
+                </div>
+                <div class="divBox margin_top60" style="border:none;">
+                    <input class="_btn" type="button" value="방찾기" onclick="location.href='findRoom'"/>
+                </div>
 
-                    <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("userCount") %></div>
-                </form>
+                <div class="divBox" style="margin-top:60px;border:none;">접속자 수 : <%= request.getAttribute("userCount") %></div>
             </div>
         </div>
 

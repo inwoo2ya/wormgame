@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
@@ -69,7 +71,7 @@ public class WebController {
     }
     
     @GetMapping("joinRoom") // 2022.05.31 변경
-    public String makeRoom(@RequestParam("roomNumber") int roomNumber, Model model) {
+    public String joinRoom(@RequestParam("roomNumber") int roomNumber, Model model) {
         if (!roomRepository.getRooms().get(roomNumber).canJoin())
             return findRoom(model);
 
@@ -78,9 +80,21 @@ public class WebController {
         model.addAttribute("roomname", roomRepository.getRooms().get(roomNumber).getName());
         return "GamePlay.jsp";
     }
-    @GetMapping("RandomEntrance")
-    public String RandomEntrance(){ //빠른입장 => 랜덤함수 사용하여 room리스트중 대기중 상태에 있는 방 중 하나 골라서 랜덤으로 입장
-        return GamePlay();
+
+    @GetMapping("randomEntrance")
+    public String randomEntrance(Model model){ //빠른입장 => 랜덤함수 사용하여 room리스트중 대기중 상태에 있는 방 중 하나 골라서 랜덤으로 입장
+        List<Room> rooms = roomRepository.getRooms();
+        List<Room> joinableRooms = IntStream.range(0, FIXED_ROOM_COUNT)
+                .mapToObj(i -> rooms.get(i))
+                .filter(Room::canJoin)
+                .collect(Collectors.toList());
+
+        if (joinableRooms.size() == 0)
+            return secondIndex(model);
+
+        Random random = new Random();
+        int roomIndex = roomRepository.findRoomIndex(joinableRooms.get(random.nextInt(joinableRooms.size())));
+        return joinRoom(roomIndex, model);
     }
 
     @GetMapping("findRoom") // 2022.05.27 변경
