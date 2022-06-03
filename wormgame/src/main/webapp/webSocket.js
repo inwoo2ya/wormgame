@@ -1,5 +1,6 @@
 let websocket;
 let roomName = document.getElementById("Roomname").textContent;
+let userName = sessionStorage.getItem("userName");
 
 function connect() {
     websocket = new WebSocket("ws://localhost:8080/chatHandler");
@@ -11,27 +12,22 @@ function connect() {
 function disconnect() {
     msg = document.getElementById("nickname").value;
     // websocket.send(msg + "님이 퇴장하셨습니다");
-    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: nickname}))
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: userName}))
     websocket.close();
 }
 
 function send() {
-    // nickname = document.getElementById("nickname").value;
-    nickname = "temp";
     msg = document.getElementById("message").value;
     // websocket.send(nickname + ":" + msg);
-    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : nickname, message : msg}));
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : userName, message : msg}));
     document.getElementById("message").value = "";
 }
 
 function onOpen() {
-    // nickname = document.getElementById("nickname").value;
-    // var nickname = "temp";
-    var nickname = "temp";
     // two = document.getElementById("two");
     // two.style.display = 'block';
     // websocket.send(nickname + "님 입장하셨습니다.");
-    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ENTER", writer : nickname}));
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ENTER", writer : userName}));
 }
 
 function onMessage(evt) {

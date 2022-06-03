@@ -7,6 +7,7 @@
             GameScreen
         </title>
         <link rel="stylesheet" href="./GamePlay.css">
+        <script>sessionStorage.setItem("userName", '<%= session.getAttribute("userName") %>');</script>
     </head>
     <body>
     <div class="home">
