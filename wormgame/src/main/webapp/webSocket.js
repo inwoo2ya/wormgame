@@ -11,7 +11,7 @@ function connect() {
 function disconnect() {
     msg = document.getElementById("nickname").value;
     // websocket.send(msg + "님이 퇴장하셨습니다");
-    websocket.send(JSON.stringify({chatRoomName : "임시 방제목 1", messageType : "LEAVE", writer: nickname}))
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: nickname}))
     websocket.close();
 }
 
@@ -20,7 +20,7 @@ function send() {
     nickname = "temp";
     msg = document.getElementById("message").value;
     // websocket.send(nickname + ":" + msg);
-    websocket.send(JSON.stringify({chatRoomName : "임시 방제목 1", messageType : "CHAT", writer : nickname, message : msg}));
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : nickname, message : msg}));
     document.getElementById("message").value = "";
 }
 
@@ -31,7 +31,7 @@ function onOpen() {
     // two = document.getElementById("two");
     // two.style.display = 'block';
     // websocket.send(nickname + "님 입장하셨습니다.");
-    websocket.send(JSON.stringify({chatRoomName : "임시 방제목 1", messageType : "ENTER", writer : nickname}));
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ENTER", writer : nickname}));
 }
 
 function onMessage(evt) {
