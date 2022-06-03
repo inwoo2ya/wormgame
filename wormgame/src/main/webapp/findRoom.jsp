@@ -69,12 +69,11 @@
             <button class="backbtn" onclick="location.href = 'secondIndex';">x</button>
             <ul>
                 <li onclick = "location.href = 'joinRoom?roomNumber=0';">
-			<h3> <%= request.getAttribute("room0Name") %> </h3>
-                    		<div class="ready">
-                        		<p>
-                            		<span>ready <i></i></span><span><%= request.getAttribute("room0UsersSize") %>/4</span></p>
-                    		</div>
-			</button>
+			        <h3> <%= request.getAttribute("room0Name") %> </h3>
+                    <div class="ready">
+                    	<p>
+                       		<span>ready <i></i></span><span><%= request.getAttribute("room0UsersSize") %>/4</span></p>
+                    </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=1';">
                     <h3> <%= request.getAttribute("room1Name") %> </h3>

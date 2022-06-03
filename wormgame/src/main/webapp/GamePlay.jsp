@@ -7,10 +7,6 @@
             GameScreen
         </title>
         <link rel="stylesheet" href="./GamePlay.css">
-        <script src="./GamePlay.js"></script>
-        <script>
-            window.onload = connect();
-        </script>
     </head>
     <body>
     <div class="home">
@@ -18,7 +14,13 @@
 
         <div class="mainbox">
         <div class="roomhead">
-           <p class="roomname" id="Roomname"> <%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
+           <p class="roomname" id="Roomname"><%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
+
+           <script src="webSocket.js"></script>
+           <script>
+                window.onload = connect();
+            </script>
+           
            </div>
             <div class="_label" style="height:10px"></div>
             <div class="leftbox">
@@ -48,8 +50,12 @@
             </div>
 
         </div>
+        <!-- <script src="webSocket.js"></script>
+           <script>
+                window.onload = connect();
+            </script> -->
         <div class="_label"></div>
-        <!-- <script src="./GamePlay.js"></script> -->
+        <script src="./GamePlay.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
         <!-- <script src="/js/main.js"></script> -->

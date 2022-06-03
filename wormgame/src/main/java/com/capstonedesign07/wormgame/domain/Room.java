@@ -29,11 +29,11 @@ public class Room {
     public void handleMessage(WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
         if (chatMessage.getMessageType() == MessageType.ENTER) {
             sessions.add(session);
-            chatMessage.setMessage(chatMessage.getWriter() + "님이 입장하셨습니다.");
+            chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 입장하셨습니다.");
         }
         if (chatMessage.getMessageType() == MessageType.LEAVE) {
             sessions.remove(session);
-            chatMessage.setMessage(chatMessage.getWriter() + "님이 퇴장하셨습니다");
+            chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 퇴장하셨습니다");
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
