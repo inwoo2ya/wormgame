@@ -13,7 +13,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class ChatHandler extends TextWebSocketHandler {
 
-    //    private static List<WebSocketSession> list = new ArrayList<>();
     private final RoomRepository roomRepository;
     private final ObjectMapper objectMapper;
 
@@ -22,7 +21,6 @@ public class ChatHandler extends TextWebSocketHandler {
         this.roomRepository = roomRepository;
         this.objectMapper = objectMapper;
     }
-
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
