@@ -18,7 +18,7 @@
 
         <div class="mainbox">
         <div class="roomhead">
-           <p class="roomname" id="Roomname"><%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
+           <p class="roomname" id="Roomname"> <%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
            </div>
             <div class="_label" style="height:10px"></div>
             <div class="leftbox">
@@ -36,9 +36,10 @@
                 </div>
             <div class="rightbox">
                 <div class="userbox">
-                    <div class="otherplayerbox">2p</div>
-                    <div class="otherplayerbox">3p</div>
-                    <div class="otherplayerbox">4p</div>
+                    <div class="playerbox"><p>1p</p></div>
+                    <div class="playerbox"><p>2p</p></div>
+                    <div class="playerbox"><p>3p</p></div>
+                    <div class="playerbox"><p>4p</p></div>
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id="GameStartbtn"> 게임시작</button>
