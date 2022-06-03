@@ -7,7 +7,10 @@
             GameScreen
         </title>
         <link rel="stylesheet" href="./GamePlay.css">
-
+        <script src="./GamePlay.js"></script>
+        <script>
+            window.onload = connect();
+        </script>
     </head>
     <body>
     <div class="home">
@@ -45,9 +48,9 @@
 
         </div>
         <div class="_label"></div>
-        <script src="./GamePlay.js"></script>
+        <!-- <script src="./GamePlay.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-        <script src="/js/main.js"></script>
+        <!-- <script src="/js/main.js"></script> -->
     </body>
 </html>

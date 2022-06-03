@@ -9,103 +9,47 @@ var connectingElement = document.querySelector('.connecting'); // 연결
 var stompClient = null; //
 var username = null; //user이름
 
+var websocket;
 
-function connect(event) {
-    username = document.querySelector('#_username_id').value.trim();
-
-    if(username) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
-
-        var socket = new SockJS('/chatting');
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, onConnected, onError);
-    }
-    event.preventDefault();
+function connect() {
+    websocket = new WebSocket("ws://localhost:8080/chatHandler");
+    websocket.onopen = onOpen;
+    websocket.onmessage = onMessage;
+    websocket.onclose = onClose;
 }
 
-
-function onConnected() {
-    // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
-
-    // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
-        {},
-        JSON.stringify({sender: username, type: 'JOIN'})
-    )
-
-    connectingElement.classList.add('hidden');
+function disconnect() {
+    msg = document.getElementById("nickname").value;
+    // websocket.send(msg + "님이 퇴장하셨습니다");
+    websocket.send(JSON.stringify({chatRoomName : "임시 방제목 1", messageType : "LEAVE", writer: nickname}))
+    websocket.close();
 }
 
-
-function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
+function send() {
+    // nickname = document.getElementById("nickname").value;
+    nickname = "temp";
+    msg = document.getElementById("message").value;
+    // websocket.send(nickname + ":" + msg);
+    websocket.send(JSON.stringify({chatRoomName : "임시 방제목 1", messageType : "CHAT", writer : nickname, message : msg}));
+    document.getElementById("message").value = "";
 }
 
-
-function sendMessage(event) {
-    var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
-        var chatMessage = {
-            sender: username,
-            content: messageInput.value,
-            type: 'CHAT'
-        };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-        messageInput.value = '';
-    }
-    event.preventDefault();
+function onOpen() {
+    // nickname = document.getElementById("nickname").value;
+    var nickname = "temp";
+    // two = document.getElementById("two");
+    // two.style.display = 'block';
+    // websocket.send(nickname + "님 입장하셨습니다.");
+    websocket.send(JSON.stringify({chatRoomName : "임시 방제목 1", messageType : "ENTER", writer : nickname}));
 }
 
-
-function onMessageReceived(payload) {
-    var message = JSON.parse(payload.body);
-
-    var messageElement = document.createElement('li');
-
-    if(message.type === 'JOIN') {
-        messageElement.classList.add('event-message');
-        message.content = message.sender + '님이 입장하셨습니다.';
-    } else if (message.type === 'LEAVE') {
-        messageElement.classList.add('event-message');
-        message.content = message.sender + '님이 퇴장하셨습니다.';
-    } else {
-        messageElement.classList.add('chat-message');
-
-        var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
-        avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-        messageElement.appendChild(avatarElement);
-
-        var usernameElement = document.createElement('span');
-        var usernameText = document.createTextNode(message.sender);
-        usernameElement.appendChild(usernameText);
-        messageElement.appendChild(usernameElement);
-    }
-
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
-
-    messageElement.appendChild(textElement);
-
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
+function onMessage(evt) {
+    var data = evt.data;
+    var chatarea = document.getElementById("messageArea");
+    chatarea.innerHTML = data + "<br/>" + chatarea.innerHTML
 }
 
-
-function getAvatarColor(messageSender) {
-    var hash = 0;
-    for (var i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charCodeAt(i);
-    }
-    var index = Math.abs(hash % colors.length);
-    return colors[index];
+function onClose() {
 }
 
 //usernameForm.addEventListener('submit', connect, true);

@@ -1,7 +1,11 @@
 package com.capstonedesign07.wormgame.domain;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Room {
 
@@ -9,6 +13,7 @@ public class Room {
     private String name;
     private Users users;
     private RoomStatus roomStatus;
+    private List<WebSocketSession> sessions = new ArrayList<>();
 
     public Room(String name, Users users) {
         this.name = name;
@@ -19,6 +24,27 @@ public class Room {
 
     public Room(String name) {
         this(name, new Users());
+    }
+
+    public void handleMessage(WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
+        if (chatMessage.getMessageType() == MessageType.ENTER) {
+            sessions.add(session);
+            chatMessage.setMessage(chatMessage.getWriter() + "님이 입장하셨습니다.");
+        }
+        if (chatMessage.getMessageType() == MessageType.LEAVE) {
+            sessions.remove(session);
+            chatMessage.setMessage(chatMessage.getWriter() + "님이 퇴장하셨습니다");
+        }
+        if (chatMessage.getMessageType() == MessageType.CHAT)
+            chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
+
+        send(chatMessage, objectMapper);
+    }
+
+    private void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
+        TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
+        for(WebSocketSession wss : sessions)
+            wss.sendMessage(textMessage);
     }
 
     public boolean canJoin() {
