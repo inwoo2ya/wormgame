@@ -164,11 +164,14 @@ td:hover{
 }
 
 .playerbox p{
-    padding:45px;
     text-align: center;
+}
+.playerbox #playerName{
     font-size:20pt;
     font-weight:bolder;
-
+}
+.playerbox #wormnumber #bombnumber{
+    font-size: 15pt;
 }
 .dieplayerbox{
     position: relative;
