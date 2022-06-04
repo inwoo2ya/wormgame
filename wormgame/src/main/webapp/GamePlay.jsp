@@ -33,13 +33,13 @@
                 <div class="GRbox">
                     <ul class="repo"id="messageArea"></ul>
                 </div>
-                <form id="messageForm">
-                    <input class="in_" id="message" type="text"/> <button type='submit' class="chatbtn">전송</button>
-                </form>
+                <!-- <form id="messageForm"> -->
+                    <input class="in_" id="message" type="text"/> <button onclick="send()" class="chatbtn">전송</button>
+                <!-- </form> -->
                 </div>
             <div class="rightbox">
                 <div class="userbox">
-                    <div class="playerbox"><p id ="playerName">1p</p> <br> <p id="wormnumber" >지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">1p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
                     <div class="playerbox"><p id ="playerName">2p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
                     <div class="playerbox"><p id ="playerName">3p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
                     <div class="playerbox"><p id ="playerName">4p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>

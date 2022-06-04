@@ -44,7 +44,6 @@ public class Room {
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
-        System.out.println("sessions.size() = " + sessions.size());
         send(chatMessage, objectMapper);
     }
 
