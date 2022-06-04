@@ -10,7 +10,7 @@ function connect() {
 }
 
 function disconnect() {
-    msg = document.getElementById("nickname").value;
+    // msg = document.getElementById("nickname").value;
     // websocket.send(msg + "님이 퇴장하셨습니다");
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: userName}))
     websocket.close();
@@ -37,4 +37,9 @@ function onMessage(evt) {
 }
 
 function onClose() {
+    disconnect();
+}
+
+window.onbeforeunload = function() {
+    disconnect();
 }

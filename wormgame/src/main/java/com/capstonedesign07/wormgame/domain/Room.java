@@ -1,6 +1,9 @@
 package com.capstonedesign07.wormgame.domain;
 
+import com.capstonedesign07.wormgame.repository.MemoryUserRepository;
+import com.capstonedesign07.wormgame.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.util.List;
 public class Room {
 
     private final static int ROOM_SIZE = 4;
+    @Autowired private final static UserRepository userRepository = new MemoryUserRepository();
     private String name;
     private Users users;
     private RoomStatus roomStatus;
@@ -34,10 +38,13 @@ public class Room {
         if (chatMessage.getMessageType() == MessageType.LEAVE) {
             sessions.remove(session);
             chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 퇴장하셨습니다.");
+            User user = userRepository.findByName(chatMessage.getWriter());
+            Room room = user.getRoom();
+            room.removeUser(user);
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
-
+        System.out.println("sessions.size() = " + sessions.size());
         send(chatMessage, objectMapper);
     }
 

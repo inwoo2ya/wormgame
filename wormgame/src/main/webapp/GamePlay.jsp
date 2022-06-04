@@ -46,7 +46,7 @@
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id="GameStartbtn"> 게임시작</button>
-                    <button class="exitbtn" id="exit" onclick="history.go(-1)">나가기</button>
+                    <button class="exitbtn" id="exit" onclick="location.href='findRoom'">나가기</button>
                 </div>
             </div>
 

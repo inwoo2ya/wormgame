@@ -81,6 +81,14 @@ public class WebController {
         return "GamePlay.jsp";
     }
 
+//    @GetMapping("leaveRoom")
+//    public String leaveRoom(Model model) {
+//        User user = userRepository.findBySessionId(httpSession.getId());
+//        Room room = user.getRoom();
+//        room.removeUser(user);
+//        return findRoom(model);
+//    }
+
     @GetMapping("randomEntrance")
     public String randomEntrance(Model model){ //빠른입장 => 랜덤함수 사용하여 room리스트중 대기중 상태에 있는 방 중 하나 골라서 랜덤으로 입장
         List<Room> rooms = roomRepository.getRooms();
