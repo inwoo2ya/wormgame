@@ -77,7 +77,7 @@ public class RoomTests {
     }
 
     @Test
-    @DisplayName("플레이 중인 방 참가 실패 테스트")
+    @DisplayName("플레이 중인 방 참가 불가 테스트")
     void playingRoomCannotJoinTest() {
         Room room = new Room("testRoom");
         User user = new User("SID", "test");
