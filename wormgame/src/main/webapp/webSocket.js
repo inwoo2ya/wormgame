@@ -44,3 +44,7 @@ function onClose() {
 window.onbeforeunload = function() {
     disconnect();
 }
+
+function gameStartSend() {
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "GAMESTART", writer : sessionId}));
+}

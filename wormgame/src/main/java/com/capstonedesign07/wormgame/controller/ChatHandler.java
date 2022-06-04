@@ -1,9 +1,6 @@
 package com.capstonedesign07.wormgame.controller;
 
-import com.capstonedesign07.wormgame.domain.ChatMessage;
-import com.capstonedesign07.wormgame.domain.MessageType;
-import com.capstonedesign07.wormgame.domain.Room;
-import com.capstonedesign07.wormgame.domain.User;
+import com.capstonedesign07.wormgame.domain.*;
 import com.capstonedesign07.wormgame.repository.RoomRepository;
 import com.capstonedesign07.wormgame.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,6 +49,11 @@ public class ChatHandler extends TextWebSocketHandler {
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
+        if (chatMessage.getMessageType() == MessageType.GAMESTART) {
+            chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 게임을 시작하셨습니다.");
+            Game.run(room);
+        }
+
         send(room, chatMessage, objectMapper);
     }
 

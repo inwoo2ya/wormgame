@@ -42,6 +42,10 @@ public class Room {
         return name;
     }
 
+    public Users getUsers() {
+        return users;
+    }
+
     public RoomStatus getRoomStatus() {
         return roomStatus;
     }

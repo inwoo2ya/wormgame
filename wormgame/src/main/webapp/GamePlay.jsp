@@ -48,7 +48,7 @@
                     <div class="playerbox"><p id ="playerName">4p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
                 </div>
                 <div class="btnarea">
-                    <button class="startbtn" id="GameStartbtn"> 게임시작</button>
+                    <button class="startbtn" id="GameStartbtn" onclick="gameStartSend()"> 게임시작</button>
                     <button class="exitbtn" id="exit" onclick="location.href='findRoom'">나가기</button>
                 </div>
             </div>
