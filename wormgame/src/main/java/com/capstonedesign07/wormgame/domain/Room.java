@@ -48,7 +48,7 @@ public class Room {
     }
 
     public boolean canJoin() {
-        if (users.getSize() < ROOM_SIZE)
+        if (users.getSize() < ROOM_SIZE && roomStatus.equals(RoomStatus.WAIT))
             return true;
         return false;
     }
@@ -59,6 +59,10 @@ public class Room {
 
     public RoomStatus getRoomStatus() {
         return roomStatus;
+    }
+
+    public void setRoomStatus(RoomStatus roomStatus) {
+        this.roomStatus = roomStatus;
     }
 
     public void addUser(User user) {

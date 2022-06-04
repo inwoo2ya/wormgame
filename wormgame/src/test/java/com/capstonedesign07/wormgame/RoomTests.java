@@ -75,4 +75,14 @@ public class RoomTests {
                 () -> assertThat(roomUsers).doesNotContain(user5)
         );
     }
+
+    @Test
+    @DisplayName("플레이 중인 방 참가 실패 테스트")
+    void playingRoomCannotJoinTest() {
+        Room room = new Room("testRoom");
+        User user = new User("SID", "test");
+        room.setRoomStatus(RoomStatus.PLAYING);
+        room.addUser(user);
+        assertThat(room.roomUsers()).hasSize(0);
+    }
 }
