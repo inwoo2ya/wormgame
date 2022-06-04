@@ -3,7 +3,7 @@ let roomName = document.getElementById("Roomname").textContent;
 let userName = sessionStorage.getItem("userName");
 
 function connect() {
-    websocket = new WebSocket("ws://localhost:8080/chatHandler");
+    websocket = new WebSocket("ws://" + window.location.hostname + ":8080/chatHandler");
     websocket.onopen = onOpen;
     websocket.onmessage = onMessage;
     websocket.onclose = onClose;
