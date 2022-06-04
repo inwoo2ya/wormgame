@@ -1,9 +1,6 @@
 package com.capstonedesign07.wormgame.domain;
 
-import com.capstonedesign07.wormgame.repository.MemoryUserRepository;
-import com.capstonedesign07.wormgame.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import java.io.IOException;
@@ -13,7 +10,6 @@ import java.util.List;
 public class Room {
 
     private final static int ROOM_SIZE = 4;
-    @Autowired private final static UserRepository userRepository = new MemoryUserRepository();
     private String name;
     private Users users;
     private RoomStatus roomStatus;
@@ -30,24 +26,7 @@ public class Room {
         this(name, new Users());
     }
 
-    public void handleMessage(WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
-        if (chatMessage.getMessageType() == MessageType.ENTER) {
-            sessions.add(session);
-            chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 입장하셨습니다.");
-        }
-        if (chatMessage.getMessageType() == MessageType.LEAVE) {
-            sessions.remove(session);
-            chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 퇴장하셨습니다.");
-            User user = userRepository.findByName(chatMessage.getWriter());
-            Room room = user.getRoom();
-            room.removeUser(user);
-        }
-        if (chatMessage.getMessageType() == MessageType.CHAT)
-            chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
-        send(chatMessage, objectMapper);
-    }
-
-    private void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
+    public void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
         TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
         for(WebSocketSession wss : sessions)
             wss.sendMessage(textMessage);
@@ -69,6 +48,10 @@ public class Room {
 
     public void setRoomStatus(RoomStatus roomStatus) {
         this.roomStatus = roomStatus;
+    }
+
+    public List<WebSocketSession> getSessions() {
+        return sessions;
     }
 
     public void addUser(User user) {
