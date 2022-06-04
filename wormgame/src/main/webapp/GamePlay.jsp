@@ -39,10 +39,10 @@
                 </div>
             <div class="rightbox">
                 <div class="userbox">
-                    <div class="playerbox"><p>1p</p></div>
-                    <div class="playerbox"><p>2p</p></div>
-                    <div class="playerbox"><p>3p</p></div>
-                    <div class="playerbox"><p>4p</p></div>
+                    <div class="playerbox"><p id ="playerName">1p</p> <br> <p id="wormnumber" >지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">2p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">3p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">4p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id="GameStartbtn"> 게임시작</button>
