@@ -40,18 +40,18 @@ public class ChatHandler extends TextWebSocketHandler {
 
     public void handleMessage(Room room, WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
         List<WebSocketSession> sessions = room.getSessions();
+        User user = userRepository.findBySessionId(chatMessage.getWriter());
         if (chatMessage.getMessageType() == MessageType.ENTER) {
             sessions.add(session);
-            chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 입장하셨습니다.");
+            chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 입장하셨습니다.");
         }
         if (chatMessage.getMessageType() == MessageType.LEAVE) {
             sessions.remove(session);
-            chatMessage.setMessage("SYSTEM : " + chatMessage.getWriter() + "님이 퇴장하셨습니다.");
-            User user = userRepository.findByName(chatMessage.getWriter());
+            chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 퇴장하셨습니다.");
             room.removeUser(user);
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
-            chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
+            chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
         send(room, chatMessage, objectMapper);
     }
 
