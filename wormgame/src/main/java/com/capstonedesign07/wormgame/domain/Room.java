@@ -14,6 +14,7 @@ public class Room {
     private Users users;
     private RoomStatus roomStatus;
     private List<WebSocketSession> sessions = new ArrayList<>();
+    private boolean[][] attackCheckBoard;
 
     public Room(String name, Users users) {
         this.name = name;
@@ -56,6 +57,14 @@ public class Room {
 
     public List<WebSocketSession> getSessions() {
         return sessions;
+    }
+
+    public boolean[][] getAttackCheckBoard() {
+        return attackCheckBoard;
+    }
+
+    public void setAttackCheckBoard(boolean[][] attackCheckBoard) {
+        this.attackCheckBoard = attackCheckBoard;
     }
 
     public void addUser(User user) {
