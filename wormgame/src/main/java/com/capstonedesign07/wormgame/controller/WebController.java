@@ -112,6 +112,11 @@ public class WebController {
                 .forEach(i -> {
                     model.addAttribute("room" + i + "Name", rooms.get(i).getName());
                     model.addAttribute("room" + i + "UsersSize", rooms.get(i).roomUsers().size());
+                    model.addAttribute("room" + i + "Status", rooms.get(i).getRoomStatus().toString().toLowerCase());
+                    StringBuilder sb = new StringBuilder("ready");
+                    if(rooms.get(i).getRoomStatus().equals(RoomStatus.PLAYING))
+                        sb.append(" no");
+                    model.addAttribute("room" + i + "StatusDivClass", '"' + sb.toString() + '"');
                 });
         return "findRoom.jsp";
     }

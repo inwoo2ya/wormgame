@@ -70,58 +70,58 @@
             <ul>
                 <li onclick = "location.href = 'joinRoom?roomNumber=0';">
 			        <h3> <%= request.getAttribute("room0Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room0StatusDivClass") %>>
                     	<p>
-                       		<span>ready <i></i></span><span><%= request.getAttribute("room0UsersSize") %>/4</span></p>
+                       		<span> <%= request.getAttribute("room0Status") %> <i></i></span><span><%= request.getAttribute("room0UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=1';">
                     <h3> <%= request.getAttribute("room1Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room1StatusDivClass") %>>
                         <p>
-                            <span>ready <i></i></span><span><%= request.getAttribute("room1UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room1Status") %> <i></i></span><span><%= request.getAttribute("room1UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=2';">
                     <h3> <%= request.getAttribute("room2Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room2StatusDivClass") %>>
                         <p>
-                            <span>ready <i></i></span><span><%= request.getAttribute("room2UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room2Status") %> <i></i></span><span><%= request.getAttribute("room2UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=3';">
                     <h3> <%= request.getAttribute("room3Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room3StatusDivClass") %>>
                         <p>
-                            <span>ready <i></i></span><span><%= request.getAttribute("room3UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room3Status") %> <i></i></span><span><%= request.getAttribute("room3UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=4';">
                     <h3> <%= request.getAttribute("room4Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room4StatusDivClass") %>>
                         <p>
-                            <span>ready<i></i></span><span><%= request.getAttribute("room4UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room4Status") %> <i></i></span><span><%= request.getAttribute("room4UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=5';">
                     <h3> <%= request.getAttribute("room5Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room5StatusDivClass") %>>
                         <p>
-                            <span>ready <i></i></span><span><%= request.getAttribute("room5UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room5Status") %> <i></i></span><span><%= request.getAttribute("room5UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=6';">
                     <h3> <%= request.getAttribute("room6Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room6StatusDivClass") %>>
                         <p>
-                            <span>ready <i></i></span><span><%= request.getAttribute("room6UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room6Status") %> <i></i></span><span><%= request.getAttribute("room6UsersSize") %>/4</span></p>
                     </div>
                 </li>
                 <li onclick = "location.href = 'joinRoom?roomNumber=7';">
                     <h3> <%= request.getAttribute("room7Name") %> </h3>
-                    <div class="ready">
+                    <div class=<%= request.getAttribute("room7StatusDivClass") %>>
                         <p>
-                            <span>ready <i></i></span><span><%= request.getAttribute("room7UsersSize") %>/4</span></p>
+                            <span> <%= request.getAttribute("room7Status") %> <i></i></span><span><%= request.getAttribute("room7UsersSize") %>/4</span></p>
                     </div>
                 </li>
             </ul>
