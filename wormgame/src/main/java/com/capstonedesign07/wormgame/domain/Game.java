@@ -21,6 +21,8 @@ public class Game {
         room.send(chatMessage, objectMapper);
 
         //클라이언트에게 지렁이 3마리와 폭탄을 입력할 신호를 보냄
+        chatMessage.setMessage("EVENT_INITIALIZE");
+        room.send(chatMessage, objectMapper);
 
         //모든 유저 지렁이&폭탄 입력될 때 까지 대기(입력한 클라이언트들에게는 다른 유저의 입력을 기다리는 중이라 표시)
 

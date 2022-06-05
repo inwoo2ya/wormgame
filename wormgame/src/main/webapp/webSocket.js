@@ -11,30 +11,28 @@ function connect() {
 }
 
 function disconnect() {
-    // msg = document.getElementById("nickname").value;
-    // websocket.send(msg + "님이 퇴장하셨습니다");
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: sessionId}))
     websocket.close();
 }
 
 function send() {
     msg = document.getElementById("message").value;
-    // websocket.send(nickname + ":" + msg);
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : sessionId, message : msg}));
     document.getElementById("message").value = "";
 }
 
 function onOpen() {
-    // two = document.getElementById("two");
-    // two.style.display = 'block';
-    // websocket.send(nickname + "님 입장하셨습니다.");
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ENTER", writer : sessionId}));
 }
 
 function onMessage(evt) {
     var data = evt.data.slice(1, -1);
-    var chatarea = document.getElementById("messageArea");
-    chatarea.innerHTML = data + "<br/>" + chatarea.innerHTML
+    if (data == "EVENT_INITIALIZE") {
+
+    } else {
+        var chatarea = document.getElementById("messageArea");
+        chatarea.innerHTML = data + "<br/>" + chatarea.innerHTML
+    }
 }
 
 function onClose() {
