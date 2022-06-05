@@ -1,0 +1,39 @@
+package com.capstonedesign07.wormgame.domain;
+
+public class Worm {
+
+    private final static int VECTOR_SIZE = 8;
+    private final static int[] DX = {-1, -1, 0, 1, 1, 1, 0, -1};
+    private final static int[] DY = {0, 1, 1, 1, 0, -1, -1, -1};
+
+    private Position head;
+    private Position[] body = new Position[2];
+    private int healthPoint;
+
+    public Worm(Position head, int vector) {
+        if (vector < 0 || vector >= VECTOR_SIZE) {
+            throw new IllegalArgumentException("8방향이 아님");
+        }
+        int tailX = head.getX() + 2 * DX[vector];
+        int tailY = head.getY() + 2 * DY[vector];
+        if(tailX < 0 || tailX >= Position.BOARD_SIZE || tailY < 0 || tailY >= Position.BOARD_SIZE) {
+            throw new IllegalArgumentException("몸통이 보드를 벗어남");
+        }
+        this.head = head;
+        body[0] = new Position(head.getX() + DX[vector], head.getY() + DY[vector]);
+        body[1] = new Position(body[0].getX() + DX[vector], body[0].getY() + DY[vector]);
+        this.healthPoint = 2;
+    }
+
+    public boolean isAlive() {
+        return healthPoint > 0;
+    }
+
+    public Position getHead() {
+        return head;
+    }
+
+    public Position[] getBody() {
+        return body;
+    }
+}
