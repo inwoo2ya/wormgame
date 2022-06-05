@@ -30,6 +30,7 @@ public class ChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         System.out.println("메세지 전송 = " + session + " : " + message.getPayload());
         String msg = message.getPayload();
+        System.out.println("msg = " + msg);
         ChatMessage chatMessage = objectMapper.readValue(msg, ChatMessage.class);
         Room room = roomRepository.findRoomByName(chatMessage.getChatRoomName());
         handleMessage(room, session, chatMessage, objectMapper);
@@ -38,6 +39,8 @@ public class ChatHandler extends TextWebSocketHandler {
     public void handleMessage(Room room, WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
         List<WebSocketSession> sessions = room.getSessions();
         User user = userRepository.findBySessionId(chatMessage.getWriter());
+        boolean gameStart = false;
+
         if (chatMessage.getMessageType() == MessageType.ENTER) {
             sessions.add(session);
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 입장하셨습니다.");
@@ -50,11 +53,13 @@ public class ChatHandler extends TextWebSocketHandler {
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
         if (chatMessage.getMessageType() == MessageType.GAMESTART) {
+            gameStart = true;
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 게임을 시작하셨습니다.");
-            Game.run(room);
         }
 
         send(room, chatMessage, objectMapper);
+        if (gameStart)
+            Game.run(room);
     }
 
     private void send(Room room, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
