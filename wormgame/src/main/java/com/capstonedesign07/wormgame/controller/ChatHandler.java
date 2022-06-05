@@ -53,6 +53,9 @@ public class ChatHandler extends TextWebSocketHandler {
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
         if (chatMessage.getMessageType() == MessageType.GAMESTART) {
+            if (!user.equals(room.roomUsers().get(0))) {
+                throw new IllegalArgumentException("게임을 시작한 플레이어가 1p가 아님");
+            }
             gameStart = true;
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 게임을 시작하셨습니다.");
         }
