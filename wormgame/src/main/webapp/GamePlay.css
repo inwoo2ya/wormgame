@@ -106,18 +106,22 @@ td:hover{
 
 }
 .GRbox{
-    display:inline-block;
+    display:flex;
     overflow: auto;
     margin:0% 7%;
     background-color:rgb(197, 245, 197);
     height:22%;
     width: 80%;
     border-radius: 10px;
+    flex-direction: column-reverse;
+    overflow-y:auto;
 }
 
 .repo{
     padding:10px;
     font-size:12pt;
+    display:flex;
+    
 }
 
 .GRbox::-webkit-scrollbar{
