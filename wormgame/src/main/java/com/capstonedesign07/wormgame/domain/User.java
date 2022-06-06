@@ -8,6 +8,9 @@ public class User {
     private String name;
     private UserStatus userStatus;
     private Room room;
+    private char[][] viewBoard;
+    private Worms worms;
+    private Bomb bomb;
 
     public User(String sessionId, String name) {
         this.sessionId = sessionId;
@@ -41,6 +44,14 @@ public class User {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public void initializeViewBoard() {
+        viewBoard = new char[Position.BOARD_SIZE][Position.BOARD_SIZE];
+    }
+
+    public char[][] getViewBoard() {
+        return viewBoard;
     }
 
     @Override

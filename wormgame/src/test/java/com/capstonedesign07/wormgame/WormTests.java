@@ -23,4 +23,11 @@ public class WormTests {
                 () -> assertThat(worm.isAlive()).isTrue()
         );
     }
+
+    @Test
+    @DisplayName("Worm이 보드를 벗어나는 경우 테스트")
+    void wormOutOfBoundsTest() {
+        assertThatIllegalArgumentException().
+                isThrownBy(() -> new Worm(new Position(0, 0), 0));
+    }
 }
