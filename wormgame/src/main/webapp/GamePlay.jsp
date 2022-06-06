@@ -37,7 +37,7 @@
                     <ul class="repo"id="messageArea"></ul>
                 </div>
                 <!-- <form id="messageForm"> -->
-                    <input class="in_" id="message" type="text"/> <button onclick="send()" class="chatbtn">전송</button>
+                    <input class="in_" id="message" type="text" onkeypress="sendMessage(event)"/> <button onclick="send()" class="chatbtn">전송</button>
                 <!-- </form> -->
                 </div>
             <div class="rightbox">
