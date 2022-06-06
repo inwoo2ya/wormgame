@@ -52,7 +52,7 @@ public class ChatHandler extends TextWebSocketHandler {
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
-        if (chatMessage.getMessageType() == MessageType.GAMESTART) {
+        if (chatMessage.getMessageType() == MessageType.GAMESTART && room.getUsers().getSize() > 1) {
             if (!user.equals(room.roomUsers().get(0))) {
                 throw new IllegalArgumentException("게임을 시작한 플레이어가 1p가 아님");
             }
