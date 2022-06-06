@@ -44,11 +44,13 @@ public class ChatHandler extends TextWebSocketHandler {
         if (chatMessage.getMessageType() == MessageType.ENTER) {
             sessions.add(session);
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 입장하셨습니다.");
+            room.sendCurrentPlayer(objectMapper);
         }
-        if (chatMessage.getMessageType() == MessageType.LEAVE) {
+        if (chatMessage.getMessageType() == MessageType.LEAVE && room.getRoomStatus().equals(RoomStatus.WAIT)) {
             sessions.remove(session);
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 퇴장하셨습니다.");
             room.removeUser(user);
+            room.sendCurrentPlayer(objectMapper);
         }
         if (chatMessage.getMessageType() == MessageType.CHAT)
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());

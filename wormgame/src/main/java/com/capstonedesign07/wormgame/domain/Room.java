@@ -6,6 +6,7 @@ import org.springframework.web.socket.WebSocketSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Room {
 
@@ -31,6 +32,19 @@ public class Room {
         TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
         for(WebSocketSession wss : sessions)
             wss.sendMessage(textMessage);
+    }
+
+    public void sendCurrentPlayer(ObjectMapper objectMapper) throws IOException {
+        for (int i = 1; i <= users.getSize(); i++) {
+            TextMessage playerName = new TextMessage(" EVENT_PLAYER_NAME" + i + " : " + users.getUsers().get(i-1).getName() + ' ');
+            TextMessage playerSessionId = new TextMessage(" EVENT_PLAYER_SESSIONID" + i + " : " + users.getUsers().get(i-1).getSessionId() + ' ');
+            for (WebSocketSession wss : sessions) {
+                wss.sendMessage(playerName);
+                wss.sendMessage(playerSessionId);
+            }
+        }
+        for (WebSocketSession wss : sessions)
+            wss.sendMessage(new TextMessage(" EVENT_PLAYER_COUNT : " + users.getSize() + ' '));
     }
 
     public boolean canJoin() {

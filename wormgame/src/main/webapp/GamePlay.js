@@ -54,3 +54,7 @@ function Roomname(){
     title.innerHTML = inputString;
 }
 
+function startBtnToggle(bool) {
+    const target = document.getElementById('GameStartbtn');
+    target.disabled = !bool;
+}
