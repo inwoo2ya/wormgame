@@ -14,6 +14,11 @@ function disconnect() {
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: sessionId}))
     websocket.close();
 }
+function sendMessage(e){ //2022.06.06 채팅 엔터 구현
+        if(e.keyCode === 13){
+            send();
+        }
+    }
 
 function send() {
     msg = document.getElementById("message").value;
