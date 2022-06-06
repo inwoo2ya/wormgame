@@ -34,9 +34,9 @@ function onMessage(evt) {
     var data = evt.data.slice(1, -1);
     if (data == "EVENT_INITIALIZE") {
 
-    } else {
+    }  else {
         var chatarea = document.getElementById("messageArea");
-        chatarea.innerHTML = data + "<br/>" + chatarea.innerHTML
+        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data
     }
 }
 
