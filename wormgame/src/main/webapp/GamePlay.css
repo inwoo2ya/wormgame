@@ -160,23 +160,27 @@ td:hover{
 .playerbox{
     position: relative;
     display:inline-block;
-    width:50%;
+    width:53%;
     height:19%;
     margin:7% 7% 0% 15%;
     border-radius: 10px;
     background-color: rgb(202, 238, 207);
 }
-
-.playerbox p{
+.pln{
     text-align: center;
 }
-.playerbox #playerName{
-    font-size:20pt;
-    font-weight:bolder;
+.pln span{
+    color: rgb(91, 128, 91);
+    font-size: 15.5pt;
+    font-weight: bolder;
 }
-.playerbox #wormnumber #bombnumber{
-    font-size: 15pt;
+
+.playerbox p{
+    margin:5px;
 }
+/* .playerbox .worm .boomb {
+    margin-top: 5px;
+} */
 .dieplayerbox{
     position: relative;
     display:inline-block;
