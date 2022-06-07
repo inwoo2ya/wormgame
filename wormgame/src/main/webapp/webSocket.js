@@ -68,11 +68,21 @@ function currentRoomPlayer(str) {
         playerName[str[17]] = str.substr(21);
     else if(!str.indexOf("EVENT_PLAYER_SESSIONID"))
         playerSessionId[str[22]] = str.substr(26);
-    else if (!str.indexOf("EVENT_PLAYER_COUNT"))
+    else if (!str.indexOf("EVENT_PLAYER_COUNT")) {
         playerCount = str.substr(21);
+        displayPlayerName(playerCount);
+    }
     
     if (sessionId == playerSessionId[1] && !isGamePlaying && playerCount > 1)
         startBtnToggle(true);
     else
         startBtnToggle(false);
+}
+
+function displayPlayerName(userCount) {
+    var i;
+    for (i = 1 ; i <= userCount ; i++)
+        document.getElementById("playerName" + i).textContent = playerName[i];
+    for ( ; i <=4 ; i++)
+        document.getElementById("playerName" + i).textContent = "";
 }

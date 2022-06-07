@@ -42,10 +42,10 @@
                 </div>
             <div class="rightbox">
                 <div class="userbox">
-                    <div class="playerbox"><p id ="playerName">1p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
-                    <div class="playerbox"><p id ="playerName">2p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
-                    <div class="playerbox"><p id ="playerName">3p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
-                    <div class="playerbox"><p id ="playerName">4p</p><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">1p</p><span id="playerName1"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">2p</p><span id="playerName2"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">3p</p><span id="playerName3"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p id ="playerName">4p</p><span id="playerName4"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id="GameStartbtn" onclick="gameStartSend()"> 게임시작</button>
