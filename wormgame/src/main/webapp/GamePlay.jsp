@@ -42,10 +42,10 @@
                 </div>
             <div class="rightbox">
                 <div class="userbox">
-                    <div class="playerbox"><p id ="playerName">1p</p><span id="playerName1"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
-                    <div class="playerbox"><p id ="playerName">2p</p><span id="playerName2"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
-                    <div class="playerbox"><p id ="playerName">3p</p><span id="playerName3"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
-                    <div class="playerbox"><p id ="playerName">4p</p><span id="playerName4"></span><br> <p id="wormnumber">지렁이:</p><p id="bombnumber">폭탄:</p></div>
+                    <div class="playerbox"><p class="player">1p <p class="pln">&nbsp;<span id="playerName1"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber1"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber1"></span></p></div>
+                    <div class="playerbox"><p class="player">2p <p class="pln">&nbsp;<span id="playerName2"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber2"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber2"></span></p></div>
+                    <div class="playerbox"><p class="player">3p <p class="pln">&nbsp;<span id="playerName3"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber3"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber3"></span></p></div>
+                    <div class="playerbox"><p class="player">4p <p class="pln">&nbsp;<span id="playerName4"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber4"></span></p>
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id="GameStartbtn" onclick="gameStartSend()"> 게임시작</button>
