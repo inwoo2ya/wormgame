@@ -36,8 +36,10 @@ function sendPressEnter(e) { //2022.06.06 채팅 엔터 구현
 
 function send() {
     msg = document.getElementById("message").value;
-    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : sessionId, message : msg}));
-    document.getElementById("message").value = "";
+    if (msg.length > 0) {
+        websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : sessionId, message : msg}));
+        document.getElementById("message").value = "";
+    }
 }
 
 function onOpen() {
