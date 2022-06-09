@@ -30,7 +30,13 @@ function sendPressEnter(e) { //2022.06.06 채팅 엔터 구현
 function send() {
     msg = document.getElementById("message").value;
     if (msg.length > 0) {
-        websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : sessionId, message : msg}));
+        if (msg.indexOf("EVENT_"))
+            websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : sessionId, message : msg}));
+        else {
+            var chatarea = document.getElementById("messageArea");
+            var errMsg = "SYSTEM : EVENT_로 시작하는 메시지는 보낼 수 없습니다."
+            chatarea.innerHTML = chatarea.innerHTML + "<br/>" + errMsg;
+        }
         document.getElementById("message").value = "";
     }
 }
