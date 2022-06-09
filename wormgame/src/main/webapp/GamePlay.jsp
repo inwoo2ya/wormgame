@@ -20,18 +20,13 @@
         <div class="roomhead">
            <p class="roomname" id="Roomname"><%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
 
-           <script src="webSocket.js"></script>
-           <script>
-                window.onload = connect();
-            </script>
-           
            </div>
             <div class="_label" style="height:10px"></div>
             <div class="leftbox">
 
                 <div class="Gbox">
                     <div class="Game"id="Game">턴: </div>
-                    <div id ="Gboard"></div>
+                    <div id ="GBoard"></div>
                     </div>
                 <div class="GRbox">
                     <ul class="repo"id="messageArea"></ul>
@@ -54,10 +49,11 @@
             </div>
 
         </div>
-        <!-- <script src="webSocket.js"></script>
-           <script>
-                window.onload = connect();
-            </script> -->
+
+        <script src="webSocket.js"></script>
+        <script>
+            window.onload = connect();
+        </script>
         <div class="_label"></div>
         <script src="./GamePlay.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>

@@ -9,6 +9,9 @@ let playerSessionId = [];
 let playerCount;
 let isGamePlaying = false;
 
+const BOARD_SIZE = 10;
+let board;
+
 function connect() {
     websocket = new WebSocket("ws://" + window.location.hostname + ":8080/chatHandler");
     websocket.onopen = onOpen;
@@ -47,8 +50,11 @@ function onOpen() {
 
 function onMessage(evt) {
     var data = evt.data.slice(1, -1);
+    console.log(data);
     if (data == "EVENT_INITIALIZE") {
         isGamePlaying = true;
+        initializeBoard();
+        makeViewBoard();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT"))
         currentRoomPlayer(data);
     else {
@@ -91,4 +97,29 @@ function displayPlayerName(userCount) {
         document.getElementById("playerName" + i).textContent = playerName[i];
     for ( ; i <=4 ; i++)
         document.getElementById("playerName" + i).textContent = "";
+}
+
+function initializeBoard() {
+    board = [];
+    for (var i=0 ; i<BOARD_SIZE ; i++) {
+        board[i] = [];
+        for (var j=0 ; j<BOARD_SIZE ; j++)
+            board[i][j] = 0;
+    }
+}
+
+function makeViewBoard() {
+    let tableEle = "<table>";
+    for (var i=0 ; i<BOARD_SIZE ; i++) {
+        tableEle += "<tr>";
+        for (var j=0 ; j<BOARD_SIZE ; j++)
+            tableEle += "<td>" + board[i][j] + "</td>";
+        tableEle += "</tr>";
+    }
+    tableEle += "</table>";
+    document.getElementById("GBoard").innerHTML = tableEle;
+}
+
+function makeViewBoardClickable() {
+
 }
