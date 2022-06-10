@@ -106,9 +106,44 @@ function initializeBoard() {
         for (var j=0 ; j<BOARD_SIZE ; j++)
             board[i][j] = 0;
     }
+    board[0][0] = 'h';
+    board[0][1] = board[0][2] = 't';
+    board[1][0] = 'b';
+    board[2][0] = 'd';
+    board[3][0] = 'a';
 }
 
 function makeViewBoard() {
+    let tableEle = "<table>";
+    for (var i=0 ; i<BOARD_SIZE ; i++) {
+        tableEle += "<tr>";
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
+            // tableEle += "<td>" + board[i][j] + "</td>";
+            classString = "";
+            if (board[i][j] == 'h')
+                classString = "wormHead";
+            else if (board[i][j] == 't')
+                classString = "wormTail";
+            else if (board[i][j] == 'b')
+                classString = "bomb";
+            else if (board[i][j] == 'd')
+                classString = "damaged";
+            else if (board[i][j] == 'a')
+                classString = "attacked";
+
+            if (classString)
+                tableEle += "<td class='" + classString + "'>";
+            else
+                tableEle += "<td>";
+            tableEle += "</td>";
+        }
+        tableEle += "</tr>";
+    }
+    tableEle += "</table>";
+    document.getElementById("GBoard").innerHTML = tableEle;
+}
+
+function makeViewBoardClickable() {
     let tableEle = "<table>";
     for (var i=0 ; i<BOARD_SIZE ; i++) {
         tableEle += "<tr>";
@@ -118,8 +153,4 @@ function makeViewBoard() {
     }
     tableEle += "</table>";
     document.getElementById("GBoard").innerHTML = tableEle;
-}
-
-function makeViewBoardClickable() {
-
 }

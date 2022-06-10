@@ -96,8 +96,32 @@ td{
     justify-content: center;
     text-align:center;
 }
-td:hover{
+/* td:hover{
     background-color: azure;
+} */
+.clickable {
+    background-color: aliceblue;
+}
+.clickable:hover {
+    background-color: azure;
+}
+.nonclickable {
+    background-color: darkgray;
+}
+.wormHead {
+    background-color: red;
+}
+.wormTail {
+    background-color: blue;
+}
+.bomb {
+    background-color: green;
+}
+.damaged {
+    background-color: blueviolet;
+}
+.attacked {
+    background-color: brown;
 }
 .userbox{
     display:inline-block;
