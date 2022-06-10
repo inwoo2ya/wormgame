@@ -47,8 +47,8 @@
                 </div>
             </div>
         </div>
-        </div>
         <div class="_label"></div>
+
     </div>
         <script src="webSocket.js"></script>
                 <script>
