@@ -72,7 +72,7 @@ div{display:block;}
 .rightbox{
     position:relative;
     width: 40%;
-    height:100%;
+    height:95.6%;
     display:inline-block;
     float:right;
 }
@@ -208,14 +208,14 @@ td:hover{
     font-size:15pt;
 }
 .startbtn{
-    margin:10% 0% 15% 0%;
+    margin:7% 0% 15% 0%;
 }
 .startbtn:hover{
     background-color: rgb(0, 255, 34);
     color:white;
 }
 .exitbtn{
-    margin:10% 0% 15% 5%;
+    margin:7% 0% 15% 8%;
 }
 .exitbtn:hover{
     background-color: rgb(0, 255, 34);
@@ -224,5 +224,5 @@ td:hover{
 .btnarea{
     display:inline-block;
     width: 100%;
-    height: 30%;
+    height: 25%;
 }
