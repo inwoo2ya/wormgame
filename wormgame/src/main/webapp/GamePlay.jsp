@@ -19,7 +19,6 @@
         <div class="mainbox">
         <div class="roomhead">
            <p class="roomname" id="Roomname"><%= request.getAttribute("roomname") %></p><button class="roombtn" onclick="Roomname()">방 제목변경</button>
-
            </div>
             <div class="_label" style="height:10px"></div>
             <div class="leftbox">
@@ -40,24 +39,24 @@
                     <div class="playerbox"><p class="player">1p <p class="pln">&nbsp;<span id="playerName1"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber1"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber1"></span></p></div>
                     <div class="playerbox"><p class="player">2p <p class="pln">&nbsp;<span id="playerName2"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber2"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber2"></span></p></div>
                     <div class="playerbox"><p class="player">3p <p class="pln">&nbsp;<span id="playerName3"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber3"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber3"></span></p></div>
-                    <div class="playerbox"><p class="player">4p <p class="pln">&nbsp;<span id="playerName4"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber4"></span></p>
+                    <div class="playerbox"><p class="player">4p <p class="pln">&nbsp;<span id="playerName4"></span></p></p> <p class="worm"> 지렁이:&nbsp;<span id="wormnumber4"></span></p> <p class="boomb">폭탄:&nbsp;<span id="bombnumber4"></span></p></div>
                 </div>
                 <div class="btnarea">
                     <button class="startbtn" id="GameStartbtn" onclick="gameStartSend()"> 게임시작</button>
                     <button class="exitbtn" id="exit" onclick="location.href='findRoom'">나가기</button>
                 </div>
             </div>
-
         </div>
-
-        <script src="webSocket.js"></script>
-        <script>
-            window.onload = connect();
-        </script>
+        </div>
         <div class="_label"></div>
+    </div>
+        <script src="webSocket.js"></script>
+                <script>
+                    window.onload = connect();
+                </script>
         <script src="./GamePlay.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-        <!-- <script src="/js/main.js"></script> -->
+
     </body>
 </html>
