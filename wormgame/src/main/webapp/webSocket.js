@@ -11,6 +11,10 @@ let isGamePlaying = false;
 
 const BOARD_SIZE = 10;
 let board;
+let worm;
+let clickCount = 0;
+
+let dx = [-2, -2, 0, 2, 2, 2, 0, -2], dy = [0, 2, 2, 2, 0, -2, -2, -2];
 
 function connect() {
     websocket = new WebSocket("ws://" + window.location.hostname + ":8080/chatHandler");
@@ -53,8 +57,14 @@ function onMessage(evt) {
     console.log(data);
     if (data == "EVENT_INITIALIZE") {
         isGamePlaying = true;
+        startBtnToggle(false);
         initializeBoard();
-        makeViewBoard();
+
+        worm = [];
+        var chatarea = document.getElementById("messageArea");
+        var msg = "1번째 지렁이를 설정합니다.";
+        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
+        makeViewBoardClickable();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT"))
         currentRoomPlayer(data);
     else {
@@ -106,51 +116,145 @@ function initializeBoard() {
         for (var j=0 ; j<BOARD_SIZE ; j++)
             board[i][j] = 0;
     }
-    board[0][0] = 'h';
-    board[0][1] = board[0][2] = 't';
-    board[1][0] = 'b';
-    board[2][0] = 'd';
-    board[3][0] = 'a';
-}
-
-function makeViewBoard() {
-    let tableEle = "<table>";
-    for (var i=0 ; i<BOARD_SIZE ; i++) {
-        tableEle += "<tr>";
-        for (var j=0 ; j<BOARD_SIZE ; j++) {
-            // tableEle += "<td>" + board[i][j] + "</td>";
-            classString = "";
-            if (board[i][j] == 'h')
-                classString = "wormHead";
-            else if (board[i][j] == 't')
-                classString = "wormTail";
-            else if (board[i][j] == 'b')
-                classString = "bomb";
-            else if (board[i][j] == 'd')
-                classString = "damaged";
-            else if (board[i][j] == 'a')
-                classString = "attacked";
-
-            if (classString)
-                tableEle += "<td class='" + classString + "'>";
-            else
-                tableEle += "<td>";
-            tableEle += "</td>";
-        }
-        tableEle += "</tr>";
-    }
-    tableEle += "</table>";
-    document.getElementById("GBoard").innerHTML = tableEle;
+    // board[0][0] = 'h';
+    // board[0][1] = board[0][2] = 't';
+    // board[1][0] = 'b';
+    // board[2][0] = 'd';
+    // board[3][0] = 'a';
 }
 
 function makeViewBoardClickable() {
     let tableEle = "<table>";
     for (var i=0 ; i<BOARD_SIZE ; i++) {
         tableEle += "<tr>";
-        for (var j=0 ; j<BOARD_SIZE ; j++)
-            tableEle += "<td>" + board[i][j] + "</td>";
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
+            classString = "";
+            tdId = "" + i + j;
+
+            tableEle += "<td id='" + tdId + "'></td>"
+        }
         tableEle += "</tr>";
     }
     tableEle += "</table>";
     document.getElementById("GBoard").innerHTML = tableEle;
+
+    for (var i=0 ; i<BOARD_SIZE ; i++)
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
+            tdId = "" + i + j;
+            td = document.getElementById(tdId);
+            if (board[i][j] == 'h')
+                td.classList.add("wormHead");
+            else if (board[i][j] == 't')
+                td.classList.add("wormTail");
+            else if (board[i][j] == 'b')
+                td.classList.add("bomb");
+            else if (board[i][j] == 'd')
+                td.classList.add("damaged");
+            else if (board[i][j] == 'a')
+                td.classList.add("attacked");
+            else
+                td.onclick = function() { onClick(Number(this.id[0]), Number(this.id[1])); }
+        }
+}
+
+function onClick(x, y) {
+    console.log(x, y);
+    clickCount++;
+
+    if (clickCount == 2) {
+        var chatarea = document.getElementById("messageArea");
+        var msg = "2번째 지렁이를 설정합니다.";
+        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
+    } else if (clickCount == 4) {
+        var chatarea = document.getElementById("messageArea");
+        var msg = "3번째 지렁이를 설정합니다.";
+        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
+    } else if (clickCount == 6) {
+        var chatarea = document.getElementById("messageArea");
+        var msg = "폭탄 위치를 설정합니다.";
+        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
+    }
+
+    if (clickCount <= 6) {
+        if (clickCount % 2 == 1) {
+            board[x][y] = 'h';
+            tdId = "" + x + y;
+            td = document.getElementById(tdId);
+            td.classList.add("wormHead");
+            //클릭할 수 있는 몸통 처리 로직
+            for (var i=0 ; i<BOARD_SIZE ; i++)
+                for (var j=0 ; j<BOARD_SIZE ; j++) {
+                    tdId = "" + i + j;
+                    td = document.getElementById(tdId);
+                    td.onclick = null;
+                }
+            for (var i=0 ; i<8 ; i++) {
+                var nx = x + dx[i];
+                var ny = y + dy[i];
+                if (nx < 0 || nx >= BOARD_SIZE || ny < 0 || ny >= BOARD_SIZE)
+                    continue;
+                if (board[nx][ny] || board[parseInt((x+nx)/2)][parseInt(y+ny)/2])
+                    continue;
+                tdId = "" + nx + ny;
+                board[nx][ny] = 'c';
+                td = document.getElementById(tdId);
+                td.classList.add("clickable");
+                td.onclick = function() { onClick(Number(this.id[0]), Number(this.id[1])); }
+            }
+            worm.push(x);
+            worm.push(y);
+        } else {
+            board[x][y] = 't';
+            tdId = "" + x + y;
+            td = document.getElementById(tdId);
+            td.classList.remove("clickable");
+            td.onclick = null;
+
+            bodyAdd(worm[(parseInt(clickCount/2)-1)*6], worm[(parseInt(clickCount/2)-1)*6+1], x, y);
+            worm.push(x);
+            worm.push(y);
+            
+            for (var i=0 ; i<BOARD_SIZE ; i++)
+                for (var j=0 ; j<BOARD_SIZE ; j++) {
+                    tdId = "" + i + j;
+                    td = document.getElementById(tdId);
+                    if (board[i][j] == 'c') {
+                        td.classList.remove("clickable");
+                        board[i][j] = 0;
+                    } else if (board[i][j] == 'h')
+                        td.classList.add("wormHead");
+                    else if (board[i][j] == 't')
+                        td.classList.add("wormTail");
+                    else if (board[i][j] == 0)
+                        td.onclick = function() { onClick(Number(this.id[0]), Number(this.id[1])); }
+                }
+        }
+    } else if (clickCount == 7) {
+        board[x][y] = 'b';
+        tdId = "" + x + y;
+        td = document.getElementById(tdId);
+        td.classList.remove("clickable");
+        td.onclick = null;
+        td.classList.add("bomb");
+        worm.push(x);
+        worm.push(y);
+
+        for (var i=0 ; i<BOARD_SIZE ; i++)
+            for (var j=0 ; j<BOARD_SIZE ; j++) {
+                tdId = "" + i + j;
+                td = document.getElementById(tdId);
+                td.onclick = null;
+            }
+    } else {
+
+    }
+    console.log("clickCount = " + clickCount + ", worm = " + worm);
+}
+
+function bodyAdd(headx, heady, tailx, taily) {
+    var bodyx = parseInt((headx+tailx)/2);
+    var bodyy = parseInt((heady+taily)/2);
+    worm.push(bodyx);
+    worm.push(bodyy);
+    board[bodyx][bodyy] = 't';
 }
