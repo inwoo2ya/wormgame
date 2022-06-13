@@ -58,6 +58,7 @@ function onMessage(evt) {
     if (data == "EVENT_INITIALIZE") {
         isGamePlaying = true;
         startBtnToggle(false);
+        exitBtnToggle(false);
         initializeBoard();
 
         worm = [];
