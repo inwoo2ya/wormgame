@@ -54,7 +54,11 @@ function Roomname(){
     title.innerHTML = inputString;
 }
 
-function startBtnToggle(bool) {
+function startBtnToggle(bool) { //게임 스타트 버튼 disable
     const target = document.getElementById('GameStartbtn');
+    target.disabled = !bool;
+}
+function exitBtnToggle(bool){ // 나가기 버튼 disable
+    const target = document.getElementById('exit');
     target.disabled = !bool;
 }
