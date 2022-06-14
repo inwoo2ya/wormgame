@@ -1,5 +1,6 @@
 package com.capstonedesign07.wormgame;
 
+import com.capstonedesign07.wormgame.domain.Position;
 import com.capstonedesign07.wormgame.domain.User;
 import com.capstonedesign07.wormgame.domain.UserStatus;
 import org.junit.jupiter.api.DisplayName;
@@ -41,5 +42,18 @@ public class UserTests {
         User user = new User("SID", "test");
         user.setUserStatus(UserStatus.RUNNING);
         assertThat(user.getUserStatus()).isEqualByComparingTo(UserStatus.RUNNING);
+    }
+
+    @Test
+    @DisplayName("User initialize 테스트")
+    void userInitializeTest() {
+        User user = new User("SID", "test");
+        user.initialize("00010211121322232433");
+        assertAll(
+                () -> assertThat(user.getWorms().getWorms()).hasSize(3),
+                () -> assertThat(user.getWorms().getWorms().get(1).getHead()).isEqualTo(new Position(1, 1)),
+                () -> assertThat(user.getBomb().getPosition()).isEqualTo(new Position(3, 3)),
+                () -> assertThat(user.getIsInitialized()).isTrue()
+        );
     }
 }

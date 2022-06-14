@@ -11,11 +11,23 @@ public class User {
     private char[][] viewBoard;
     private Worms worms;
     private Bomb bomb;
+    private boolean isInitialized;
 
     public User(String sessionId, String name) {
         this.sessionId = sessionId;
         this.name = name;
         this.userStatus = UserStatus.READY;
+    }
+
+    public void initialize(String string) {
+        if (string.length() != 20) {
+            throw new IllegalArgumentException("초기화 문자열의 길이가 20가 아님");
+        }
+        viewBoard = new char[Position.BOARD_SIZE][Position.BOARD_SIZE];
+
+        this.worms = new Worms(string.substring(0, 18), viewBoard);
+        this.bomb = new Bomb(new Position(string.charAt(18) - '0', string.charAt(19) - '0'), viewBoard);
+        isInitialized = true;
     }
 
     public String getSessionId() {
@@ -46,12 +58,24 @@ public class User {
         this.room = room;
     }
 
-    public void initializeViewBoard() {
-        viewBoard = new char[Position.BOARD_SIZE][Position.BOARD_SIZE];
-    }
-
     public char[][] getViewBoard() {
         return viewBoard;
+    }
+
+    public Worms getWorms() {
+        return worms;
+    }
+
+    public Bomb getBomb() {
+        return bomb;
+    }
+
+    public boolean getIsInitialized() {
+        return isInitialized;
+    }
+
+    public void setIsInitialized(boolean initialized) {
+        isInitialized = initialized;
     }
 
     @Override

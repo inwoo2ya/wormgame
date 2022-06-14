@@ -16,7 +16,7 @@ public class Game {
 
         room.setRoomStatus(RoomStatus.PLAYING);
         room.getUsers().setUsersStatus(UserStatus.RUNNING);
-        room.getUsers().initializeUsersViewBoard();
+        room.getUsers().setUsersIsInitialized(false);
 
         chatMessage.setMessage("SYSTEM : 지렁이의 위치를 설정합니다<미구현>.");
         room.send(chatMessage, objectMapper);

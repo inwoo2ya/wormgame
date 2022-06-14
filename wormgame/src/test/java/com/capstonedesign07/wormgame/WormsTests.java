@@ -24,12 +24,14 @@ public class WormsTests {
         threeWorms.add(worm1);
         threeWorms.add(worm2);
         threeWorms.add(worm3);
-        Worms worms = new Worms(threeWorms, new char[Position.BOARD_SIZE][Position.BOARD_SIZE]);
+        Worms worms1 = new Worms(threeWorms, new char[Position.BOARD_SIZE][Position.BOARD_SIZE]);
+        Worms worms2 = new Worms("000102111213222324", new char[Position.BOARD_SIZE][Position.BOARD_SIZE]);
         assertAll(
-                () -> assertThat(worms.getWorms().get(0).getHead()).isEqualTo(new Position(0, 0)),
-                () -> assertThat(worms.getWorms().get(1).isAlive()).isTrue(),
-                () -> assertThat(worms.getWorms().get(2).getBody()[1]).isEqualTo(new Position(2, 4)),
-                () -> assertThat(worms.getWorms()).hasSize(3)
+                () -> assertThat(worms1.getWorms().get(0).getHead()).isEqualTo(new Position(0, 0)),
+                () -> assertThat(worms1.getWorms().get(1).isAlive()).isTrue(),
+                () -> assertThat(worms1.getWorms().get(2).getBody()[1]).isEqualTo(new Position(2, 4)),
+                () -> assertThat(worms1.getWorms()).hasSize(3),
+                () -> assertThat(worms2.getWorms().get(0).getHead()).isEqualTo(new Position(0, 0))
         );
     }
 
@@ -43,7 +45,11 @@ public class WormsTests {
         threeWorms.add(worm1);
         threeWorms.add(worm2);
         threeWorms.add(worm3);
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Worms(threeWorms, new char[Position.BOARD_SIZE][Position.BOARD_SIZE]));
+        assertAll(
+                ()-> assertThatIllegalArgumentException()
+                        .isThrownBy(() -> new Worms(threeWorms, new char[Position.BOARD_SIZE][Position.BOARD_SIZE])),
+                () -> assertThatIllegalArgumentException()
+                        .isThrownBy(() -> new Worms("002211130222", new char[Position.BOARD_SIZE][Position.BOARD_SIZE]))
+        );
     }
 }

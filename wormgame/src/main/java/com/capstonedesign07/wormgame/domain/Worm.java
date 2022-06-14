@@ -24,6 +24,22 @@ public class Worm {
         body[1] = new Position(body[0].getX() + DX[vector], body[0].getY() + DY[vector]);
         this.healthPoint = 2;
     }
+    public Worm(Position head, Position tail) {
+        if ((head.getX() + tail.getX()) % 2 == 1 || (head.getY() + tail.getY()) % 2 == 1) {
+            throw new IllegalArgumentException("몸통의 좌표가 정수가 아님");
+        }
+        this.head = head;
+        body[0] = new Position((head.getX() + tail.getX()) / 2, (head.getY() + tail.getY()) / 2);
+        body[1] = tail;
+        this.healthPoint = 2;
+    }
+
+    public Worm(Position head, Position body, Position tail) {
+        this.head = head;
+        this.body[0] = body;
+        this.body[1] = tail;
+        this.healthPoint = 2;
+    }
 
     public boolean isAlive() {
         return healthPoint > 0;

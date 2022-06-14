@@ -6,7 +6,6 @@ import org.springframework.web.socket.WebSocketSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Room {
 
@@ -51,6 +50,17 @@ public class Room {
         if (users.getSize() < ROOM_SIZE && roomStatus.equals(RoomStatus.WAIT))
             return true;
         return false;
+    }
+
+    public boolean isInitializeFinish() {
+        for (int i = 0; i < users.getSize(); i++) {
+            User user = users.getUsers().get(i);
+            if (user.getUserStatus().equals(UserStatus.LOSE))
+                continue;
+            if (user.getIsInitialized() == false)
+                return false;
+        }
+        return true;
     }
 
     public String getName() {

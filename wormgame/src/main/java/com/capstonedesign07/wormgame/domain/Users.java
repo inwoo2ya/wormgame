@@ -65,9 +65,9 @@ public class Users {
                 .forEach(i -> users.get(i).setRoom(room));
     }
 
-    public void initializeUsersViewBoard() {
+    public void setUsersIsInitialized(boolean bool) {
         IntStream.range(0, users.size())
-                .forEach(i -> users.get(i).initializeViewBoard());
+                .forEach(i -> users.get(i).setIsInitialized(bool));
     }
 
     public void addUser(User user) {

@@ -40,29 +40,42 @@ public class ChatHandler extends TextWebSocketHandler {
         List<WebSocketSession> sessions = room.getSessions();
         User user = userRepository.findBySessionId(chatMessage.getWriter());
         boolean gameStart = false;
+        boolean sendMessage = false;
 
         if (chatMessage.getMessageType() == MessageType.ENTER) {
             sessions.add(session);
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 입장하셨습니다.");
+            sendMessage = true;
             room.sendCurrentPlayer(objectMapper);
         }
         if (chatMessage.getMessageType() == MessageType.LEAVE && room.getRoomStatus().equals(RoomStatus.WAIT)) {
             sessions.remove(session);
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 퇴장하셨습니다.");
+            sendMessage = true;
             room.removeUser(user);
             room.sendCurrentPlayer(objectMapper);
         }
-        if (chatMessage.getMessageType() == MessageType.CHAT)
+        if (chatMessage.getMessageType() == MessageType.CHAT) {
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
+            sendMessage = true;
+        }
         if (chatMessage.getMessageType() == MessageType.GAMESTART && room.getUsers().getSize() > 1) {
             if (!user.equals(room.roomUsers().get(0))) {
                 throw new IllegalArgumentException("게임을 시작한 플레이어가 1p가 아님");
             }
             gameStart = true;
             chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 게임을 시작하셨습니다.");
+            sendMessage = true;
+        }
+        if (chatMessage.getMessageType() == MessageType.INITIALIZED) {
+            if (room.getRoomStatus().equals(RoomStatus.WAIT)) {
+                throw new IllegalArgumentException("대기중인 게임에서 지렁이와 폭탄이 초기화됨");
+            }
+            user.initialize(chatMessage.getMessage());
         }
 
-        send(room, chatMessage, objectMapper);
+        if (sendMessage)
+            send(room, chatMessage, objectMapper);
         if (gameStart)
             Game.run(room);
     }
