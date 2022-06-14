@@ -246,6 +246,8 @@ function onClick(x, y) {
                 td = document.getElementById(tdId);
                 td.onclick = null;
             }
+
+        websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "INITIALIZED", writer : sessionId, message : worm.join("")}));
     } else {
 
     }
