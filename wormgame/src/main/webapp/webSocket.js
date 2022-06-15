@@ -39,13 +39,15 @@ function send() {
     if (msg.length > 0) {
         if (msg.indexOf("EVENT_"))
             websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "CHAT", writer : sessionId, message : msg}));
-        else {
-            var chatarea = document.getElementById("messageArea");
-            var errMsg = "SYSTEM : EVENT_로 시작하는 메시지는 보낼 수 없습니다."
-            chatarea.innerHTML = chatarea.innerHTML + "<br/>" + errMsg;
-        }
+        else
+            sendToMe("SYSTEM : EVENT_로 시작하는 메시지는 보낼 수 없습니다.");
         document.getElementById("message").value = "";
     }
+}
+
+function sendToMe(string) {
+    var chatarea = document.getElementById("messageArea");
+    chatarea.innerHTML = chatarea.innerHTML + "<br/>" + string;
 }
 
 function onOpen() {
@@ -62,16 +64,12 @@ function onMessage(evt) {
         initializeBoard();
 
         worm = [];
-        var chatarea = document.getElementById("messageArea");
-        var msg = "1번째 지렁이를 설정합니다.";
-        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
+        sendToMe("1번째 지렁이를 설정합니다.");
         makeViewBoardClickable();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT"))
         currentRoomPlayer(data);
-    else {
-        var chatarea = document.getElementById("messageArea");
-        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + data
-    }
+    else
+        sendToMe(data);
 }
 
 function onClose() {
@@ -162,19 +160,12 @@ function onClick(x, y) {
     console.log(x, y);
     clickCount++;
 
-    if (clickCount == 2) {
-        var chatarea = document.getElementById("messageArea");
-        var msg = "2번째 지렁이를 설정합니다.";
-        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
-    } else if (clickCount == 4) {
-        var chatarea = document.getElementById("messageArea");
-        var msg = "3번째 지렁이를 설정합니다.";
-        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
-    } else if (clickCount == 6) {
-        var chatarea = document.getElementById("messageArea");
-        var msg = "폭탄 위치를 설정합니다.";
-        chatarea.innerHTML = chatarea.innerHTML + "<br/>" + msg;
-    }
+    if (clickCount == 2)
+        sendToMe("2번째 지렁이를 설정합니다.");
+    else if (clickCount == 4)
+        sendToMe("3번째 지렁이를 설정합니다.");
+    else if (clickCount == 6)
+        sendToMe("폭탄 위치를 설정합니다.");
 
     if (clickCount <= 6) {
         if (clickCount % 2 == 1) {
