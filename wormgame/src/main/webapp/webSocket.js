@@ -239,6 +239,7 @@ function onClick(x, y) {
             }
 
         websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "INITIALIZED", writer : sessionId, message : worm.join("")}));
+        sendToMe("다른 유저가 지렁이와 폭탄을 설정하기를 기다리는 중 ...");
     } else {
 
     }
