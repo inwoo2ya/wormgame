@@ -5,9 +5,10 @@ let sessionId = sessionStorage.getItem("sessionId");
 
 let playerName = [];
 let playerSessionId = [];
-
 let playerCount;
-let isGamePlaying = false;
+let isGamePlaying = false; //게임 여부
+let wormnum = []; //지렁이 수
+let bombnum = []; // 폭탄 수
 
 const BOARD_SIZE = 10;
 let board;
@@ -24,7 +25,7 @@ function connect() {
 }
 
 function disconnect() {
-    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: sessionId}))
+    websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "LEAVE", writer: sessionId}));
     websocket.close();
 }
 
@@ -66,8 +67,9 @@ function onMessage(evt) {
         worm = [];
         sendToMe("1번째 지렁이를 설정합니다.");
         makeViewBoardClickable();
-    } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT"))
+    } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT")||!data.indexOf("EVENT_USERS_WORM_AND_BOMB_COUNT")){
         currentRoomPlayer(data);
+    } 
     else
         sendToMe(data);
 }
@@ -85,13 +87,18 @@ function gameStartSend() {
 }
 
 function currentRoomPlayer(str) {
-    if(!str.indexOf("EVENT_PLAYER_NAME"))
+    if(!str.indexOf("EVENT_PLAYER_NAME")){
         playerName[str[17]] = str.substr(21);
-    else if(!str.indexOf("EVENT_PLAYER_SESSIONID"))
+    }
+    else if(!str.indexOf("EVENT_PLAYER_SESSIONID")){
         playerSessionId[str[22]] = str.substr(26);
+    }
     else if (!str.indexOf("EVENT_PLAYER_COUNT")) {
         playerCount = str.substr(21);
-        displayPlayerName(playerCount);
+        displayPlayername(playerCount);
+    }
+    else if (!str.indexOf("EVENT_USERS_WORM_AND_BOMB_COUNT")){
+        displayWormandBomb(str,playerCount);
     }
     
     if (sessionId == playerSessionId[1] && !isGamePlaying && playerCount > 1)
@@ -100,12 +107,49 @@ function currentRoomPlayer(str) {
         startBtnToggle(false);
 }
 
-function displayPlayerName(userCount) {
+function displayPlayername(userCount) { //Player닉네임 보여주기
     var i;
     for (i = 1 ; i <= userCount ; i++)
         document.getElementById("playerName" + i).textContent = playerName[i];
+        
     for ( ; i <=4 ; i++)
         document.getElementById("playerName" + i).textContent = "";
+       
+}
+function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
+    var i = 0;
+    var m = 1;
+    while(m < userCount+1){
+        i+=1;
+        a = 33+i
+        console.log(a,i,m);
+        if (a%2 == 0){
+            wormnum[m] = str.substr(a,1);
+            document.getElementById("wormnumber"+m).textContent = wormnum[m];
+            console.log(wormnum[m],a);
+        }
+        else {
+            bombnum[m] = str.substr(a,1);
+            document.getElementById("bombnumber"+m).textContent = bombnum[m];
+            console.log(bombnum[m],a);
+            m+=1
+            
+        }
+    
+
+    }
+    // for(i=1;i<=userCount;i++){
+       
+    //     var a = 33+i;
+    //     var b = 36-i;
+    //     wormnum[i] = str.substr(a,1);
+    //     bombnum[i] = str.substr(b,1);
+    //     console.log(wormnum[i],a);
+    //     console.log(bombnum[i],b);
+    //     document.getElementById("wormnumber"+i).textContent = wormnum[i];
+    //     document.getElementById("bombnumber"+i).textContent = bombnum[i];
+    // }
+    
 }
 
 function initializeBoard() {
@@ -240,10 +284,15 @@ function onClick(x, y) {
 
         websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "INITIALIZED", writer : sessionId, message : worm.join("")}));
         sendToMe("다른 유저가 지렁이와 폭탄을 설정하기를 기다리는 중 ...");
+        
+        
+
+
     } else {
 
     }
     console.log("clickCount = " + clickCount + ", worm = " + worm);
+    
 }
 
 function bodyAdd(headx, heady, tailx, taily) {
