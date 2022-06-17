@@ -15,6 +15,7 @@ public class Room {
     private RoomStatus roomStatus;
     private List<WebSocketSession> sessions = new ArrayList<>();
     private boolean[][] attackCheckBoard;
+    private int turn;
 
     public Room(String name, Users users) {
         this.name = name;
@@ -31,6 +32,11 @@ public class Room {
         TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
         for(WebSocketSession wss : sessions)
             wss.sendMessage(textMessage);
+    }
+
+    public void send(int index, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
+        TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
+        sessions.get(index).sendMessage(textMessage);
     }
 
     public void sendCurrentPlayer(ObjectMapper objectMapper) throws IOException {
@@ -63,6 +69,10 @@ public class Room {
         return true;
     }
 
+    public boolean isOnlyOneWinner() {
+        return users.isOnlyOneWinner();
+    }
+
     public String getName() {
         return name;
     }
@@ -85,6 +95,14 @@ public class Room {
 
     public boolean[][] getAttackCheckBoard() {
         return attackCheckBoard;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 
     public void setAttackCheckBoard(boolean[][] attackCheckBoard) {

@@ -34,9 +34,6 @@ public class Game {
         chatMessage.setMessage("EVENT_USERS_WORM_AND_BOMB_COUNT : " + room.getUsers().usersWormsAndBombCount());
         room.send(chatMessage, objectMapper);
 
-        //모든 유저 지렁이&폭탄 입력될 때 까지 대기(입력한 클라이언트들에게는 다른 유저의 입력을 기다리는 중이라 표시)
-
-        //승자가 가려질 때 까지 반복
             //클라이언트한테 공격할 좌표를 입력할 신호를 보냄
 
             //모든 클라이언트가 공격 좌표를 입력할 때 까지 대기(입력한 클라이언트들에게는 다른 유저의 입력을 기다리는 중이라 표시)

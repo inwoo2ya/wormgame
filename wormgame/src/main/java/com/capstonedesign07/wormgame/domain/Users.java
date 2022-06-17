@@ -84,6 +84,14 @@ public class Users {
                 .forEach(i -> users.get(i).setIsInitialized(bool));
     }
 
+    public boolean isOnlyOneWinner() {
+        return IntStream.range(0, users.size())
+                .filter(i -> getUsers().get(i).getUserStatus().equals(UserStatus.WIN))
+                .mapToObj(i -> getUsers().get(i))
+                .collect(Collectors.toList())
+                .size() == 1;
+    }
+
     public void addUser(User user) {
         users.add(user);
     }

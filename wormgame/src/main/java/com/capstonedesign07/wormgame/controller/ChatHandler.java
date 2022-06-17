@@ -72,8 +72,11 @@ public class ChatHandler extends TextWebSocketHandler {
                 throw new IllegalArgumentException("대기중인 게임에서 지렁이와 폭탄이 초기화됨");
             }
             user.initialize(chatMessage.getMessage());
-            if (room.isInitializeFinish())
+            if (room.isInitializeFinish()) {
                 Game.gameRun(room);
+                chatMessage.setMessage("EVENT_YOUR_TURN");
+                room.send(0, chatMessage, objectMapper);
+            }
         }
 
         if (sendMessage)
