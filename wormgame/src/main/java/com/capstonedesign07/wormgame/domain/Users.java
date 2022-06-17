@@ -24,6 +24,20 @@ public class Users {
         users = new ArrayList<>();
     }
 
+    public String usersWormsAndBombCount() {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, getSize())
+                .forEach(i -> {
+                    User user = users.get(i);
+                    sb.append(user.getWorms().getWorms().size());
+                    if (user.getBomb().isAlive())
+                        sb.append(1);
+                    else
+                        sb.append(0);
+                });
+        return sb.toString();
+    }
+
     public int getSize() {
         return users.size();
     }

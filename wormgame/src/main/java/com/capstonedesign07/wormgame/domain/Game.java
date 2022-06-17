@@ -31,6 +31,9 @@ public class Game {
         chatMessage.setMessage("SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다.");
         room.send(chatMessage, objectMapper);
 
+        chatMessage.setMessage("EVENT_USERS_WORM_AND_BOMB_COUNT : " + room.getUsers().usersWormsAndBombCount());
+        room.send(chatMessage, objectMapper);
+
         //모든 유저 지렁이&폭탄 입력될 때 까지 대기(입력한 클라이언트들에게는 다른 유저의 입력을 기다리는 중이라 표시)
 
         //승자가 가려질 때 까지 반복
