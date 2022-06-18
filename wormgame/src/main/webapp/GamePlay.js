@@ -62,3 +62,17 @@ function exitBtnToggle(bool){ // 나가기 버튼 disable
     const target = document.getElementById('exit');
     target.disabled = !bool;
 }
+
+function Gameturn(data){ // 클라이언트에게 표시할 턴 함수
+    var turn;
+    const turnnumber = document.getElementById('Gameturn');
+    if (data == "EVENT_INITIALIZE"){
+        turn = 0;
+        turnnumber.textContent = turn;
+    }
+    else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다."){
+        turn = 1;
+        turnnumber.textContent = turn;
+    }
+
+}
