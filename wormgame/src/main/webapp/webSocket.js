@@ -69,8 +69,10 @@ function onMessage(evt) {
         makeViewBoardClickable();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT")||!data.indexOf("EVENT_USERS_WORM_AND_BOMB_COUNT")){
         currentRoomPlayer(data);
-    } 
-    else
+    } else if (!data.indexOf("EVENT_YOUR_TURN")) {
+        sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
+        addOnClick();
+    } else
         sendToMe(data);
 }
 
@@ -289,7 +291,9 @@ function onClick(x, y) {
 
 
     } else {
-
+        websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ATTACK", writer : sessionId, message : "" + x + y}));
+        removeOnClick();
+        sendToMe("공격을 서버로 전송하였습니다.");
     }
     console.log("clickCount = " + clickCount + ", worm = " + worm);
     
@@ -301,4 +305,23 @@ function bodyAdd(headx, heady, tailx, taily) {
     worm.push(bodyx);
     worm.push(bodyy);
     board[bodyx][bodyy] = 't';
+}
+
+function addOnClick() {
+    for (var i=0 ; i<BOARD_SIZE ; i++)
+        for (var j=0 ; j<BOARD_SIZE ; j++)
+            if (board[i][j] == 0) {
+                tdId = "" + i + j;
+                td = document.getElementById(tdId);
+                td.onclick = function() { onClick(Number(this.id[0]), Number(this.id[1])); }
+            }
+}
+
+function removeOnClick() {
+    for (var i=0 ; i<BOARD_SIZE ; i++)
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
+            tdId = "" + i + j;
+            td = document.getElementById(tdId);
+            td.onclick = null;
+        }
 }
