@@ -116,12 +116,11 @@ function displayPlayername(userCount) { //Player닉네임 보여주기
         
     for ( ; i <=4 ; i++)
         document.getElementById("playerName" + i).textContent = "";
-       
 }
 function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
     var i = 0;
     var m = 1;
-    while(m < userCount+1){
+    while(m <= userCount){
         i+=1;
         a = 33+i
         console.log(a,i,m);
@@ -140,19 +139,8 @@ function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
     
 
     }
-    // for(i=1;i<=userCount;i++){
-       
-    //     var a = 33+i;
-    //     var b = 36-i;
-    //     wormnum[i] = str.substr(a,1);
-    //     bombnum[i] = str.substr(b,1);
-    //     console.log(wormnum[i],a);
-    //     console.log(bombnum[i],b);
-    //     document.getElementById("wormnumber"+i).textContent = wormnum[i];
-    //     document.getElementById("bombnumber"+i).textContent = bombnum[i];
-    // }
-    
 }
+
 
 function initializeBoard() {
     board = [];
