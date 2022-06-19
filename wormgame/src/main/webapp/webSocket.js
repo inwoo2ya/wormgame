@@ -54,31 +54,28 @@ function sendToMe(string) {
 function onOpen() {
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ENTER", writer : sessionId}));
 }
+
 function onMessage(evt) {
     var data = evt.data.slice(1, -1);
     console.log(data);
-    if (data == "EVENT_INITIALIZE") { //게임스타트
+    if (data == "EVENT_INITIALIZE") {
         isGamePlaying = true;
         startBtnToggle(false);
         exitBtnToggle(false);
-        Gameturn(data);
         initializeBoard();
-        
+
         worm = [];
         sendToMe("1번째 지렁이를 설정합니다.");
         makeViewBoardClickable();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT")||!data.indexOf("EVENT_USERS_WORM_AND_BOMB_COUNT")){
         currentRoomPlayer(data);
-         } else if (!data.indexOf("EVENT_YOUR_TURN")) {
-                sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
-                addOnClick();
-            } else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다."){ // 이제 진짜 공격 시작을 알림 prototype 그냥 한번 만들어본 turn함수 사용
-                Gameturn(data);
-                sendToMe(data);
-            }
-            else
-                sendToMe(data);
+    } else if (!data.indexOf("EVENT_YOUR_TURN")) {
+        sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
+        addOnClick();
+    } else
+        sendToMe(data);
 }
+
 function onClose() {
     disconnect();
 }
