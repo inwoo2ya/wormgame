@@ -63,7 +63,7 @@ function exitBtnToggle(bool){ // 나가기 버튼 disable
     target.disabled = !bool;
 }
 
-function Gameturn(data){ // 클라이언트에게 표시할 턴 함수
+function turnnum(data){ // 클라이언트에게 표시할 턴 함수
     var turn;
     const turnnumber = document.getElementById('Gameturn');
     if (data == "EVENT_INITIALIZE"){
