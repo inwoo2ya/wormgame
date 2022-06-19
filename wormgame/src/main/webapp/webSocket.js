@@ -286,7 +286,7 @@ function onClick(x, y) {
     } else { // 공격 이벤트
         websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ATTACK", writer : sessionId, message : "" + x + y}));
         removeOnClick();
-        sendToMe("공격을 서버로 전송하였습니다.");
+        sendToMe("공격을 서버로 전송하였습니다. 다른 유저가 공격을 마치기를 기다리는 중 ...");
 
     }
     console.log("clickCount = " + clickCount + ", worm = " + worm);

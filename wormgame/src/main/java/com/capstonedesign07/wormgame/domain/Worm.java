@@ -41,6 +41,13 @@ public class Worm {
         this.healthPoint = 2;
     }
 
+    public void damage(Position position) {
+        if (position.equals(head))
+            healthPoint = 0;
+        if (position.equals(body[0]) || position.equals(body[1]))
+            healthPoint--;
+    }
+
     public boolean isAlive() {
         return healthPoint > 0;
     }

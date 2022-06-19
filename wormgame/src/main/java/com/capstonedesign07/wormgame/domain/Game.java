@@ -3,6 +3,7 @@ package com.capstonedesign07.wormgame.domain;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Game {
 
@@ -16,6 +17,8 @@ public class Game {
         room.setRoomStatus(RoomStatus.PLAYING);
         room.getUsers().setUsersStatus(UserStatus.RUNNING);
         room.getUsers().setUsersIsInitialized(false);
+        room.setAttackUserQueue(new LinkedList<>());
+        room.setAttackPositionQueue(new LinkedList<>());
 
         chatMessage.setMessage("SYSTEM : 지렁이의 위치를 설정합니다.");
         room.send(chatMessage, objectMapper);

@@ -12,6 +12,7 @@ public class User {
     private Worms worms;
     private Bomb bomb;
     private boolean isInitialized;
+    private boolean isAttacked;
 
     public User(String sessionId, String name) {
         this.sessionId = sessionId;
@@ -72,6 +73,14 @@ public class User {
 
     public boolean getIsInitialized() {
         return isInitialized;
+    }
+
+    public boolean getIsAttacked() {
+        return isAttacked;
+    }
+
+    public void setIsAttacked(boolean isAttacked) {
+        this.isAttacked = isAttacked;
     }
 
     public void setIsInitialized(boolean initialized) {

@@ -55,6 +55,19 @@ public class Worms {
         }
     }
 
+    public void damage(Position position) {
+        for (int i = 0; i < worms.size(); i++)
+            worms.get(i).damage(position);
+    }
+
+    public int remainWorms() {
+        int count = 0;
+        for (int i = 0; i < worms.size(); i++)
+            if (worms.get(i).isAlive())
+                count++;
+        return count;
+    }
+
     public List<Worm> getWorms() {
         return worms;
     }

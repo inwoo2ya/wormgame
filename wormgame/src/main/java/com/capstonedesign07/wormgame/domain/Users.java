@@ -92,6 +92,18 @@ public class Users {
                 .size() == 1;
     }
 
+    public void setUsersIsAttacked(boolean isAttacked) {
+        IntStream.range(0, users.size())
+                .forEach(i -> users.get(i).setIsAttacked(isAttacked));
+    }
+
+    public boolean turnAttackFinished() {
+        for (int i = 0; i < users.size(); i++)
+            if (!users.get(i).getIsAttacked())
+                return false;
+        return true;
+    }
+
     public void addUser(User user) {
         users.add(user);
     }

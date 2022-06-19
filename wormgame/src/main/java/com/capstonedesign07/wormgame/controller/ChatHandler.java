@@ -75,7 +75,26 @@ public class ChatHandler extends TextWebSocketHandler {
             if (room.isInitializeFinish()) {
                 Game.gameRun(room);
                 chatMessage.setMessage("EVENT_YOUR_TURN");
-                room.send(0, chatMessage, objectMapper);
+                room.send(chatMessage, objectMapper);
+                room.getUsers().setUsersIsAttacked(false);
+            }
+        }
+        if (chatMessage.getMessageType() == MessageType.ATTACK) {
+            room.getAttackUserQueue().add(user);
+            room.getAttackPositionQueue().add(new Position(chatMessage.getMessage()));
+            user.setIsAttacked(true);
+
+            if (room.getUsers().turnAttackFinished()) {
+                room.attack();
+
+                if (!room.isGameOver()) {
+                    chatMessage.setMessage("EVENT_YOUR_TURN");
+                    room.send(chatMessage, objectMapper);
+                    room.getUsers().setUsersIsAttacked(false);
+                } else {
+                    chatMessage.setMessage("SYSTEM : 게임이 종료되었습니다.");
+                    room.send(chatMessage, objectMapper);
+                }
             }
         }
 

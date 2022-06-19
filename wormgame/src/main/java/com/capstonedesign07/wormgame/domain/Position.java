@@ -14,6 +14,10 @@ public class Position {
         this.y = y;
     }
 
+    public Position(String xy) {
+        this(Character.getNumericValue(xy.charAt(0)), Character.getNumericValue(xy.charAt(1)));
+    }
+
     @Override
     public boolean equals(final Object o) {
         if(this == o) {
