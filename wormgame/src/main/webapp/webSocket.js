@@ -58,22 +58,27 @@ function onOpen() {
 function onMessage(evt) {
     var data = evt.data.slice(1, -1);
     console.log(data);
-    if (data == "EVENT_INITIALIZE") {
+    if (data == "EVENT_INITIALIZE") { //게임스타트
         isGamePlaying = true;
         startBtnToggle(false);
         exitBtnToggle(false);
+        turnnum(data);
         initializeBoard();
-
+        
         worm = [];
         sendToMe("1번째 지렁이를 설정합니다.");
         makeViewBoardClickable();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT")||!data.indexOf("EVENT_USERS_WORM_AND_BOMB_COUNT")){
         currentRoomPlayer(data);
-    } else if (!data.indexOf("EVENT_YOUR_TURN")) {
-        sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
-        addOnClick();
-    } else
-        sendToMe(data);
+         } else if (!data.indexOf("EVENT_YOUR_TURN")) {
+                sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
+                addOnClick();
+            } else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다."){ // 이제 진짜 공격 시작을 알림 prototype 그냥 한번 만들어본 turn함수 사용
+                turnnum(data);
+                sendToMe(data);
+            }else{
+                sendToMe(data);
+            }
 }
 
 function onClose() {
@@ -116,6 +121,7 @@ function displayPlayername(userCount) { //Player닉네임 보여주기
         
     for ( ; i <=4 ; i++)
         document.getElementById("playerName" + i).textContent = "";
+       
 }
 function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
     var i = 0;
@@ -141,8 +147,7 @@ function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
     }
 }
 
-
-function initializeBoard() {
+function initializeBoard() { //보드판 생성
     board = [];
     for (var i=0 ; i<BOARD_SIZE ; i++) {
         board[i] = [];
@@ -156,7 +161,7 @@ function initializeBoard() {
     // board[3][0] = 'a';
 }
 
-function makeViewBoardClickable() {
+function makeViewBoardClickable() { //클릭 가능 보드판 생성
     let tableEle = "<table>";
     for (var i=0 ; i<BOARD_SIZE ; i++) {
         tableEle += "<tr>";
@@ -278,23 +283,23 @@ function onClick(x, y) {
         
 
 
-    } else {
+    } else { // 공격 이벤트
         websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "ATTACK", writer : sessionId, message : "" + x + y}));
         removeOnClick();
         sendToMe("공격을 서버로 전송하였습니다.");
+
     }
     console.log("clickCount = " + clickCount + ", worm = " + worm);
     
 }
-
-function bodyAdd(headx, heady, tailx, taily) {
-    var bodyx = parseInt((headx+tailx)/2);
-    var bodyy = parseInt((heady+taily)/2);
-    worm.push(bodyx);
-    worm.push(bodyy);
-    board[bodyx][bodyy] = 't';
+function removeOnClick() {
+    for (var i=0 ; i<BOARD_SIZE ; i++)
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
+            tdId = "" + i + j;
+            td = document.getElementById(tdId);
+            td.onclick = null;
+        }
 }
-
 function addOnClick() {
     for (var i=0 ; i<BOARD_SIZE ; i++)
         for (var j=0 ; j<BOARD_SIZE ; j++)
@@ -305,11 +310,10 @@ function addOnClick() {
             }
 }
 
-function removeOnClick() {
-    for (var i=0 ; i<BOARD_SIZE ; i++)
-        for (var j=0 ; j<BOARD_SIZE ; j++) {
-            tdId = "" + i + j;
-            td = document.getElementById(tdId);
-            td.onclick = null;
-        }
+function bodyAdd(headx, heady, tailx, taily) {
+    var bodyx = parseInt((headx+tailx)/2);
+    var bodyy = parseInt((heady+taily)/2);
+    worm.push(bodyx);
+    worm.push(bodyy);
+    board[bodyx][bodyy] = 't';
 }
