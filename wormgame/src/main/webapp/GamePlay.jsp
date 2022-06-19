@@ -24,7 +24,7 @@
             <div class="leftbox">
 
                 <div class="Gbox">
-                    <div class="Game"id="Game">턴: </div>
+                    <div class="Game"id="Game">턴:&nbsp;<span id="Gameturn"></span></div>
                     <div id ="GBoard"></div>
                     </div>
                 <div class="GRbox">
