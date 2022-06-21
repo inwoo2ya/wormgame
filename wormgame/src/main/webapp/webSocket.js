@@ -76,7 +76,12 @@ function onMessage(evt) {
         addOnClick();
         turnnum(data); // 턴 +1 호출
         
-    } else if(!data.indexOf("EVENT_ATTACK_CHECK_BOARD")) {
+    } 
+            // else if(attackData != -1){ //'의 공격' 문자열이 있는지 아닌지 확인
+            //     clickAfter(data);// 클릭한 보드의 색 변경할 함수 호출(attacked or damaged)
+            //     sendToMe(data);
+            // }
+       else if(!data.indexOf("EVENT_ATTACK_CHECK_BOARD")) {
         attackBoardSet(data.substr(27));
         boardSync();
     } else {
@@ -96,7 +101,7 @@ function gameStartSend() {
     websocket.send(JSON.stringify({chatRoomName : roomName, messageType : "GAMESTART", writer : sessionId}));
 }
 
-function currentRoomPlayer(str) {
+function currentRoomPlayer(str) {//플레이어 닉네임 표시, 세션 표시, 플레이어 수 표시, 지렁이랑 폭탄 표시
     if(!str.indexOf("EVENT_PLAYER_NAME")){
         playerName[str[17]] = str.substr(21);
     }
@@ -202,7 +207,7 @@ function makeViewBoardClickable() { //클릭 가능 보드판 생성
         }
 }
 
-function onClick(x, y) {
+function onClick(x, y) {//클릭 메서드
     console.log(x, y);
     clickCount++;
 
@@ -325,6 +330,22 @@ function bodyAdd(headx, heady, tailx, taily) {
     board[bodyx][bodyy] = 't';
 }
 
+// function clickAfter(data){ // 보드판 attacked, damaged 바꾸는 이벤트
+//         let x = data.charAt(data.length-3);
+//         let y = data.charAt(data.length-1);
+//         tdId = ""+ x + y;
+//         td = document.getElementById(tdId);
+//         if (board[x][y] == 't'){
+//             td.classList.add("damaged");
+//         }
+//         else if(board[x][y] == 'h'){
+//             //head구현 아직 공사중
+//         }
+//         else {
+//             td.classList.add("attacked");
+//         }
+        
+//     }
 function attackBoardSet(str) {
     for (var i=0 ; i<str.length ; i++)
         attackBoard[parseInt(i/BOARD_SIZE)][i%BOARD_SIZE] = str.charAt(i) == 1 ? true : false;
