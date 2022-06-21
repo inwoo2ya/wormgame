@@ -58,6 +58,7 @@ function onOpen() {
 
 function onMessage(evt) {
     var data = evt.data.slice(1, -1);
+    var attackData = data.indexOf("의 공격");
     console.log(data);
     if (data == "EVENT_INITIALIZE") { //게임스타트
         isGamePlaying = true;
