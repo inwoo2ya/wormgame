@@ -74,9 +74,8 @@ function onMessage(evt) {
     } else if (!data.indexOf("EVENT_YOUR_TURN")) {
         sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
         addOnClick();
-    } else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다.") { // 이제 진짜 공격 시작을 알림 prototype 그냥 한번 만들어본 turn함수 사용
-        turnnum(data);
-        sendToMe(data);
+        turnnum(data); // 턴 +1 호출
+        
     } else if(!data.indexOf("EVENT_ATTACK_CHECK_BOARD")) {
         attackBoardSet(data.substr(27));
         boardSync();
