@@ -1,52 +1,5 @@
-'use strict';
+var turn = 0;
 
-var chatPage = document.querySelector('#chat-page'); //채팅 하는 곳
-var messageForm = document.querySelector('#messageForm');
-var messageInput = document.querySelector('#message'); //메시지 입력칸
-var messageArea = document.querySelector('#messageArea'); // 채팅 기록판
-var connectingElement = document.querySelector('.connecting'); // 연결
-
-var stompClient = null; //
-var username = null; //user이름
-
-//usernameForm.addEventListener('submit', connect, true);
-//messageForm.addEventListener('submit', sendMessage, true);
-
-//=============GamePlayJS=================
-
-
-// const GameStart = document.getElementById("GameStartbtn");
-// GameStart.addEventListener("click",Play);
-
-// function Play(){
-
-//     makeboard(10,10);
-//     btndisabled();
-//     function btndisabled(){
-//         const target = document.getElementById('GameStartbtn');
-//         target.disabled = true;
-//     }
-
-//     function makeboard(r,c){
-//         let tableEle = "<table>";
-
-//         for(let i = 0; i<c;i++){
-//             tableEle += '<tr>';
-//             for (let j = 0; j<r;j++){
-//                 tableEle += '<td onclick="onClick('+i +','+ j+')">'+i+','+j+'</td>'
-//             }
-//             tableEle +='</tr>';
-//         }
-//         tableEle += '</table>';
-        
-//         console.log(tableEle);
-//         document.getElementById("Gboard").innerHTML = tableEle;
-//         }
-    
-//     }
-// function onClick(i,j){
-//     console.log(i,j)
-// }
 function Roomname(){
     var inputString = prompt('방 이름을 입력하세요!','방 제목');
     String(inputString);
@@ -64,15 +17,12 @@ function exitBtnToggle(bool){ // 나가기 버튼 disable
 }
 
 function turnnum(data){ // 클라이언트에게 표시할 턴 함수
-    var turn;
     const turnnumber = document.getElementById('Gameturn');
     if (data == "EVENT_INITIALIZE"){
-        turn = 0;
         turnnumber.textContent = turn;
     }
-    else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다."){
-        turn = 1;
+    else if(data == "EVENT_YOUR_TURN"){
+        turn =turn+1;
         turnnumber.textContent = turn;
     }
-
 }
