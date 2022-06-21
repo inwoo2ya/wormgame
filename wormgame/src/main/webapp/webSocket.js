@@ -12,6 +12,7 @@ let bombnum = []; // 폭탄 수
 
 const BOARD_SIZE = 10;
 let board;
+let attackBoard;
 let worm;
 let clickCount = 0;
 
@@ -70,15 +71,18 @@ function onMessage(evt) {
         makeViewBoardClickable();
     } else if (!data.indexOf("EVENT_PLAYER_NAME") || !data.indexOf("EVENT_PLAYER_SESSIONID") || !data.indexOf("EVENT_PLAYER_COUNT")||!data.indexOf("EVENT_USERS_WORM_AND_BOMB_COUNT")){
         currentRoomPlayer(data);
-         } else if (!data.indexOf("EVENT_YOUR_TURN")) {
-                sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
-                addOnClick();
-            } else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다."){ // 이제 진짜 공격 시작을 알림 prototype 그냥 한번 만들어본 turn함수 사용
-                turnnum(data);
-                sendToMe(data);
-            }else{
-                sendToMe(data);
-            }
+    } else if (!data.indexOf("EVENT_YOUR_TURN")) {
+        sendToMe("당신의 차례입니다. 공격할 좌표를 선택하세요.")
+        addOnClick();
+    } else if(data == "SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다.") { // 이제 진짜 공격 시작을 알림 prototype 그냥 한번 만들어본 turn함수 사용
+        turnnum(data);
+        sendToMe(data);
+    } else if(!data.indexOf("EVENT_ATTACK_CHECK_BOARD")) {
+        attackBoardSet(data.substr(27));
+        boardSync();
+    } else {
+        sendToMe(data);
+    }
 }
 
 function onClose() {
@@ -149,10 +153,14 @@ function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
 
 function initializeBoard() { //보드판 생성
     board = [];
+    attackBoard = [];
     for (var i=0 ; i<BOARD_SIZE ; i++) {
         board[i] = [];
-        for (var j=0 ; j<BOARD_SIZE ; j++)
+        attackBoard[i] = [];
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
             board[i][j] = 0;
+            attackBoard[i][j] = false;
+        }
     }
     // board[0][0] = 'h';
     // board[0][1] = board[0][2] = 't';
@@ -303,7 +311,7 @@ function removeOnClick() {
 function addOnClick() {
     for (var i=0 ; i<BOARD_SIZE ; i++)
         for (var j=0 ; j<BOARD_SIZE ; j++)
-            if (board[i][j] == 0) {
+            if (!attackBoard[i][j]) {
                 tdId = "" + i + j;
                 td = document.getElementById(tdId);
                 td.onclick = function() { onClick(Number(this.id[0]), Number(this.id[1])); }
@@ -316,4 +324,23 @@ function bodyAdd(headx, heady, tailx, taily) {
     worm.push(bodyx);
     worm.push(bodyy);
     board[bodyx][bodyy] = 't';
+}
+
+function attackBoardSet(str) {
+    for (var i=0 ; i<str.length ; i++)
+        attackBoard[parseInt(i/BOARD_SIZE)][i%BOARD_SIZE] = str.charAt(i) == 1 ? true : false;
+}
+
+function boardSync() {
+    for (var i=0 ; i<BOARD_SIZE ; i++)
+        for (var j=0 ; j<BOARD_SIZE ; j++) {
+            if (attackBoard[i][j] == true) {
+                tdId = "" + i + j;
+                td = document.getElementById(tdId);
+                if (board[i][j] == 'h' || board[i][j] == 't')
+                    td.className = "damaged";
+                else
+                    td.className = "attacked";
+            }
+        }
 }
