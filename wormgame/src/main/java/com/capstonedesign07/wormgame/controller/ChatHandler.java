@@ -97,6 +97,7 @@ public class ChatHandler extends TextWebSocketHandler {
                 } else {
                     chatMessage.setMessage("SYSTEM : 게임이 종료되었습니다.");
                     room.send(chatMessage, objectMapper);
+                    room.gameEnd();
                 }
             }
         }

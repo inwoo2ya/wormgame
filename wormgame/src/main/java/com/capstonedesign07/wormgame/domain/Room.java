@@ -226,4 +226,29 @@ public class Room {
             return false;
         return true;
     }
+
+    public void gameEnd() throws IOException {
+        List<User> userList = users.getUsers();
+        List<User> winner = new ArrayList<>();
+        ChatMessage chatMessage = new ChatMessage();
+
+        for (User u : userList)
+            if (u.getLivingWormsCount() > 0) {
+                u.setUserStatus(UserStatus.WIN);
+                winner.add(u);
+            }
+
+        if (winner.size() > 1) {
+            throw new IllegalArgumentException("승자가 1명 초과 입니다");
+        }
+        if (winner.size() == 0)
+            chatMessage.setMessage("SYSTEM : 승자가 없습니다(무승부).");
+        else
+            chatMessage.setMessage("SYSTEM : 승자는 " + winner.get(0).getName() + " 입니다.");
+        send(chatMessage, objectMapper);
+
+        for (User u : userList)
+            u.setUserStatus(UserStatus.READY);
+        setRoomStatus(RoomStatus.WAIT);
+    }
 }
