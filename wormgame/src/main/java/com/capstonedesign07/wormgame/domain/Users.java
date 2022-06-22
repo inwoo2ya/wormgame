@@ -26,18 +26,42 @@ public class Users {
 
     public String usersWormsAndBombCount() {
         StringBuilder sb = new StringBuilder();
-        IntStream.range(0, getSize())
-                .forEach(i -> {
-                    User user = users.get(i);
+//        IntStream.range(0, getSize())
+//                .forEach(i -> {
+//                    User user = users.get(i);
+//
+//                    sb.append(user.getLivingWormsCount());
+//
+//                    if (user.getBomb().getAlive())
+//                        sb.append(1);
+//                    else
+//                        sb.append(0);
+//                });
+        for (int i = 0; i < getSize(); i++) {
+            User user = users.get(i);
+            if (user.getUserStatus().equals(UserStatus.ESCAPE)) {
+                sb.append("--");
+                continue;
+            }
 
-                    sb.append(user.getLivingWormsCount());
+            sb.append(user.getLivingWormsCount());
 
-                    if (user.getBomb().getAlive())
-                        sb.append(1);
-                    else
-                        sb.append(0);
-                });
+            if (user.getBomb().getAlive())
+                sb.append(1);
+            else
+                sb.append(0);
+        }
         return sb.toString();
+    }
+
+    public int nonEscapeUsersCount() {
+        int count = 0;
+        for (User u : users) {
+            if (u.getUserStatus().equals(UserStatus.ESCAPE))
+                continue;
+            count++;
+        }
+        return count;
     }
 
     public int getSize() {
@@ -100,9 +124,12 @@ public class Users {
     }
 
     public boolean turnAttackFinished() {
-        for (int i = 0; i < users.size(); i++)
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUserStatus().equals(UserStatus.ESCAPE))
+                continue;
             if (!users.get(i).getIsAttacked())
                 return false;
+        }
         return true;
     }
 

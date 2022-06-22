@@ -35,8 +35,13 @@ public class Room {
 
     public void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
         TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
-        for(WebSocketSession wss : sessions)
-            wss.sendMessage(textMessage);
+//        for(WebSocketSession wss : sessions)
+//            wss.sendMessage(textMessage);
+        for (int i = 0; i < users.getSize(); i++) {
+            if (users.getUsers().get(i).getUserStatus().equals(UserStatus.ESCAPE))
+                continue;
+            sessions.get(i).sendMessage(textMessage);
+        }
     }
 
     public void send(int index, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
@@ -61,7 +66,9 @@ public class Room {
             attackCheckBoard[attackPosition.getX()][attackPosition.getY()] = true;
 
             //다른 유저들 폭탄이 있나 검사
-            for (int i = 0; i < users.getSize(); i++)
+            for (int i = 0; i < users.getSize(); i++) {
+                if (users.getUsers().get(i).getUserStatus().equals(UserStatus.ESCAPE))
+                    continue;
                 if (users.getUsers().get(i).getBomb().getPosition().equals(attackPosition)) {
                     chatMessage.setMessage(
                             attackPosition.getX() + ", " + attackPosition.getY() + "에는 "
@@ -81,6 +88,7 @@ public class Room {
                         attackPositionQueue.add(new Position(nx, ny));
                     }
                 }
+            }
 
             for (int i = 0; i < users.getSize(); i++) {
                 if (users.getUsers().get(i).getUserStatus() != UserStatus.RUNNING)
@@ -219,9 +227,12 @@ public class Room {
 
     public boolean isGameOver() {
         int remain = 0;
-        for (int i = 0; i < users.getSize(); i++)
+        for (int i = 0; i < users.getSize(); i++) {
+            if (users.getUsers().get(i).getUserStatus().equals(UserStatus.ESCAPE))
+                continue;
             if (users.getUsers().get(i).getWorms().remainWorms() > 0)
                 remain++;
+        }
         if (remain > 1)
             return false;
         return true;
@@ -232,25 +243,44 @@ public class Room {
         List<User> winner = new ArrayList<>();
         ChatMessage chatMessage = new ChatMessage();
 
-        for (User u : userList)
+        for (User u : userList) {
+            if (u.getUserStatus().equals(UserStatus.ESCAPE))
+                continue;
             if (u.getLivingWormsCount() > 0) {
                 u.setUserStatus(UserStatus.WIN);
                 winner.add(u);
             }
+        }
 
         if (winner.size() > 1) {
             throw new IllegalArgumentException("승자가 1명 초과 입니다");
         }
+        chatMessage.setMessage("SYSTEM : 게임이 종료되었습니다.");
+        send(chatMessage, objectMapper);
         if (winner.size() == 0)
             chatMessage.setMessage("SYSTEM : 승자가 없습니다(무승부).");
         else
             chatMessage.setMessage("SYSTEM : 승자는 " + winner.get(0).getName() + " 입니다.");
         send(chatMessage, objectMapper);
 
+        for (int i = 0; i < users.getSize(); i++) {
+            User u = users.getUsers().get(i);
+            if (u.getUserStatus().equals(UserStatus.ESCAPE)) {
+                u.setUserStatus(UserStatus.READY);
+//                chatMessage.setMessage("SYSTEM : " + u.getName() + "님이 (탈주)자동퇴장되셨습니다.");
+//                send(chatMessage, objectMapper);
+                removeUser(u);
+                sessions.remove(i);
+            }
+        }
+
         for (User u : userList)
             u.setUserStatus(UserStatus.READY);
         setRoomStatus(RoomStatus.WAIT);
         chatMessage.setMessage("EVENT_GAME_END");
+        send(chatMessage, objectMapper);
+        sendCurrentPlayer(objectMapper);
+        chatMessage.setMessage("EVENT_USERS_WORM_AND_BOMB_COUNT : " + getUsers().usersWormsAndBombCount());
         send(chatMessage, objectMapper);
     }
 }

@@ -55,6 +55,36 @@ public class ChatHandler extends TextWebSocketHandler {
             room.removeUser(user);
             room.sendCurrentPlayer(objectMapper);
         }
+        if (chatMessage.getMessageType() == MessageType.LEAVE && room.getRoomStatus().equals(RoomStatus.PLAYING)) {
+            user.setUserStatus(UserStatus.ESCAPE);
+            chatMessage.setMessage("SYSTEM : " + user.getName() + "님이 탈주하셨습니다.");
+            room.send(chatMessage, objectMapper);
+//            user.setName(user.getName() + " (탈주)");
+//            room.sendCurrentPlayer(objectMapper);
+
+//            user.setIsInitialized(true);
+//            user.setIsAttacked(true);
+
+            if (room.getUsers().nonEscapeUsersCount() <= 1) {
+                room.gameEnd();
+                room.sendCurrentPlayer(objectMapper);
+            }
+
+            //초기화 단계에서 탈주일 때
+            if (!user.getIsInitialized()) {
+                user.setIsInitialized(true);
+
+                if (room.isInitializeFinish()) {
+                    Game.gameRun(room);
+                    chatMessage.setMessage("EVENT_YOUR_TURN");
+                    room.send(chatMessage, objectMapper);
+                    room.getUsers().setUsersIsAttacked(false);
+                }
+            }
+            //턴에서 탈주일 때
+
+
+        }
         if (chatMessage.getMessageType() == MessageType.CHAT) {
             chatMessage.setMessage(user.getName() + " : " + chatMessage.getMessage());
             sendMessage = true;
@@ -95,8 +125,8 @@ public class ChatHandler extends TextWebSocketHandler {
                     room.send(chatMessage, objectMapper);
                     room.getUsers().setUsersIsAttacked(false);
                 } else {
-                    chatMessage.setMessage("SYSTEM : 게임이 종료되었습니다.");
-                    room.send(chatMessage, objectMapper);
+//                    chatMessage.setMessage("SYSTEM : 게임이 종료되었습니다.");
+//                    room.send(chatMessage, objectMapper);
                     room.gameEnd();
                 }
             }

@@ -89,6 +89,9 @@ public class User {
     }
 
     public int getLivingWormsCount() {
+        if (userStatus.equals(UserStatus.ESCAPE) || worms == null)
+            return 0;
+
         int count = 0;
         for (int i = 0; i < worms.getWorms().size() ; i++)
             if (getWorms().getWorms().get(i).isAlive())
