@@ -87,6 +87,9 @@ public class ChatHandler extends TextWebSocketHandler {
             if (room.getUsers().turnAttackFinished()) {
                 room.attack();
 
+                chatMessage.setMessage("EVENT_USERS_WORM_AND_BOMB_COUNT : " + room.getUsers().usersWormsAndBombCount());
+                room.send(chatMessage, objectMapper);
+
                 if (!room.isGameOver()) {
                     chatMessage.setMessage("EVENT_YOUR_TURN");
                     room.send(chatMessage, objectMapper);

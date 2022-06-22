@@ -23,7 +23,7 @@ public class BombTests {
         assertAll(
                 () -> assertThat(bombPosition.getX()).isEqualTo(0),
                 () -> assertThat(bombPosition.getY()).isEqualTo(0),
-                () -> assertThat(bomb.isAlive()).isTrue()
+                () -> assertThat(bomb.getAlive()).isTrue()
         );
     }
 

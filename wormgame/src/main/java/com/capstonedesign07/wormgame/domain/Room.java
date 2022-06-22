@@ -67,6 +67,7 @@ public class Room {
                             attackPosition.getX() + ", " + attackPosition.getY() + "에는 "
                                     + users.getUsers().get(i).getName() + "의 폭탄이 있었습니다.");
                     send(chatMessage, objectMapper);
+                    users.getUsers().get(i).getBomb().setAlive(false);
                     int curx = attackPosition.getX();
                     int cury = attackPosition.getY();
                     int[] DX = {-1, -1, 0, 1, 1, 1, 0, -1};
