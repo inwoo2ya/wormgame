@@ -31,11 +31,12 @@ public class Users {
                     User user = users.get(i);
 //                    sb.append(user.getWorms().getWorms().size());
                     List<Worm> worms = user.getWorms().getWorms();
-                    int count = 0;
-                    for (Worm w : worms)
-                        if (w.isAlive())
-                            count++;
-                    sb.append(count);
+//                    int count = 0;
+//                    for (Worm w : worms)
+//                        if (w.isAlive())
+//                            count++;
+//                    sb.append(count);
+                    sb.append(user.getLivingWormsCount());
 
                     if (user.getBomb().getAlive())
                         sb.append(1);

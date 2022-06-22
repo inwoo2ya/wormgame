@@ -1,6 +1,7 @@
 package com.capstonedesign07.wormgame.domain;
 
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class User {
 
@@ -85,6 +86,14 @@ public class User {
 
     public void setIsInitialized(boolean initialized) {
         isInitialized = initialized;
+    }
+
+    public int getLivingWormsCount() {
+        int count = 0;
+        for (int i = 0; i < worms.getWorms().size() ; i++)
+            if (getWorms().getWorms().get(i).isAlive())
+                count++;
+        return count;
     }
 
     @Override
