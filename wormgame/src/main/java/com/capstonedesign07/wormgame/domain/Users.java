@@ -29,13 +29,7 @@ public class Users {
         IntStream.range(0, getSize())
                 .forEach(i -> {
                     User user = users.get(i);
-//                    sb.append(user.getWorms().getWorms().size());
-                    List<Worm> worms = user.getWorms().getWorms();
-//                    int count = 0;
-//                    for (Worm w : worms)
-//                        if (w.isAlive())
-//                            count++;
-//                    sb.append(count);
+
                     sb.append(user.getLivingWormsCount());
 
                     if (user.getBomb().getAlive())
