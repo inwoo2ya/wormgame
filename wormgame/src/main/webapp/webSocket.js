@@ -61,6 +61,7 @@ function onMessage(evt) {
     var attackData = data.indexOf("의 공격");
     console.log(data);
     if (data == "EVENT_INITIALIZE") { //게임스타트
+        clickCount = 0;
         isGamePlaying = true;
         startBtnToggle(false);
         exitBtnToggle(false);
@@ -85,6 +86,11 @@ function onMessage(evt) {
        else if(!data.indexOf("EVENT_ATTACK_CHECK_BOARD")) {
         attackBoardSet(data.substr(27));
         boardSync();
+    } else if (!data.indexOf("EVENT_GAME_END")) {
+        isGamePlaying = false;
+        if (sessionId == playerSessionId[1] && !isGamePlaying && playerCount > 1)
+            startBtnToggle(true);
+        exitBtnToggle(true);
     } else {
         sendToMe(data);
     }

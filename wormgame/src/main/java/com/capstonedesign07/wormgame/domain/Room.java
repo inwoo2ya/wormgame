@@ -250,5 +250,7 @@ public class Room {
         for (User u : userList)
             u.setUserStatus(UserStatus.READY);
         setRoomStatus(RoomStatus.WAIT);
+        chatMessage.setMessage("EVENT_GAME_END");
+        send(chatMessage, objectMapper);
     }
 }
