@@ -88,6 +88,8 @@ function onMessage(evt) {
         boardSync();
     } else if (!data.indexOf("EVENT_GAME_END")) {
         isGamePlaying = false;
+        clickCount = 0;
+        removeOnClick();
         if (sessionId == playerSessionId[1] && !isGamePlaying && playerCount > 1)
             startBtnToggle(true);
         exitBtnToggle(true);
