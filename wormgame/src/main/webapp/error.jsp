@@ -126,22 +126,6 @@
                  <div class="_label"style="margin-top:0"></div>
                 <div class="_label" style="margin-bottom: 20px;"><span style="font-size:23px;width:420px">중복된 세션에서 접속이 시도 되었습니다. 브라우저를 닫고 재실행시켜주세요.</span></div>
 
-                <!-- <div class="divBox">
-                    <img class="_username_img"
-                         src="img/username_mark.png">
-                    <input class="_username_class"
-                           type="text"
-                           placeholder="닉네임"
-                           id="_username_id"
-                           name="_username_id"
-                           maxlength="11">
-                </div>
-                <p class="warning" style="font-size:10pt;">닉네임은 최대 11글자입니다.</p>
-                <div class="divBox" style="margin-top:30px; border:none;">
-                    
-                    <input class="_btn" type="submit" value="게임 시작" name="submit" id="GameStart">
-                </div> -->
-
                 <div class="divBox" style="border:none;"></div>
             </form>
         </div>
