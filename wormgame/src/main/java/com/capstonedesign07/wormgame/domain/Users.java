@@ -26,17 +26,7 @@ public class Users {
 
     public String usersWormsAndBombCount() {
         StringBuilder sb = new StringBuilder();
-//        IntStream.range(0, getSize())
-//                .forEach(i -> {
-//                    User user = users.get(i);
-//
-//                    sb.append(user.getLivingWormsCount());
-//
-//                    if (user.getBomb().getAlive())
-//                        sb.append(1);
-//                    else
-//                        sb.append(0);
-//                });
+
         for (int i = 0; i < getSize(); i++) {
             User user = users.get(i);
             if (user.getUserStatus().equals(UserStatus.ESCAPE)) {
@@ -46,6 +36,10 @@ public class Users {
 
             sb.append(user.getLivingWormsCount());
 
+            if (user.getBomb() == null) {
+                sb.append(0);
+                continue;
+            }
             if (user.getBomb().getAlive())
                 sb.append(1);
             else

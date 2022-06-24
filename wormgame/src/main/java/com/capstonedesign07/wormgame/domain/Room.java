@@ -33,6 +33,33 @@ public class Room {
         this(name, new Users());
     }
 
+    public void gameInitialize() throws IOException {
+        ChatMessage chatMessage = new ChatMessage();
+        setAttackCheckBoard(new boolean[Position.BOARD_SIZE][Position.BOARD_SIZE]);
+
+        setRoomStatus(RoomStatus.PLAYING);
+        getUsers().setUsersStatus(UserStatus.RUNNING);
+        getUsers().setUsersIsInitialized(false);
+        setAttackUserQueue(new LinkedList<>());
+        setAttackPositionQueue(new LinkedList<>());
+
+        chatMessage.setMessage("SYSTEM : 지렁이의 위치를 설정합니다.");
+        send(chatMessage, objectMapper);
+
+        chatMessage.setMessage("EVENT_INITIALIZE");
+        send(chatMessage, objectMapper);
+    }
+
+    public void gameRun() throws IOException {
+        ChatMessage chatMessage = new ChatMessage();
+
+        chatMessage.setMessage("SYSTEM : 모든 유저가 지렁이와 폭탄을 설정했습니다.");
+        send(chatMessage, objectMapper);
+
+        chatMessage.setMessage("EVENT_USERS_WORM_AND_BOMB_COUNT : " + getUsers().usersWormsAndBombCount());
+        send(chatMessage, objectMapper);
+    }
+
     public void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
         TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
 //        for(WebSocketSession wss : sessions)
@@ -117,6 +144,7 @@ public class Room {
 
     public void sendCurrentPlayer(ObjectMapper objectMapper) throws IOException {
         for (int i = 1; i <= users.getSize(); i++) {
+            
             TextMessage playerName = new TextMessage(" EVENT_PLAYER_NAME" + i + " : " + users.getUsers().get(i-1).getName() + ' ');
             TextMessage playerSessionId = new TextMessage(" EVENT_PLAYER_SESSIONID" + i + " : " + users.getUsers().get(i-1).getSessionId() + ' ');
             for (WebSocketSession wss : sessions) {
@@ -267,10 +295,8 @@ public class Room {
             User u = users.getUsers().get(i);
             if (u.getUserStatus().equals(UserStatus.ESCAPE)) {
                 u.setUserStatus(UserStatus.READY);
-//                chatMessage.setMessage("SYSTEM : " + u.getName() + "님이 (탈주)자동퇴장되셨습니다.");
-//                send(chatMessage, objectMapper);
                 removeUser(u);
-                sessions.remove(i);
+                sessions.remove(i--);
             }
         }
 

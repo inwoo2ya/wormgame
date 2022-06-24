@@ -75,7 +75,7 @@ public class ChatHandler extends TextWebSocketHandler {
                 user.setIsInitialized(true);
 
                 if (room.isInitializeFinish()) {
-                    Game.gameRun(room);
+                    room.gameRun();
                     chatMessage.setMessage("EVENT_YOUR_TURN");
                     room.send(chatMessage, objectMapper);
                     room.getUsers().setUsersIsAttacked(false);
@@ -103,7 +103,7 @@ public class ChatHandler extends TextWebSocketHandler {
             }
             user.initialize(chatMessage.getMessage());
             if (room.isInitializeFinish()) {
-                Game.gameRun(room);
+                room.gameRun();
                 chatMessage.setMessage("EVENT_YOUR_TURN");
                 room.send(chatMessage, objectMapper);
                 room.getUsers().setUsersIsAttacked(false);
@@ -125,8 +125,6 @@ public class ChatHandler extends TextWebSocketHandler {
                     room.send(chatMessage, objectMapper);
                     room.getUsers().setUsersIsAttacked(false);
                 } else {
-//                    chatMessage.setMessage("SYSTEM : 게임이 종료되었습니다.");
-//                    room.send(chatMessage, objectMapper);
                     room.gameEnd();
                 }
             }
@@ -135,7 +133,7 @@ public class ChatHandler extends TextWebSocketHandler {
         if (sendMessage)
             send(room, chatMessage, objectMapper);
         if (gameStart)
-            Game.gameInitialize(room);
+            room.gameInitialize();
     }
 
     private void send(Room room, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
