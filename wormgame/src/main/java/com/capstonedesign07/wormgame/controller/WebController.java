@@ -47,6 +47,8 @@ public class WebController {
     @GetMapping("firstIndex")
     public String firstIndex() {
         System.out.println("httpSession.getId() = " + httpSession.getId());
+        if (userRepository.containsBySessionId(httpSession.getId()) && userRepository.findBySessionId(httpSession.getId()).getRoom() != null)
+            return "error.jsp";
         return "firstIndex.jsp";
     }
 
@@ -76,6 +78,8 @@ public class WebController {
             return findRoom(model);
 
         User user = userRepository.findBySessionId(httpSession.getId());
+        if (user.getRoom() != null)
+            return findRoom(model);
         roomRepository.getRooms().get(roomNumber).addUser(user);
         model.addAttribute("roomname", roomRepository.getRooms().get(roomNumber).getName());
         return "GamePlay.jsp";
