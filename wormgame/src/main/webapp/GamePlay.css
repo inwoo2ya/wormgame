@@ -108,21 +108,31 @@ td{
 .nonclickable {
     background-color: darkgray;
 }
-.wormHead {
-    background-color: red;
+.wormHead, .wormTail, .bomb, .damaged, .attacked {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
-.wormTail {
-    background-color: blue;
+.wormHead { /*머리*/
+    background-image: url(./head.png);
 }
-.bomb {
-    background-color: green;
+.wormTail { /*몸통,꼬리*/
+    background-image: url(./body2.png);
 }
-.damaged {
-    background-color: blueviolet;
+.bomb { /*폭탄*/
+    background-image: url(./boom.png);
 }
-.attacked {
-    background-color: brown;
+.damaged { /*피해*/
+    background-image: url(./scratch_body.png);
 }
+.damagedHead { /*피해입은 머리*/
+    background-image: url(./scratch_head.png);
+}
+.attacked { /*클릭된 칸*/
+    background-image: url(./scratch.png);
+}
+
 .userbox{
     display:inline-block;
     height:75%;
