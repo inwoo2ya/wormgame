@@ -67,6 +67,7 @@ function onMessage(evt) {
         exitBtnToggle(false);
         turnnum(data);
         initializeBoard();
+        initializeWormBomb()
         
         worm = [];
         sendToMe("1번째 지렁이를 설정합니다.");
@@ -79,10 +80,7 @@ function onMessage(evt) {
         turnnum(data); // 턴 +1 호출
         
     } 
-            // else if(attackData != -1){ //'의 공격' 문자열이 있는지 아닌지 확인
-            //     clickAfter(data);// 클릭한 보드의 색 변경할 함수 호출(attacked or damaged)
-            //     sendToMe(data);
-            // }
+ 
        else if(!data.indexOf("EVENT_ATTACK_CHECK_BOARD")) {
         attackBoardSet(data.substr(27));
         boardSync();
@@ -161,6 +159,16 @@ function displayWormandBomb(str,userCount){ //player 지렁이수 보여주기
         }
     
 
+    }
+}
+function initializeWormBomb() { //지렁이 폭탄 초기화
+    for (var i = 1; i<5; i++) {
+        var wnum = document.getElementById("wormnumber"+i);
+        var bnum = document.getElementById("bombnumber"+i);
+        
+        wnum.textContent ='';
+        bnum.textContent ='';
+       
     }
 }
 
