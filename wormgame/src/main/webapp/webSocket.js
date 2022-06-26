@@ -374,7 +374,9 @@ function boardSync() {
             if (attackBoard[i][j] == true) {
                 tdId = "" + i + j;
                 td = document.getElementById(tdId);
-                if (board[i][j] == 'h' || board[i][j] == 't')
+                if (board[i][j] == 'h')
+                    td.className = "damagedHead";
+                else if (board[i][j] == 't')
                     td.className = "damaged";
                 else
                     td.className = "attacked";

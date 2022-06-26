@@ -108,7 +108,7 @@ td{
 .nonclickable {
     background-color: darkgray;
 }
-.wormHead, .wormTail, .bomb, .damaged, .attacked {
+.wormHead, .wormTail, .bomb, .damaged, .damagedHead, .attacked {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
