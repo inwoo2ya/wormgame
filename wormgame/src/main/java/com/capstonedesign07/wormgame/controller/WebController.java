@@ -28,7 +28,6 @@ public class WebController {
     private UserRepository userRepository;
     private RoomRepository roomRepository;
 
-    @Autowired
     public WebController(UserRepository userRepository, RoomRepository roomRepository) {
         this.userRepository = userRepository;
         this.roomRepository = roomRepository;
@@ -49,7 +48,7 @@ public class WebController {
         System.out.println("httpSession.getId() = " + httpSession.getId());
         if (userRepository.containsBySessionId(httpSession.getId()) && userRepository.findBySessionId(httpSession.getId()).getRoom() != null)
             return "error.jsp";
-        return "firstIndex.jsp";
+        return "index.jsp";
     }
 
     @PostMapping("firstPost")

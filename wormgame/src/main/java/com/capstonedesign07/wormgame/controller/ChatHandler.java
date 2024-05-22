@@ -14,7 +14,6 @@ import java.util.List;
 
 @Component
 public class ChatHandler extends TextWebSocketHandler {
-
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
     private final ObjectMapper objectMapper;

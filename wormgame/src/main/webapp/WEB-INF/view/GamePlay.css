@@ -3,7 +3,9 @@
     margin : 0;
 }
 body{width:100%;height:100%;}
-
+button:disabled{
+    background-color:rgba(0, 180, 15, 0.347)
+}
 ._label{
     display: flex;
     justify-content: center;
@@ -13,31 +15,49 @@ body{width:100%;height:100%;}
     margin-left: 10%;
 }
 .home{
-    width:100%;
-    height:100%;
     justify-content: center;
     background-repeat: no-repeat;
     background-image: url(./warmbase.jpg);
     background-size: 100% 100%;
 }
+.roombtn{
+    margin-left:auto;
+    display:inline-block;
+    font-size: 15pt;
+    color:white;
+    border-style: hidden;
+    border-radius: 5px;
+    background-color: rgb(0, 180, 15);
+    
+    
+}
+.roombtn:hover{
+    background-color:rgb(0, 255, 34);
+    
+}
 .roomhead{
-    margin-left:10%;
-    width:25%;
+    width:98.5%;
+    height:21.600px;
     display:inline-flex;
     padding:10px;
     background-color: rgb(0, 180, 15);
     border-radius: 8px;
-}
-.roomname{
     color:rgb(255, 255, 255);
     font-size:12pt;
     font-weight: 400;
 
 }
+.roomname{
+    color:rgb(255, 255, 255);
+    font-size:14pt;
+    font-weight: 400;
+
+}
 .mainbox{
+    position:relative;
     margin: 0% auto 5% auto;
     background-color:whitesmoke;
-    width:80%; height:850px;
+    width:1215.35px; height:940px;
     border-radius: 8px;
 
 }
@@ -52,30 +72,67 @@ div{display:block;}
 .rightbox{
     position:relative;
     width: 40%;
-    height:100%;
+    height:95.6%;
     display:inline-block;
     float:right;
 }
 .Gbox{
+    position: relative;
+
     display:inline-block;
-    margin:4% 6%;
+    margin:4% 6% 4% 7%;
     background-color: antiquewhite;
-    width:85%;
-    height:60%;
+    width:583.350px;
+    height:559px;
     border-radius: 5px;
 }
-.choiceBox{
-    padding:2px;
-    position: relative;
-    justify-content: center;
-    width: 9.1%;
-    height:10%;
-    background-color:antiquewhite;
+table{ border-collapse: collapse;
 
 }
-.choiceBox:hover{
+td{
+    border:1px solid black;
+    width:57px;
+    height:52.5px;
+    justify-content: center;
+    text-align:center;
+}
+/* td:hover{
+    background-color: azure;
+} */
+.clickable {
+    background-color: aliceblue;
+}
+.clickable:hover {
     background-color: azure;
 }
+.nonclickable {
+    background-color: darkgray;
+}
+.wormHead, .wormTail, .bomb, .damaged, .damagedHead, .attacked {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.wormHead { /*머리*/
+    background-image: url(./head.png);
+}
+.wormTail { /*몸통,꼬리*/
+    background-image: url(./body2.png);
+}
+.bomb { /*폭탄*/
+    background-image: url(./boom.png);
+}
+.damaged { /*피해*/
+    background-image: url(./scratch_body.png);
+}
+.damagedHead { /*피해입은 머리*/
+    background-image: url(./scratch_head.png);
+}
+.attacked { /*클릭된 칸*/
+    background-image: url(./scratch.png);
+}
+
 .userbox{
     display:inline-block;
     height:75%;
@@ -83,35 +140,44 @@ div{display:block;}
 
 }
 .GRbox{
-    display:inline-block;
+    display:flex;
     overflow: auto;
-    margin:0% 6%;
+    margin:0% 7%;
     background-color:rgb(197, 245, 197);
-    height:25%;
-    width: 85%;
+    height:22%;
+    width: 80%;
     border-radius: 10px;
+    flex-direction: column-reverse;
+    overflow-y:auto;
 }
+
 .repo{
     padding:10px;
     font-size:12pt;
+    display:flex;
+    
 }
+
 .GRbox::-webkit-scrollbar{
     width: 10px;
 }
+
 .GRbox::-webkit-scrollbar-thumb{
     background-color: rgb(173, 189, 180);
     border-radius: 10px;
 }
+
 .GRbox::-webkit-scroller-track{
     background-color: rgb(255, 255, 255);
 }
+
 .in_{
     background-color:rgb(240, 255, 242);
     position:relative;
-    width:74%;
+    width:69%;
     height:15pt;
     border-radius:5px;
-    margin-left: 6%;
+    margin-left: 7%;
     margin-top:0;
     font-size:12pt;
 
@@ -125,14 +191,44 @@ div{display:block;}
     background-color: rgb(78, 226, 90);
     color:white;
 }
-.otherplayerbox{
+.playerbox{
+    position: relative;
+    display:inline-block;
+    width:53%;
+    height:19%;
+    margin:7% 7% 0% 15%;
+    border-radius: 10px;
+    background-color: rgb(202, 238, 207);
+}
+.pln{
+    text-align: center;
+}
+.pln span{
+    color: rgb(91, 128, 91);
+    font-size: 15.5pt;
+    font-weight: bolder;
+}
+
+.playerbox p{
+    margin:5px;
+}
+/* .playerbox .worm .boomb {
+    margin-top: 5px;
+} */
+.dieplayerbox{
     position: relative;
     display:inline-block;
     width:50%;
     height:25%;
     margin:7% 7% 0% 15%;
     border-radius: 10px;
-    background-color: rgb(202, 238, 207);
+    background-color: rgb(49, 77, 53);
+}
+.dieplayerbox img{
+    width:90%;
+    height:95%;
+    margin-left:5%;
+    filter: opacity(0.5) drop-shadow(0 0 0 red);
 }
 .startbtn,.exitbtn{
     display:inline-block;
@@ -153,7 +249,7 @@ div{display:block;}
     color:white;
 }
 .exitbtn{
-    margin:7% 0% 15% 5%;
+    margin:7% 0% 15% 8%;
 }
 .exitbtn:hover{
     background-color: rgb(0, 255, 34);
